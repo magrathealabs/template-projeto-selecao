@@ -1,3 +1,6 @@
+@import './variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script|Great+Vibes|Sacramento|Satisfy&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,6 +9,10 @@
   line-height: 18px;
   font-weight: 400;
   font-family: 'Poppins', sans-serif;
+}
+
+body, #root {
+  min-height: 100vh;
 }
 
 button,
@@ -23,3 +30,25 @@ button {
   background: none;
   cursor: pointer;
 }
+
+ul, li {
+  list-style: none;
+}
+
+.contained {
+  max-width: 100vw;
+}
+
+@media (min-width: $lg) {
+  .contained {
+    max-width: $lg;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// @media (min-width: $xl) {
+//   .contained {
+//     max-width: $xl;
+//   }
+// }

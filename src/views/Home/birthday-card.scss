@@ -1,0 +1,100 @@
+@import '../../variables.scss';
+
+.birthday-card {
+  display: flex;
+  width: 16rem;
+  height: 22rem;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: width 0.4s ease-out, height 0.4s ease-out;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: height 0.4s ease-out;
+  }
+
+  &__date {
+    font-size: 1.2rem;
+    color: #fff;
+  }
+
+  &__name {
+    font-size: 1.3rem;
+    line-height: 1.4rem;
+  }
+
+  &:nth-child(1), &:nth-child(4) {
+    .birthday-card__name {
+      &:nth-child(1n) {
+        font-family: 'Dancing Script', cursive;
+      }
+      &:nth-child(2n) {
+        font-family: 'Satisfy', cursive;
+      }
+      &:nth-child(3n) {
+        font-family: 'Sacramento', cursive;
+      }
+      &:nth-child(4n) {
+        font-family: 'Great Vibes', cursive !important;
+      }
+    }
+  }
+  &:nth-child(3), &:nth-child(5), &:nth-child(7) {
+    .birthday-card__name {
+      &:nth-child(1n) {
+        font-family: 'Sacramento', cursive;
+      }
+      &:nth-child(2n) {
+        font-family: 'Great Vibes', cursive;
+      }
+      &:nth-child(3n) {
+        font-family: 'Dancing Script', cursive;
+      }
+      &:nth-child(4n) {
+        font-family: 'Satisfy', cursive !important;
+      }
+    }
+  }
+  &:nth-child(2), &:nth-child(6) {
+    .birthday-card__name {
+      &:nth-child(1n) {
+        font-family: 'Satisfy', cursive;
+      }
+      &:nth-child(2n) {
+        font-family: 'Sacramento', cursive;
+      }
+      &:nth-child(3n) {
+        font-family: 'Great Vibes', cursive;
+      }
+      &:nth-child(4n) {
+        font-family: 'Dancing Script', cursive !important;
+      }
+    }
+  }
+}
+
+@media (min-width: $lg) {
+  .birthday-card {
+    &:hover {
+      width: 24rem;
+      height: 28rem;
+      overflow-y: auto;
+    }
+
+    &__list {
+      height: 22rem;
+      flex-direction: row;
+
+      &:hover {
+        height: 28rem;
+      }
+    }
+  }
+}
+
