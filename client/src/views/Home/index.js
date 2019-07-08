@@ -9,11 +9,24 @@ import './flip.scss';
 
 const Home =  ({
   birthdays,
+  isFetching,
+  isLoaded,
   fetchBirthdays,
 }) => {
   const [inProp, setInProp] = useState(false);
   const [selectedCard, selectCard] = useState(-1);
   const [weekList, setWeekList] = useState(birthdays);
+
+  useEffect(() => {
+    if(!isFetching && isLoaded) {
+      setInProp(true);
+    }
+  }, [ birthdays, isFetching, isLoaded ]);
+
+  const next = () => {
+    const today = moment();
+    fetchBirthdays(today.isoWeek(), today.year());
+  }
 
   const renderCardsLists = (start, end = weekList.length) => (
     <div className={ClassNames(
@@ -22,6 +35,7 @@ const Home =  ({
     )}>
       {weekList.slice(start, end).map((day, index) => {
         const cardNumber = index + start;
+        const date = moment(day.date);
         return (
           <CSSTransition
             in={inProp}
@@ -37,10 +51,10 @@ const Home =  ({
               )}
             >
               <span className="birthday-card__date">
-                {day.date.format('dddd')}
+                {date.format('dddd')}
               </span>
               <span className="birthday-card__date mb-3">
-                {day.date.format('DD/MMM')}
+                {date.format('DD/MMM')}
               </span>
               <ul>
                 {day.birthdays.length
@@ -70,21 +84,13 @@ const Home =  ({
       <div className="d-flex justify-content-between mb-3">
         <button
           className="btn btn-primary"
-          onClick={() => {
-            setInProp(true)
-            const today = moment();
-            fetchBirthdays(today.isoWeek(), today.year());
-          }}
+          onClick={next}
         >
           {'<'}
         </button>
         <button
           className="btn btn-primary"
-          onClick={() => {
-            setInProp(true)
-            const today = moment();
-            fetchBirthdays(today.isoWeek(), today.year());
-          }}
+          onClick={next}
         >
           {'>'}
         </button>

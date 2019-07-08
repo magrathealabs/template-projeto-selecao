@@ -2,7 +2,7 @@ import moment from 'moment';
 import {
   FETCH_BIRTHDAYS,
   FETCH_BIRTHDAYS_SUCCESS,
-  ADD_BIRTHDAY_SUCCESS,
+  FETCH_BIRTHDAYS_ERROR,
 } from '../actionNames';
 
 const defaultState = {
@@ -40,6 +40,7 @@ const defaultState = {
   isLoaded: false,
   week: '',
   year: '',
+  error: '',
 };
 
 export default (state = defaultState, {type, payload}) => {
@@ -49,6 +50,12 @@ export default (state = defaultState, {type, payload}) => {
         ...state,
         isFetching: true,
       };
+    case FETCH_BIRTHDAYS_ERROR:
+      return  {
+        ...state,
+        isFetching: false,
+        error: payload.error,
+      };
     case FETCH_BIRTHDAYS_SUCCESS:
       return {
         ...state,
@@ -57,6 +64,7 @@ export default (state = defaultState, {type, payload}) => {
         year: payload.year,
         isFetching: false,
         isLoaded: true,
+        error: '',
       };
     default:
       return state;
