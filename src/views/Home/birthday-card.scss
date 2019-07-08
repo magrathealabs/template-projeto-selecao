@@ -10,7 +10,7 @@
 
   &-card {
     display: flex;
-    width: 16rem;
+    width: 14rem;
     height: 22rem;
     align-items: center;
     flex-direction: column;
@@ -18,6 +18,12 @@
     border-radius: 1rem;
     overflow: hidden;
     transition: width 0.4s ease-out, height 0.4s ease-out;
+
+    &--selected {
+      width: 16rem;
+      height: 26rem;
+      overflow-y: auto;
+    }
 
     &__list {
       display: flex;
@@ -91,7 +97,9 @@
 @media (min-width: $lg) {
   .birthday {
     &-card {
-      &:hover {
+      width: 16rem;
+
+      &:hover, &--selected {
         width: 24rem;
         height: 28rem;
         overflow-y: auto;
@@ -101,7 +109,7 @@
         height: 22rem;
         flex-direction: row;
 
-        &:hover {
+        &:hover, &--selected {
           height: 28rem;
         }
       }

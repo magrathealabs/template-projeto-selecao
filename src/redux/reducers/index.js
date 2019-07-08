@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import birthday from './birthday.reducer';
+import birthdays from './birthdays.reducer';
 
 export default combineReducers({
-  birthday,
+  birthdays,
 });

@@ -1,38 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import moment from 'moment';
+import ClassNames from 'classnames';
+import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
+import { fetchBirthdays } from '../../redux/actions/birthdays';
 import './birthday-card.scss';
 import './flip.scss';
 
-export default () => {
+const Home =  ({
+  birthdays,
+  fetchBirthdays,
+}) => {
   const [inProp, setInProp] = useState(false);
-  const [week, setWeek] = useState(week1);
-  const [nextWeek, setNextWeek] = useState(week2);
+  const [selectedCard, selectCard] = useState(-1);
+  const [weekList, setWeekList] = useState(birthdays);
 
-  const renderCardsLists = (start, end) => (
-    <div className="birthday-card__list my-lg-2">
-      {week.slice(start, end).map((day, index) => (
-        <CSSTransition
-          in={inProp}
-          timeout={400}
-          classNames="flip"
-          key={index + start}
-        >
-          <div className="birthday-card bg-warning m-2 my-lg-0">
-            <span className="birthday-card__date">
-              {day.weekday}
-            </span>
-            <span className="birthday-card__date mb-3">
-              {day.day}
-            </span>
-            <ul>
-              {day.birthdays.length
-                ? day.birthdays.map((birthday, birthdayIndex) => <li key={birthdayIndex} className="birthday-card__name mb-1">{birthday}</li>)
-                : <li>No Birthdays today :(</li>
-              }
-            </ul>
-          </div>
-        </CSSTransition>
-      ))}
+  const renderCardsLists = (start, end = weekList.length) => (
+    <div className={ClassNames(
+      'birthday-card__list my-lg-2',
+      {'birthday-card__list--selected': selectedCard >= start && selectedCard < end}
+    )}>
+      {weekList.slice(start, end).map((day, index) => {
+        const cardNumber = index + start;
+        return (
+          <CSSTransition
+            in={inProp}
+            timeout={400}
+            classNames="flip"
+            key={cardNumber}
+          >
+            <div
+              onClick={() => selectCard(cardNumber === selectedCard ? -1 : cardNumber)}
+              className={ClassNames(
+                'birthday-card bg-warning m-2 my-lg-0',
+                {'birthday-card--selected': selectedCard === cardNumber},
+              )}
+            >
+              <span className="birthday-card__date">
+                {day.date.format('dddd')}
+              </span>
+              <span className="birthday-card__date mb-3">
+                {day.date.format('DD/MMM')}
+              </span>
+              <ul>
+                {day.birthdays.length
+                  ? day.birthdays.map((birthday, birthdayIndex) => <li key={birthdayIndex} className="birthday-card__name mb-1">{birthday}</li>)
+                  : <li>No Birthdays today :(</li>
+                }
+              </ul>
+            </div>
+          </CSSTransition>
+        )
+      })}
     </div>
   )
 
@@ -44,20 +63,28 @@ export default () => {
         timeout={400}
         onEntered={()=> {
           setInProp(false);
-          setWeek(nextWeek);
-          setNextWeek(week1);
+          selectCard(-1);
+          setWeekList(birthdays);
         }}
       ><div/></CSSTransition>
       <div className="d-flex justify-content-between mb-3">
         <button
           className="btn btn-primary"
-          onClick={() => setInProp(true)}
+          onClick={() => {
+            setInProp(true)
+            const today = moment();
+            fetchBirthdays(today.isoWeek(), today.year());
+          }}
         >
           {'<'}
         </button>
         <button
           className="btn btn-primary"
-          onClick={() => setInProp(true)}
+          onClick={() => {
+            setInProp(true)
+            const today = moment();
+            fetchBirthdays(today.isoWeek(), today.year());
+          }}
         >
           {'>'}
         </button>
@@ -68,189 +95,13 @@ export default () => {
   )
 }
 
-const week2 = [
-  {
-    day: '08/01',
-    weekday: 'sunday',
-    birthdays: []
-  },
-  {
-    day: '09/01',
-    weekday: 'monday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-  {
-    day: '10/01',
-    weekday: 'tuesday',
-    birthdays: [
-      'Leonardo',
-    ]
-  },
-  {
-    day: '11/01',
-    weekday: 'wednessday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-  {
-    day: '12/01',
-    weekday: 'thursday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-  {
-    day: '13/01',
-    weekday: 'friday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-  {
-    day: '14/01',
-    weekday: 'saturday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-];
+const mapStateToProps = ({birthdays}) => ({
+  birthdays: birthdays.results,
+  isLoaded: birthdays.isLoaded,
+  isFetching: birthdays.isFetching,
+});
 
-const week1 = [
-  {
-    day: '01/01',
-    weekday: 'sunday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-  {
-    day: '02/01',
-    weekday: 'monday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-  {
-    day: '03/01',
-    weekday: 'tuesday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-  {
-    day: '04/01',
-    weekday: 'wednessday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-  {
-    day: '05/01',
-    weekday: 'thursday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-  {
-    day: '06/01',
-    weekday: 'friday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-  {
-    day: '07/01',
-    weekday: 'saturday',
-    birthdays: [
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-      'Leonardo',
-    ]
-  },
-]
+export default connect(
+  mapStateToProps,
+  {fetchBirthdays}
+)(Home);
