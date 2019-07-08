@@ -1,0 +1,61 @@
+@import '../../variables.scss';
+
+.register {
+  &__form {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  &__input {
+    width: 100%;
+    height: 3.12rem;
+    border: 1px solid $purple;
+    border-radius: 0.5rem;
+    padding: 1rem 2.12rem 1rem 1.37rem;
+    font-family: 'Roboto';
+    font-weight: 500;
+    background-color: #fff;
+  }
+
+  &__calendar {
+    border: 1px solid $purple;
+    border-radius: 0.5rem;
+    max-width: 300px;
+  }
+
+  &__button {
+    &-container {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: $lg) {
+  .register {
+    &__form {
+      width: 75%;
+    }
+
+    &__label {
+      font-size: 1.3rem;
+    }
+
+    &__input {
+      width: 90%;
+      align-self: center;
+    }
+
+    &__calendar {
+      max-width: unset;
+    }
+
+    &__button {
+      &-container {
+        width: 90%;
+        align-self: center;
+      }
+    }
+  }
+}

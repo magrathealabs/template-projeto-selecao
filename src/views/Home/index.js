@@ -37,8 +37,8 @@ export default () => {
   )
 
   return (
-    <div className="d-flex flex-column p-2">
-      <h3>Incoming Birthdays</h3>
+    <div className="birthday contained p-2">
+      <h3 className="birthday__title mb-4">Incoming Birthdays</h3>
       <CSSTransition
         in={inProp}
         timeout={400}
@@ -48,7 +48,7 @@ export default () => {
           setNextWeek(week1);
         }}
       ><div/></CSSTransition>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between mb-3">
         <button
           className="btn btn-primary"
           onClick={() => setInProp(true)}
