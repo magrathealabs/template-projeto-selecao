@@ -7,5 +7,4 @@ const router = Express.Router();
 router.route('/')
   .get(getBirthdays);
 
-
 module.exports = router;
