@@ -12,6 +12,8 @@ const Home =  ({
   isFetching,
   isLoaded,
   fetchBirthdays,
+  week,
+  year,
 }) => {
   const [inProp, setInProp] = useState(false);
   const [selectedCard, selectCard] = useState(-1);
@@ -23,9 +25,17 @@ const Home =  ({
     }
   }, [ birthdays, isFetching, isLoaded ]);
 
-  const next = () => {
-    const today = moment();
-    fetchBirthdays(today.isoWeek(), today.year());
+  useEffect(() => {
+    fetchBirthdays(week, year)
+  }, []);
+
+  const getNextWeek = () => {
+    const nextWeek = moment().weekYear(year).week(week).add(1, 'w');
+    fetchBirthdays(nextWeek.week(), nextWeek.weekYear());
+  }
+  const getPreviousWeek = () => {
+    const previousWeek = moment().weekYear(year).week(week).subtract(1, 'w');
+    fetchBirthdays(previousWeek.week(), previousWeek.weekYear());
   }
 
   const renderCardsLists = (start, end = weekList.length) => (
@@ -84,13 +94,13 @@ const Home =  ({
       <div className="d-flex justify-content-between mb-3">
         <button
           className="btn btn-primary"
-          onClick={next}
+          onClick={getPreviousWeek}
         >
           {'<'}
         </button>
         <button
           className="btn btn-primary"
-          onClick={next}
+          onClick={getNextWeek}
         >
           {'>'}
         </button>
@@ -101,10 +111,18 @@ const Home =  ({
   )
 }
 
-const mapStateToProps = ({birthdays}) => ({
-  birthdays: birthdays.results,
-  isLoaded: birthdays.isLoaded,
-  isFetching: birthdays.isFetching,
+const mapStateToProps = ({birthdays : {
+  results,
+  isFetching,
+  isLoaded,
+  week,
+  year,
+}}) => ({
+  birthdays: results,
+  isLoaded,
+  isFetching,
+  week,
+  year,
 });
 
 export default connect(

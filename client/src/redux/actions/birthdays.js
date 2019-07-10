@@ -15,13 +15,13 @@ export const fetchBirthdays = (week, year) => async dispatch => {
     });
     return;
   }
-  const { data } = await response.json();
+  const results = await response.json();
   dispatch({
     type: FETCH_BIRTHDAYS_SUCCESS,
     payload: {
       week,
       year,
-      results: data,
+      results,
     }
   });
 };

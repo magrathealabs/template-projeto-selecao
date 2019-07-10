@@ -38,8 +38,8 @@ const defaultState = {
   ],
   isFetching: false,
   isLoaded: false,
-  week: '',
-  year: '',
+  week: moment().week(),
+  year: moment().weekYear(),
   error: '',
 };
 
