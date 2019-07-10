@@ -20,8 +20,6 @@ const getByWeekOfYear = (req, res) => {
     return;
   }
 
-
-
   res.status(200).send(BirthdaysData.getWeek(week, year));
 }
 
