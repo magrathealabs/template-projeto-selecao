@@ -1,0 +1,24 @@
+@import '../../../variables.scss';
+
+.error {
+  position: absolute;
+  z-index: 1;
+
+  &__arrow {
+    margin-left: 0.5rem;
+    width: 0;
+    height: 0;
+    border-left: 0.25rem solid transparent;
+    border-right: 0.25rem solid transparent;
+    border-bottom: 0.25rem solid $tomato-red;
+  }
+
+  &__message {
+    padding: 0.25rem 0.5rem;
+    height: 1.44rem;
+    border-radius: 0.25rem;
+    color: #fff;
+    background-color: $tomato-red;
+    font-size: 0.62rem;
+  }
+}

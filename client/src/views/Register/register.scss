@@ -1,6 +1,15 @@
 @import '../../variables.scss';
 
 .register {
+  width: 23rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+
+  &__title {
+    margin-top: 1rem;
+  }
+
   &__form {
     align-self: center;
     display: flex;
@@ -17,12 +26,25 @@
     font-family: 'Roboto';
     font-weight: 500;
     background-color: #fff;
+
+    &--error {
+      border-color: $tomato-red;
+    }
   }
 
   &__calendar {
     border: 1px solid $purple;
     border-radius: 0.5rem;
     max-width: 300px;
+    padding: 0.2rem;
+
+    &--error {
+      border-color: $tomato-red;
+    }
+
+    abbr[title] {
+      text-decoration: none;
+    }
   }
 
   &__button {
@@ -34,16 +56,31 @@
 
 @media (min-width: $lg) {
   .register {
+    &__title {
+      margin-bottom: 1.5rem;
+    }
+
     &__form {
-      width: 75%;
+      align-items: center;
+
+      &-group {
+        position: relative;
+
+        &:nth-child(1) {
+          flex: 1;
+          width: 100%;
+          margin-bottom: 1.5rem;
+        }
+      }
     }
 
     &__label {
       font-size: 1.3rem;
+      text-align: center;
     }
 
     &__input {
-      width: 90%;
+      width: 100%;
       align-self: center;
     }
 
@@ -53,7 +90,6 @@
 
     &__button {
       &-container {
-        width: 90%;
         align-self: center;
       }
     }
