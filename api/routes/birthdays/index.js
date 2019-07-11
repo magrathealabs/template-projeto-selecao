@@ -1,10 +1,12 @@
 const Express = require('express');
 
-const getBirthdays = require('./get');
+const getBirthdays = require('./getByWeek');
+const addBirthday = require('./addBirthday');
 
 const router = Express.Router();
 
 router.route('/')
-  .get(getBirthdays);
+  .get(getBirthdays)
+  .post(addBirthday);
 
 module.exports = router;
