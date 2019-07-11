@@ -7,43 +7,36 @@ import {
   BIRTHDAY_FORM_SUBMIT_ERROR,
 } from '../actionNames';
 
-const validateName = (name) => {
-  var error = null;
-  if(name === '') {
-    error = 'Name is required.';
-  }
+const validations = {
+  name: (name) => {
+    var error = null;
+    if(name === '') {
+      error = 'Name is required.';
+    }
 
-  return error;
-}
+    return error;
+  },
+  date: (date) => {
+    var error = null;
+    if(date === null) {
+      error = 'Date is required.';
+    }
 
-const validateDate = (date) => {
-  var error = null;
-  if(date === null) {
-    error = 'Date is required.';
-  }
-
-  return error;
+    return error;
+  },
 }
 
 export const handleChange = (field, value) => (dispatch, getState) => {
   dispatch({type: BIRTHDAY_FORM_SET_FIELD, payload: {field, value}});
-
   const { birthdayForm: {error} } = getState();
-  switch(field) {
-    case 'name':
-      error.name = validateName(value)
-      break;
-    case 'date':
-        error.date = validateDate(value)
-      break;
-    default:
-      return;
-  }
 
   dispatch({
     type: BIRTHDAY_FORM_SET_ERROR,
-    payload: {error},
-  });
+    payload: {error: {
+      ...error,
+      [field]: validations[field](value)
+    }},
+  })
 };
 
 export const validateForm = () => (dispatch, getState) => {
@@ -54,8 +47,8 @@ export const validateForm = () => (dispatch, getState) => {
   } } = getState();
   const _error = {
     ...error,
-    name: validateName(name),
-    date: validateDate(date)
+    name: validations['name'](name),
+    date: validations['date'](date)
   }
   dispatch({
     type: BIRTHDAY_FORM_SET_ERROR,

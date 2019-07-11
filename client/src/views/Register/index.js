@@ -19,7 +19,6 @@ const Register = ({
   submitForm,
   error,
 }) => {
-
   useEffect(() => resetForm, []);
 
   const submit = (e) => {
