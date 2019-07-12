@@ -5,8 +5,15 @@ const BirthdaysData = {
   getByDate: date => {
     const month = moment(date).format('MM');
     const day = moment(date).format('DD');
-    return _birthdays[`${month}-${day}`];
+    return _birthdays[`${month}-${day}`].map( user => user.name);
   },
+
+  getByYear: date => Object.keys(_birthdays).reduce(
+    (acc, day) => acc.concat(_birthdays[day].filter(
+      user => (moment(`${user.year}-${day}`).diff(date, 'year') === 0)
+    ).map(user => user.name)),
+    []
+  ),
 
   addBirthday: ({date, name}) => {
     const month = moment(date).format('MM');
