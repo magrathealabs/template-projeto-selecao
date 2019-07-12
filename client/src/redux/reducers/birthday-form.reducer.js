@@ -15,7 +15,8 @@ const defaultState = {
     date: null,
   },
   submitError: '',
-  isSubmiting: false,
+  isLoading: false,
+  success: false,
 };
 
 export default (state = defaultState, {type, payload}) => {
@@ -45,8 +46,14 @@ export default (state = defaultState, {type, payload}) => {
         submitError: payload.submitError,
       };
 
-    case BIRTHDAY_FORM_RESET:
     case BIRTHDAY_FORM_SUBMIT_SUCCESS:
+      return  {
+        ...state,
+        isLoading: false,
+        success: true,
+      };
+
+    case BIRTHDAY_FORM_RESET:
       return defaultState;
 
     default:

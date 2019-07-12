@@ -18,8 +18,17 @@ const Register = ({
   resetForm,
   submitForm,
   error,
+  success,
+  history,
 }) => {
   useEffect(() => resetForm, []);
+
+  useEffect(() => {
+    if(success) {
+      resetForm();
+      history.push('/shared');
+    }
+  }, [success])
 
   const submit = (e) => {
     e.preventDefault();
@@ -74,9 +83,10 @@ const Register = ({
   )
 }
 
-const mapStateToProps = ({birthdayForm: {error, isSubmiting}}) => ({
+const mapStateToProps = ({birthdayForm: {error, isLoading, success}}) => ({
   error,
-  isSubmiting,
+  isLoading,
+  success,
 });
 
 export default connect(

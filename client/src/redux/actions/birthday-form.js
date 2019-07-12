@@ -75,7 +75,10 @@ export const submitForm = () => async (dispatch, getState) => {
     });
     return;
   }
-  dispatch({type: BIRTHDAY_FORM_SUBMIT_SUCCESS})
+  dispatch({
+    type: BIRTHDAY_FORM_SUBMIT_SUCCESS,
+    payload: {name, date},
+  })
 };
 
 export const resetForm = () => dispatch => {
