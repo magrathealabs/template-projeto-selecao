@@ -4,6 +4,8 @@ import ClassNames from 'classnames';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import { fetchBirthdays } from '../../redux/actions/birthdays';
+import Calendar from '../../components/calendar';
+import Modal from '../../components/modal';
 import './birthday-card.scss';
 import './flip.scss';
 import '../../components/balloon.scss';
@@ -16,6 +18,7 @@ const Home =  ({
   week,
   year,
 }) => {
+  const [showModal, setShowModal] = useState(false);
   const [inProp, setInProp] = useState(false);
   const [selectedCard, selectCard] = useState(-1);
   const [weekList, setWeekList] = useState(birthdays);
@@ -41,9 +44,19 @@ const Home =  ({
 
   return (
     <div className="birthday contained">
-      <h3 className="birthday__title">
+      <Modal show={showModal} handleClose={() => setShowModal(false)}>
+        <Calendar
+          activeStartDate={moment(weekList[0].date).toDate()}
+          onClickDay={day => {
+            const date = moment(day);
+            fetchBirthdays(date.week(), date.weekYear());
+            setShowModal(false);
+          }}
+        />
+      </Modal>
+      <button className="birthday__calendar-button" onClick={() => setShowModal(true)}>
         {moment(weekList[0].date).format('DD/MMM')} - {moment(weekList[6].date).format('DD/MMM')}
-      </h3>
+      </button>
       <CSSTransition
         in={inProp}
         timeout={400}

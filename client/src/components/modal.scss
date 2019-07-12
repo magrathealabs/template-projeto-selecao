@@ -1,0 +1,42 @@
+@import '../variables.scss';
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  background-color: $white;
+  border-radius: 0.5rem;
+
+  &__background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(#000, 0.5);
+    z-index: 10;
+  }
+
+  &__button {
+    position: absolute;
+    right: 0;
+    top: -2.5rem;
+    border-radius: 50%;
+    font-size: 1.75rem;
+    height: 2.25rem;
+    width: 2.25rem;
+    border: 2px solid $white;
+    color: $white;
+    background-color: rgba($white, 0.4);
+  }
+}
+
+@media (min-width: $lg) {
+  .modal {
+    &__button {
+      right:-2.5rem;
+    }
+  }
+}

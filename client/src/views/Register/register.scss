@@ -48,34 +48,6 @@
     }
   }
 
-  &__calendar {
-    border: 1px solid $purple;
-    border-radius: 0.5rem;
-    max-width: 300px;
-    padding: 0.2rem;
-    background-color: $white-shade;
-
-    &--error {
-      border-color: $red;
-    }
-
-    .react-calendar {
-      &__tile {
-        &:disabled {
-          background: inherit;
-          cursor: auto;
-        }
-      }
-      &__navigation button[disabled] {
-        background: inherit;
-        cursor: auto;;
-      }
-    }
-    abbr[title] {
-      text-decoration: none;
-    }
-  }
-
   &__button {
     width: 100%;
     color: $white;
@@ -122,10 +94,6 @@
     &__input {
       width: 100%;
       align-self: center;
-    }
-
-    &__calendar {
-      max-width: unset;
     }
 
     &__button {

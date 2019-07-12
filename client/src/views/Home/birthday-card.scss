@@ -6,7 +6,7 @@
   align-items: center;
   position: relative;
 
-  &__title {
+  &__calendar-button {
     text-align: center;
     font-family: 'Poppins', sans-serif;
     margin: 1.5rem 0;
@@ -20,6 +20,11 @@
     border-top-width: 0;
     border-bottom-width: 0;
     border-style: solid;
+    transition: background-color 0.4s ease;
+
+    &:hover {
+      background-color: rgba($white, 0.4);
+    }
   }
 
   &__button {

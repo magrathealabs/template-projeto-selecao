@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Calendar from 'react-calendar';
 import moment from 'moment';
 import ClassNames from 'classnames';
 import { connect } from 'react-redux';
@@ -9,7 +8,8 @@ import {
   resetForm,
   submitForm,
 } from '../../redux/actions/birthday-form';
-import ErrorMessage from './components/ErrorMessage';
+import ErrorMessage from './components/errorMessage';
+import Calendar from '../../components/calendar';
 import './register.scss';
 
 const Register = ({
@@ -62,13 +62,9 @@ const Register = ({
             Birthday
           </label>
           <Calendar
-            className={ClassNames(
-              'register__calendar',
-              {'register__calendar--error': !!error.date},
-            )}
+            error={!!error.date}
             onClickDay={day => handleChange('date', moment(day))}
             maxDate={moment().toDate()}
-            calendarType="US"
           />
           <ErrorMessage error={error.date} />
         </div>
