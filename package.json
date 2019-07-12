@@ -2,6 +2,7 @@
   "name": "birthdays",
   "version": "1.0.0",
   "scripts": {
+    "setup": "npm install && cd client && npm install",
     "client": "cd client && npm start",
     "server": "cd api && node server.js",
     "dev": "concurrently --kill-others-on-fail \"cd api && nodemon server.js\" \"npm run client\""

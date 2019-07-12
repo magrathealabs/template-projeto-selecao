@@ -7,7 +7,7 @@ import {
 
 export const fetchSharedBirthdays = (date) => async (dispatch, getState) => {
   dispatch({type: FETCH_SHARED_BIRTHDAYS});
-  const response = await fetch(`api/birthdays/${date.toString()}`);
+  const response = await fetch(`api/birthdays/${date.toDate().toString()}`);
   if(!response.ok) {
     dispatch({
       type: FETCH_SHARED_BIRTHDAYS_ERROR,

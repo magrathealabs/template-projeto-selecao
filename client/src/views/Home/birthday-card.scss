@@ -83,7 +83,7 @@
 
     &__date {
       font-size: 1.2rem;
-      color: #999;
+      color: $gray;
 
       &:nth-child(2) {
         margin-bottom: 1rem;
@@ -99,44 +99,44 @@
     &__container {
       &:nth-child(1) {
         .balloon {
-          background-color: rgba(#fa059c, 0.6);
-          color: #fa059c;
+          background-color: rgba($pink, 0.6);
+          color: $pink;
         }
       }
       &:nth-child(2) {
         .balloon {
-          background-color: rgba(#99e6e6, 0.6);
-          color: #99e6e6;
+          background-color: rgba($light-blue, 0.6);
+          color: $light-blue;
         }
       }
       &:nth-child(3) {
         .balloon {
-          background-color: rgba(#ffff60, 0.6);
-          color: #ffff33;
+          background-color: rgba($yellow, 0.6);
+          color: $yellow;
         }
       }
       &:nth-child(4) {
         .balloon {
-          background-color: rgba(#db4dff, 0.6);
-          color: #db4dff
+          background-color: rgba($açai, 0.6);
+          color: $açai
         }
       }
       &:nth-child(5) {
         .balloon {
-          background-color: rgba(#66ff66, 0.6);
-          color: #66ff66;
+          background-color: rgba($green, 0.6);
+          color: $green;
         }
       }
       &:nth-child(6) {
         .balloon {
-          background-color: rgba(#ff3333, 0.6);
-          color: #ff3333;
+          background-color: rgba($red, 0.6);
+          color: $red;
         }
       }
       &:nth-child(7) {
         .balloon {
-          background-color: rgba(#0099ff, 0.6);
-          color: #0099ff;
+          background-color: rgba($blue, 0.6);
+          color: $blue;
         }
       }
 

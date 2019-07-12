@@ -1,68 +1,113 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Birthdays
 
-## Available Scripts
+This is my solution to the full-stack challenge birthdays, for Speakap.
 
-In the project directory, you can run:
+## Install and Run
 
-### `npm start`
+To install dependencies:
+```bash
+npm run setup
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+And to run the project :
+```bash
+npm run dev
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## The Solution
 
-### `npm test`
+My solution was inplemented using `Node.js + Express` on the back-end (./api) and `React.js + Redux + React Router` on the front-end (./client);
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Api routes
 
-### `npm run build`
+### `GET /birthdays`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Returns the birthdays in an specific week of an year. It expects week and year as query params, and assumes the current week or year if either is missing.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```json
+[
+  {
+    "date": "2019-07-07T21:17:33.228Z",
+    "birthdays": [
+      "Aneesa Ashley"
+    ]
+  },
+  {
+    "date": "2019-07-08T21:17:33.228Z",
+    "birthdays": []
+  },
+  {
+    "date": "2019-07-09T21:17:33.228Z",
+    "birthdays": [
+      "Zoha Baird",
+      "Abdulrahman Irvine",
+      "Mikaela Forrest",
+      "Juanita Brett"
+    ]
+  },
+  {
+    "date": "2019-07-10T21:17:33.228Z",
+    "birthdays": [
+      "Amarah Carter"
+    ]
+  },
+  {
+    "date": "2019-07-11T21:17:33.228Z",
+    "birthdays": [
+      "Simrah Tran"
+    ]
+  },
+  {
+    "date": "2019-07-12T21:17:33.228Z",
+    "birthdays": [
+      "Zavier Wilkerson",
+      "Everett Mccartney"
+    ]
+  },
+  {
+    "date": "2019-07-13T21:17:33.228Z",
+    "birthdays": []
+  }
+]
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `POST /birthdays`
 
-### `npm run eject`
+Adds a new user to the backend.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Expected body:
+```json
+{
+  "date": "1996-04-16T03:00:00.000Z",
+  "name": "Leonardo Kalyn"
+}
+```
+If successfull, it will return the same object.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `POST /birthdays/:date`
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Returns the lists of users with same age and same birthday from the given date.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Expected response:
+```json
+{
+  "sameBirthday": [
+    "Abubakar Andersen",
+    "Axel Dawson",
+    "Humera Patton",
+    "Leonardo Kalyn"
+  ],
+  "sameAge": [
+    "Skye Cox",
+    "Kaleb Guerra",
+    "Marco Kearns",
+    "Jordanna Marquez",
+    "Kiana Clements",
+    "Leonardo Kalyn",
+    "Tariq Mccarty",
+    "Hadassah Bowen",
+    "Murphy Stanley",
+    "Amalie Mccartney"
+  ]
+}
+```

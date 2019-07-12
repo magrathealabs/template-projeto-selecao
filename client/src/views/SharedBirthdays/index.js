@@ -42,7 +42,7 @@ const SharedBirthdays = ({
         <div className="shared-birthdays__cards">
           <div className="shared-birthdays__card-container">
             <div className="balloon">
-              <span>{moment(date).format('MM/DD')}</span>
+              <span>{moment(date).format('DD/MMM')}</span>
             </div>
             <div className="shared-birthdays__card">
               <p className="shared-birthdays__card-title">
@@ -60,7 +60,7 @@ const SharedBirthdays = ({
           </div>
           <div className="shared-birthdays__card-container">
             <div className="balloon">
-              <span>{moment(date).diff(undefined, 'year')}</span>
+              <span>{moment().diff(date, 'year')}</span>
               <span>Years Old</span>
             </div>
             <div className="shared-birthdays__card">

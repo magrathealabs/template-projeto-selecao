@@ -14,6 +14,7 @@
   box-shadow:inset -0.75rem -0.75rem 0 rgba(0,0,0,0.07);
   margin-bottom: 2rem;
   color: $purple;
+  z-index: 1;
 
   &:before {
     content:"▲";
@@ -24,7 +25,7 @@
     color: inherit;
     text-align:center;
     bottom:-0.75rem;
-    z-index:0;
+    z-index:-1;
   }
 
   &:after {
@@ -34,9 +35,9 @@
     height:1.6rem;
     width: 0.2rem;
     border-radius: 0.15rem;
-    background-color: #000;
+    background-color: $black;
     margin:0 auto;
     content:"";
-    z-index: 0;
+    z-index: -2;
   }
 }

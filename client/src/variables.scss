@@ -3,7 +3,18 @@ $lg: 62rem; // 992px
 $xl: 75rem; // 1200px
 
 //Colors
-$purple: #6600ff;
-$red: #ff0000;
 $white: #fff;
 $white-shade: rgba(#fff, 0.65);
+$black: #000;
+$gray: #999;
+$purple: #6600ff;
+$açai: #db4dff;
+$red: #ff3333;
+$pink: #fa059c;
+$blue: #0099ff;
+$light-blue: #99e6e6;
+$yellow: #ffff60;
+$green: #66ff66;
+
+//Gradients
+$frosting-gradient: linear-gradient(70deg, #f2e88c 10%, #fd9bd7 52%, #b0deea 99%);
