@@ -10,7 +10,7 @@ import './App.scss';
 const App = () => {
   return (
     <Router>
-      <div className="min-vh-100">
+      <div className="app">
         <Header />
 
         <Route path="/" exact component={Home} />

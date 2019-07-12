@@ -10,15 +10,15 @@
     height: 0;
     border-left: 0.25rem solid transparent;
     border-right: 0.25rem solid transparent;
-    border-bottom: 0.25rem solid $tomato-red;
+    border-bottom: 0.25rem solid $red;
   }
 
   &__message {
     padding: 0.25rem 0.5rem;
     height: 1.44rem;
     border-radius: 0.25rem;
-    color: #fff;
-    background-color: $tomato-red;
+    color: $white;
+    background-color: $red;
     font-size: 0.62rem;
   }
 }

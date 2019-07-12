@@ -63,7 +63,7 @@ const Register = ({
           </label>
           <Calendar
             className={ClassNames(
-              'register__calendar align-self-lg-center',
+              'register__calendar',
               {'register__calendar--error': !!error.date},
             )}
             onClickDay={day => handleChange('date', moment(day))}
@@ -73,11 +73,9 @@ const Register = ({
           <ErrorMessage error={error.date} />
         </div>
 
-        <div className="register__button-container mt-3 mt-lg-5">
-          <button type="submit" className="register__button btn btn-success btn-block btn-lg px-lg-5">
-            Save
-          </button>
-        </div>
+        <button type="submit" className="register__button">
+          Save
+        </button>
       </form>
     </div>
   )

@@ -8,6 +8,7 @@ import {
   resetSharedBirthdays,
 } from '../../redux/actions/shared-birthdays';
 import './shared-birthdays.scss';
+import '../../components/balloon.scss';
 
 const SharedBirthdays = ({
   history,
@@ -30,15 +31,20 @@ const SharedBirthdays = ({
 
   return (
     <div className="contained shared-birthdays">
-      <h3 className="shared-birthdays__title">Wellcome {name}</h3>
+      <h3 className="shared-birthdays__title">
+        Welcome
+        <span className="shared-birthdays__title-name">
+          {name}
+        </span>
+      </h3>
 
       {isLoaded &&
         <div className="shared-birthdays__cards">
           <div className="shared-birthdays__card-container">
-            <div className="shared-birthdays__balloon">
+            <div className="balloon">
               <span>{moment(date).format('MM/DD')}</span>
             </div>
-            <div className="shared-birthdays__card bg-warning">
+            <div className="shared-birthdays__card">
               <p className="shared-birthdays__card-title">
                 Users with the same birthday:
               </p>
@@ -53,11 +59,11 @@ const SharedBirthdays = ({
             </div>
           </div>
           <div className="shared-birthdays__card-container">
-            <div className="shared-birthdays__balloon">
+            <div className="balloon">
               <span>{moment(date).diff(undefined, 'year')}</span>
               <span>Years Old</span>
             </div>
-            <div className="shared-birthdays__card bg-warning">
+            <div className="shared-birthdays__card">
               <p className="shared-birthdays__card-title">
                 Users with the same age:
               </p>

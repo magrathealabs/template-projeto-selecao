@@ -3,20 +3,63 @@
 .birthday {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  position: relative;
 
   &__title {
-    color: yelow;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    margin: 1.5rem 0;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    color: $white;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    border-width: 2px;
+    border-color: $white;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-style: solid;
+  }
+
+  &__button {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.3rem;
+    background-color: rgba($purple, 0.7);
+    color: $white;
+    font-size: 1.5rem;
+    transition: background-color 0.4s ease;
+
+    &:hover {
+      background-color: rgba($purple, 0.9);
+    }
+
+    &-group {
+      display: flex;
+      justify-content: space-between;
+      align-self: stretch;
+      position: fixed;
+      top: 10rem;
+      right: 0.5rem;
+      left: 0.5rem;
+      z-index: 2;
+    }
   }
 
   &-card {
+    position: relative;
+    z-index: 1;
     display: flex;
     width: 14rem;
     height: 22rem;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 1.5rem;
     padding: 0.75rem;
     border-radius: 1rem;
     overflow: hidden;
+    background-color: $white-shade;
     transition: width 0.4s ease-out, height 0.4s ease-out;
 
     &--selected {
@@ -35,12 +78,63 @@
 
     &__date {
       font-size: 1.2rem;
-      color: #fff;
+      color: #999;
+
+      &:nth-child(2) {
+        margin-bottom: 1rem;
+      }
     }
 
     &__name {
       font-size: 1.3rem;
-      line-height: 1.4rem;
+      line-height: 1.5rem;
+      text-align: center;
+    }
+
+    &__container {
+      &:nth-child(1) {
+        .balloon {
+          background-color: rgba(#fa059c, 0.6);
+          color: #fa059c;
+        }
+      }
+      &:nth-child(2) {
+        .balloon {
+          background-color: rgba(#99e6e6, 0.6);
+          color: #99e6e6;
+        }
+      }
+      &:nth-child(3) {
+        .balloon {
+          background-color: rgba(#ffff60, 0.6);
+          color: #ffff33;
+        }
+      }
+      &:nth-child(4) {
+        .balloon {
+          background-color: rgba(#db4dff, 0.6);
+          color: #db4dff
+        }
+      }
+      &:nth-child(5) {
+        .balloon {
+          background-color: rgba(#66ff66, 0.6);
+          color: #66ff66;
+        }
+      }
+      &:nth-child(6) {
+        .balloon {
+          background-color: rgba(#ff3333, 0.6);
+          color: #ff3333;
+        }
+      }
+      &:nth-child(7) {
+        .balloon {
+          background-color: rgba(#0099ff, 0.6);
+          color: #0099ff;
+        }
+      }
+
     }
 
     &:nth-child(1), &:nth-child(4) {
@@ -96,24 +190,44 @@
 
 @media (min-width: $lg) {
   .birthday {
+    &__button {
+      width: 4.5rem;
+      height: 2.5rem;
+
+      &-group {
+        position: absolute;
+        top: 7rem;
+      }
+    }
+
     &-card {
       width: 16rem;
+      margin: 0 0.5rem 1rem;;
 
       &:hover, &--selected {
-        width: 24rem;
-        height: 28rem;
+        width: 19rem;
+        height: 26rem;
         overflow-y: auto;
       }
 
       &__list {
-        height: 22rem;
         flex-direction: row;
-
-        &:hover, &--selected {
-          height: 28rem;
-        }
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        min-height: 108rem;
       }
     }
   }
 }
 
+@media (min-width: $xl) {
+  .birthday {
+    &-card {
+      &__list {
+        min-height: 72rem;
+      }
+    }
+  }
+}

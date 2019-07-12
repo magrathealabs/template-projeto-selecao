@@ -7,7 +7,11 @@
   padding: 0.5rem;
 
   &__title {
-    margin-top: 1rem;
+    margin: 1rem 0;
+    font-family: 'Poppins', sans-serif;
+    color: $white;
+    font-size: 1.5rem;
+    text-align: center;
   }
 
   &__form {
@@ -15,6 +19,17 @@
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
+
+    &-group {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__label {
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    color: $white;
+    margin-bottom: 0.5rem;
   }
 
   &__input {
@@ -22,13 +37,14 @@
     height: 3.12rem;
     border: 1px solid $purple;
     border-radius: 0.5rem;
-    padding: 1rem 2.12rem 1rem 1.37rem;
+    padding: 1rem;
     font-family: 'Roboto';
     font-weight: 500;
-    background-color: #fff;
+    background-color: $white-shade;
+    font-family: 'Poppins', sans-serif;
 
     &--error {
-      border-color: $tomato-red;
+      border-color: $red;
     }
   }
 
@@ -37,19 +53,41 @@
     border-radius: 0.5rem;
     max-width: 300px;
     padding: 0.2rem;
+    background-color: $white-shade;
 
     &--error {
-      border-color: $tomato-red;
+      border-color: $red;
     }
 
+    .react-calendar {
+      &__tile {
+        &:disabled {
+          background: inherit;
+          cursor: auto;
+        }
+      }
+      &__navigation button[disabled] {
+        background: inherit;
+        cursor: auto;;
+      }
+    }
     abbr[title] {
       text-decoration: none;
     }
   }
 
   &__button {
-    &-container {
-      width: 100%;
+    width: 100%;
+    color: $white;
+    background-color: rgba($purple, 0.4);
+    border-radius: 0.5rem;
+    height: 3rem;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.75rem;
+    transition: background-color 0.4s ease;
+
+    &:hover {
+      background-color: rgba($purple, 0.6);
     }
   }
 }
@@ -57,6 +95,7 @@
 @media (min-width: $lg) {
   .register {
     &__title {
+      font-size: 2rem;
       margin-bottom: 1.5rem;
     }
 
@@ -77,6 +116,7 @@
     &__label {
       font-size: 1.3rem;
       text-align: center;
+      margin-bottom: 1rem;
     }
 
     &__input {
@@ -89,9 +129,7 @@
     }
 
     &__button {
-      &-container {
-        align-self: center;
-      }
+      margin-top:2rem;
     }
   }
 }

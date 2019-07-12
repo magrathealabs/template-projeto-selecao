@@ -1,10 +1,22 @@
 @import '../../variables.scss';
 
 .shared-birthdays {
+  padding-bottom: 2rem;
+
   &__title {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.25rem;
     text-transform: capitalize;
+    color: $white;
+    font-size: 1.25rem;
+
+    &-name {
+      display: block;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      margin-top: 1rem;
+      text-transform: capitalize;
+    }
   }
 
   &__cards {
@@ -14,12 +26,13 @@
 
   &__card {
     display: flex;
-    width: 14rem;
+    width: 17rem;
     min-height: 22rem;
     align-items: center;
     flex-direction: column;
     padding: 0.75rem;
     border-radius: 1rem;
+    background-color: $white-shade;
 
     &-container {
       width: 100%;
@@ -27,16 +40,17 @@
       display: flex;
       align-items: center;
       flex-direction: column;
-      margin: 2rem 0;
+      margin-top: 2rem;
     }
 
     &-title {
       text-align: center;
+      margin-bottom: 1.5rem;
     }
 
     &-name {
       font-size: 1.3rem;
-      line-height: 1.4rem;
+      line-height: 1.8rem;
       display: block;
       text-transform: capitalize;
 
@@ -55,52 +69,29 @@
     }
   }
 
-  &__balloon {
-    position:relative;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width:7.5rem;
-    height:9rem;
-    background:$purple;
-    border-radius:80%;
-    box-shadow:inset -0.75rem -0.75rem 0 rgba(0,0,0,0.07);
-    margin-bottom: 2rem;
-
-    &:before {
-      content:"▲";
-      position:absolute;
-      display:block;
-      width:100%;
-      font-size:1.25rem;
-      color:$purple;
-      text-align:center;
-      bottom:-0.75rem;
-      z-index:-1;
-    }
-
-    &:after {
-      display:inline-block; top:153px;
-      position:absolute;
-      height:2rem;
-      width: 0.2rem;
-      border-radius: 0.15rem;
-      background-color: #000;
-      margin:0 auto;
-      content:"";
-      z-index: -1;
-    }
-
+  .balloon {
     & > span{
-      color: rgba(#fff, 0.7);
+      color: rgba($white, 0.7);
       font-size: 1.3rem;
+      text-align: center;
+      line-height: 1.4rem;
     }
   }
 }
 
 @media (min-width: $lg) {
   .shared-birthdays{
+    &__title {
+      margin-top: 1.25rem;
+      font-size: 2rem;
+
+      &-name {
+        display: inline-flex;
+        font-size: 2.5rem;
+        margin-left: 0.75rem;
+      }
+    }
+
     &__card {
       padding: 1.25rem;
       width: 18rem;

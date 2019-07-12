@@ -1,0 +1,59 @@
+@import '../variables.scss';
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  padding: 0 1rem;
+
+  &__background {
+    width: 100vw;
+    background-color: rgba($purple, 0.6);
+  }
+
+  &__button {
+    color: $white;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    margin-left: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid $white;
+    transition: color 0.4s ease, background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba($white, 0.8);
+      color: $purple;
+    }
+  }
+
+  &__logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: $white;
+    text-decoration: none;
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+@media (min-width: $lg) {
+  .header {
+    justify-content: center;
+
+    &__logo {
+      font-size: 3rem;
+    }
+
+    &__button {
+      position: absolute;
+      right: 2rem;
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { CSSTransition } from 'react-transition-group';
 import { fetchBirthdays } from '../../redux/actions/birthdays';
 import './birthday-card.scss';
 import './flip.scss';
+import '../../components/balloon.scss';
 
 const Home =  ({
   birthdays,
@@ -38,50 +39,11 @@ const Home =  ({
     fetchBirthdays(previousWeek.week(), previousWeek.weekYear());
   }
 
-  const renderCardsLists = (start, end = weekList.length) => (
-    <div className={ClassNames(
-      'birthday-card__list my-lg-2',
-      {'birthday-card__list--selected': selectedCard >= start && selectedCard < end}
-    )}>
-      {weekList.slice(start, end).map((day, index) => {
-        const cardNumber = index + start;
-        const date = moment(day.date);
-        return (
-          <CSSTransition
-            in={inProp}
-            timeout={400}
-            classNames="flip"
-            key={cardNumber}
-          >
-            <div
-              onClick={() => selectCard(cardNumber === selectedCard ? -1 : cardNumber)}
-              className={ClassNames(
-                'birthday-card bg-warning m-2 my-lg-0',
-                {'birthday-card--selected': selectedCard === cardNumber},
-              )}
-            >
-              <span className="birthday-card__date">
-                {date.format('dddd')}
-              </span>
-              <span className="birthday-card__date mb-3">
-                {date.format('DD/MMM')}
-              </span>
-              <ul>
-                {day.birthdays.length
-                  ? day.birthdays.map((birthday, birthdayIndex) => <li key={birthdayIndex} className="birthday-card__name mb-1">{birthday}</li>)
-                  : <li>No Birthdays today :(</li>
-                }
-              </ul>
-            </div>
-          </CSSTransition>
-        )
-      })}
-    </div>
-  )
-
   return (
-    <div className="birthday contained p-2">
-      <h3 className="birthday__title mb-4">Incoming Birthdays</h3>
+    <div className="birthday contained">
+      <h3 className="birthday__title">
+        {moment(weekList[0].date).format('DD/MMM')} - {moment(weekList[6].date).format('DD/MMM')}
+      </h3>
       <CSSTransition
         in={inProp}
         timeout={400}
@@ -91,22 +53,56 @@ const Home =  ({
           setWeekList(birthdays);
         }}
       ><div/></CSSTransition>
-      <div className="d-flex justify-content-between mb-3">
+      <div className="birthday__button-group">
         <button
-          className="btn btn-primary"
+          className="birthday__button"
           onClick={getPreviousWeek}
         >
           {'<'}
         </button>
         <button
-          className="btn btn-primary"
+          className="birthday__button"
           onClick={getNextWeek}
         >
           {'>'}
         </button>
       </div>
-      {renderCardsLists(0, 4)}
-      {renderCardsLists(4)}
+      <div className="birthday-card__list">
+        {weekList.map((day, index) => {
+          const date = moment(day.date);
+          return (
+            <div className="birthday-card__container" key={index}>
+              <div className="balloon"/>
+              <CSSTransition
+                in={inProp}
+                timeout={400}
+                classNames="flip"
+              >
+                <div
+                  onClick={() => selectCard(index === selectedCard ? -1 : index)}
+                  className={ClassNames(
+                    'birthday-card',
+                    {'birthday-card--selected': selectedCard === index},
+                  )}
+                >
+                  <span className="birthday-card__date">
+                    {date.format('dddd')}
+                  </span>
+                  <span className="birthday-card__date">
+                    {date.format('DD/MMM')}
+                  </span>
+                  <ul>
+                    {day.birthdays.length
+                      ? day.birthdays.map((birthday, birthdayIndex) => <li key={birthdayIndex} className="birthday-card__name">{birthday}</li>)
+                      : <li>No Birthdays today :(</li>
+                    }
+                  </ul>
+                </div>
+              </CSSTransition>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

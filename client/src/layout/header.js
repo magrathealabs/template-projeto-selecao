@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import './header.scss';
 
 const Header = () => (
-  <header className="bg-info">
-    <nav className="navbar navbar-expand-lg navbar-light  contained w-100">
-      <Link to="/" className="navbar-brand">Birthdays</Link>
-      <Link to="/register" className="ml-3 btn btn-outline-light">New Birthday</Link>
+  <header className="header__background">
+    <nav className="header contained">
+      <Link to="/" className="header__logo">Birthdays</Link>
+      <Link to="/register" className="header__button">New Birthday</Link>
     </nav>
   </header>
 );
