@@ -13,4 +13,9 @@ app.use('/api', configureRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`Server sarted on port ${PORT}`));
+let server = app.listen(PORT, () => console.log(`Server sarted on port ${PORT}`));
+
+const stop = () => server.close();
+
+module.exports = server;
+module.exports.stop = stop;

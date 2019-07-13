@@ -10,20 +10,21 @@ const BirthdaysData = {
 
   getByYear: date => Object.keys(_birthdays).reduce(
     (acc, day) => acc.concat(_birthdays[day].filter(
-      user => (moment(`${user.year}-${day}`).diff(date, 'year') === 0)
+      user => (moment(`${day}-${user.year}`, "MM-DD-YYYY").diff(date, 'year') === 0)
     ).map(user => user.name)),
     []
   ),
 
   addBirthday: ({date, name}) => {
-    const month = moment(date).format('MM');
-    const day = moment(date).format('DD');
+    const _date = moment(date, "MM-DD-YYYY");
+    const month = _date.format('MM');
+    const day = _date.format('DD');
 
     _birthdays[`${month}-${day}`] = [
       ..._birthdays[`${month}-${day}`],
       {
         name,
-        year: moment(date).year()
+        year: _date.year()
       }
     ];
   },

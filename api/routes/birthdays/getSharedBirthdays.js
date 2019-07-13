@@ -5,7 +5,7 @@ const BirthdaysData= require('../../data/birthdaysData');
 const getByWeekOfYear = (req, res) => {
   const { date } = req.params;
 
-  const parsedDate = moment(date);
+  const parsedDate = moment(date, "MM-DD-YYYY");
 
   if(!parsedDate.isValid()) {
     res.status(400).send({error: `${date} is not a valid date.`});

@@ -66,7 +66,10 @@ export const submitForm = () => async (dispatch, getState) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({date, name}),
+    body: JSON.stringify({
+      date: date.format("MM-DD-YYYY"),
+      name,
+    }),
   });
   if(!response.ok) {
     dispatch({

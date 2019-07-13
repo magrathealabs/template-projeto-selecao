@@ -14,13 +14,19 @@ And to run the project :
 npm run dev
 ```
 
+## Testing
+
+```bash
+npm run test
+```
+
 ## The Solution
 
 My solution was inplemented using `Node.js + Express` on the back-end (./api) and `React.js + Redux + React Router` on the front-end (./client);
 
 ## Api routes
 
-### `GET /birthdays`
+### `GET /api/birthdays`
 
 Returns the birthdays in an specific week of an year. It expects week and year as query params, and assumes the current week or year if either is missing.
 
@@ -71,22 +77,25 @@ Returns the birthdays in an specific week of an year. It expects week and year a
 ]
 ```
 
-### `POST /birthdays`
+### `POST /api/birthdays`
 
 Adds a new user to the backend.
 
 Expected body:
 ```json
 {
-  "date": "1996-04-16T03:00:00.000Z",
+  "date": "04-11-1996",
   "name": "Leonardo Kalyn"
 }
 ```
 If successfull, it will return the same object.
 
-### `POST /birthdays/:date`
+### `GET /api/birthdays/:date`
 
 Returns the lists of users with same age and same birthday from the given date.
+
+Expected :date format:
+`MM-DD-YYYY`
 
 Expected response:
 ```json

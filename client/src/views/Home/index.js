@@ -18,6 +18,8 @@ const Home =  ({
   week,
   year,
 }) => {
+  moment("12-12-1212", "MM-DD-YYYY");
+
   const [showModal, setShowModal] = useState(false);
   const [inProp, setInProp] = useState(false);
   const [selectedCard, selectCard] = useState(-1);
