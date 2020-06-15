@@ -1,0 +1,21 @@
+{
+    "name": "template-projeto-selecao",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "proxy": "http://localhost:5000/",
+    "scripts": {
+        "client": "cd client && yarn start",
+        "server": "nodemon server.js",
+        "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    },
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "cors": "^2.8.5",
+        "express": "^4.16.4",
+        "nodemon": "^2.0.4"
+    },
+    "devDependencies": {
+        "concurrently": "^4.0.1"
+    }
+}
