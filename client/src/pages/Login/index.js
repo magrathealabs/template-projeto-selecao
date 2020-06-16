@@ -1,14 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { login } from '../../services/auth';
 import GitHubLogin from 'react-github-login';
 
 import './styles.scss';
 
-import api from '../../services/api';
-
-const SignIn = (props) => {
+const Login = (props) => {
     const onSuccessGithub = (response) => {
         console.log('REsponse: ', response);
         const code = response.code;
@@ -43,4 +40,4 @@ const SignIn = (props) => {
     );
 };
 
-export default withRouter(SignIn);
+export default withRouter(Login);
