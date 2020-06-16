@@ -1,11 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
-import { useDispatch } from 'react-redux';
-
-import { Creators as InfoActions } from '../../store/ducks/info';
-
-import { getToken } from '../../services/auth';
-import api from '../../services/api';
+import React from 'react';
 
 const Header = ({ login }) => {
     return (
