@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { getToken } from '../../services/auth';
 import api from '../../services/api';
 
 import { Creators as RepoActions } from '../../store/ducks/repositories';
@@ -32,9 +31,8 @@ const App = () => {
 
     const getStarredRepos = (login) => {
         setLoading(true);
-        api.get(`/users/${login}/starred`, {})
+        api.get(`/users/${login}/starred`)
             .then(function (response) {
-                console.log('Starred: ', response);
                 dispatch(RepoActions.setInfo(response.data));
                 setRepositories(response.data);
             })
@@ -50,7 +48,6 @@ const App = () => {
     return (
         <>
             <Header login={login} />
-
             <RepoList repositories={repositories} loading={loading} />
         </>
     );
