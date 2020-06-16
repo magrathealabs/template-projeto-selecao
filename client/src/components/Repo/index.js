@@ -11,7 +11,7 @@ const Repo = ({ id, name, description, url }) => {
                 <p>{description}</p>
             </div>
             <div className='Box-footer text-right'>
-                <a href={url} target='_blank'>
+                <a href={url} target='_blank' rel='noopener noreferrer'>
                     Ver no Github
                 </a>
             </div>
