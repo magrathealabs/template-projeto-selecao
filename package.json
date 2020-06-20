@@ -15,6 +15,7 @@
         "express": "^4.16.4",
         "nodemon": "^2.0.4",
         "react-redux": "^7.2.0",
+        "react-select": "^3.1.0",
         "redux": "^4.0.5"
     },
     "devDependencies": {
