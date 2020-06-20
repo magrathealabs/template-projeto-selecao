@@ -8,6 +8,7 @@ import './styles.scss';
 
 const Repo = ({ id, name, description, url, language = '' }) => {
     const allTags = useSelector((state) => state.tags.list);
+    console.log(allTags);
     const [editMode, setEditMode] = useState(false);
     const [selectedTags, setSelectedTags] = useState([]);
     const [activeTags, setActiveTags] = useState([]);
@@ -33,6 +34,7 @@ const Repo = ({ id, name, description, url, language = '' }) => {
         e.preventDefault();
         setActiveTags(selectedTags);
         dispatch(TagActions.setTags(selectedTags));
+        dispatch(TagActions.setRepoTags(id, selectedTags));
         setEditMode(false);
     };
 

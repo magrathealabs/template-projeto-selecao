@@ -1,11 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
-import { login } from '../../services/auth';
+import { Creators as AuthAtions } from '../../store/ducks/auth';
 
 const Oauth = (props) => {
+    const dispatch = useDispatch();
     const query = new URLSearchParams(props.location.search);
     const token = query.get('access_token');
-    login(token);
+    dispatch(AuthAtions.setToken(token));
     props.history.push('/app');
 
     return (

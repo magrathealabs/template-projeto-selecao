@@ -1,9 +1,16 @@
+import store from '../store/';
+
 export const TOKEN_KEY = '@magrathea-token';
-export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null;
-export const getToken = () => localStorage.getItem(TOKEN_KEY);
-export const login = (token) => {
-    localStorage.setItem(TOKEN_KEY, token);
+
+export const isAuthenticated = () => {
+    const state = store.getState();
+    return state.auth.token !== undefined;
 };
+export const getToken = () => {
+    const state = store.getState();
+    return state.auth.token;
+};
+
 export const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
 };
