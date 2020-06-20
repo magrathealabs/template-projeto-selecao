@@ -18,8 +18,9 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
         case Types.SET_REPO_TAGS:
             const repo = {};
             repo[action.id] = action.tags;
-            console.log(repo);
-            return Object.assign({}, state, repo);
+
+            const allRepos = Object.assign({}, state.repoTags, repo);
+            return Object.assign({}, state, { repoTags: allRepos });
 
         default:
             return state;

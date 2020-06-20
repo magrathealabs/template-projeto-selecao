@@ -11,7 +11,6 @@ export default function reducer(state = {}, action = {}) {
             return Object.assign({}, state, action.info);
 
         case Types.SET_TOKEN:
-            console.log('Save token: ', action);
             return Object.assign({}, state, { auth_token: action.token });
         default:
             return state;
