@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CreatableSelect from 'react-select/creatable';
@@ -8,9 +8,10 @@ import './styles.scss';
 
 const Repo = ({ id, name, description, url, language = '' }) => {
     const allTags = useSelector((state) => state.tags.list);
-    console.log(allTags);
+    const repoTags = useSelector((state) => state.tags[id]);
+
+    const [value, setValue] = useState([]);
     const [editMode, setEditMode] = useState(false);
-    const [selectedTags, setSelectedTags] = useState([]);
     const [activeTags, setActiveTags] = useState([]);
     const dispatch = useDispatch();
 
@@ -23,20 +24,30 @@ const Repo = ({ id, name, description, url, language = '' }) => {
     const onInputChange = (value) => value.toLowerCase();
 
     const handleChange = (newValue) => {
-        let selected = [];
-        if (newValue !== null) {
-            selected = newValue.map((labels) => labels.value.trimEnd());
-        }
-        setSelectedTags(selected);
+        setValue(newValue);
     };
 
     const updateTags = (e) => {
         e.preventDefault();
-        setActiveTags(selectedTags);
-        dispatch(TagActions.setTags(selectedTags));
-        dispatch(TagActions.setRepoTags(id, selectedTags));
+
+        let selected = [];
+        if (value && value.length) {
+            selected = value.map((labels) => labels.value.trimEnd());
+        }
+
+        setActiveTags(selected);
+        dispatch(TagActions.setTags(selected));
+        dispatch(TagActions.setRepoTags(id, selected));
         setEditMode(false);
     };
+
+    useEffect(() => {
+        if (repoTags != undefined) {
+            const formattedTags = repoTags.map((tag) => ({ value: tag, label: tag }));
+            setValue(formattedTags);
+            setActiveTags(repoTags);
+        }
+    }, [repoTags]);
 
     return (
         <div key={id} className='Box mb-4 mt-4 anim-fade-in repo'>
@@ -71,13 +82,22 @@ const Repo = ({ id, name, description, url, language = '' }) => {
                         {activeTags.length === 0 && <span className='text-gray-light'> Nenhuma tag selecionada</span>}
                     </div>
                 </div>
-                <form className={`tag-form ${editMode ? 'show' : ''}`}>
+                <div className={`tag-actions ${editMode ? 'show' : ''}`}>
                     <div className='form-group'>
                         <div className='form-group-header'>
                             <label htmlFor='tag-select'>Tags</label>
                         </div>
                         <div className='form-group-body'>
-                            <CreatableSelect id='tag-select' isMulti onChange={handleChange} onInputChange={onInputChange} options={options} />
+                            <CreatableSelect
+                                id='tag-select'
+                                isMulti
+                                onChange={handleChange}
+                                onInputChange={onInputChange}
+                                placeholder='Digite ou selecione uma tag'
+                                noOptionsMessage={() => 'Todas as tag selecionadas'}
+                                value={value}
+                                options={options}
+                            />
                         </div>
                     </div>
 
@@ -89,7 +109,7 @@ const Repo = ({ id, name, description, url, language = '' }) => {
                             Cancel
                         </button>
                     </div>
-                </form>
+                </div>
             </div>
             <div className='Box-footer text-right'>
                 <a href={url} target='_blank' rel='noopener noreferrer'>
