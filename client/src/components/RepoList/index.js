@@ -15,7 +15,7 @@ const RepoList = ({ repositories = [], loading = true }) => {
             )}
 
             {repositories.map((repo) => (
-                <Repo key={repo.id} id={repo.id} name={repo.name} description={repo.description} url={repo.html_url} />
+                <Repo key={repo.id} id={repo.id} name={repo.name} description={repo.description} url={repo.html_url} language={repo.language} />
             ))}
 
             {!loading && repositories.length === 0 && (
