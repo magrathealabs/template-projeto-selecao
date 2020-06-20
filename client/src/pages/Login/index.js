@@ -24,7 +24,7 @@ const Login = () => {
                     <div className='Box-row text-center'>
                         <GitHubLogin
                             className='btn btn-primary'
-                            clientId='1aa8f80f9003b322baf9'
+                            clientId='2d1dcec2c49eb2043025'
                             onSuccess={onSuccessGithub}
                             valid={true}
                             redirectUri='http://localhost:3000/'
