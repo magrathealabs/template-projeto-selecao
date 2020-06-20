@@ -10,6 +10,8 @@ const INITIAL_STATE = {
 //  Reducer
 export default function reducer(state = INITIAL_STATE, action = {}) {
     switch (action.type) {
+        case Types.SET:
+            return Object.assign({}, state, { list: [...state.list, ...action.tags] });
         default:
             return state;
     }
@@ -17,7 +19,7 @@ export default function reducer(state = INITIAL_STATE, action = {}) {
 
 // Action Creators
 export const Creators = {
-    setInfo: (tags) => ({
+    setTags: (tags) => ({
         type: Types.SET,
         tags: tags,
     }),
