@@ -8,14 +8,25 @@ import { Creators as InfoActions } from '../../store/ducks/info';
 
 import Header from '../../components/Header';
 import RepoList from '../../components/RepoList';
+import SearchBox from '../../components/SearchBox';
 
 import './styles.scss';
 
 const App = () => {
     const [repositories, setRepositories] = useState([]);
+    const [searching, setSearching] = useState(false);
+
+    const [filtered, setFiltered] = useState([]);
     const [login, setLogin] = useState('');
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
+
+    const handleSearch = (searchIds) => {
+        const filteredRepos = repositories.filter((repo) => searchIds.indexOf(repo.id + '') !== -1);
+        setFiltered(filteredRepos);
+
+        setSearching(searchIds.length);
+    };
 
     const getUserInfo = (callback) => {
         api.get('/user').then(function (response) {
@@ -48,7 +59,10 @@ const App = () => {
     return (
         <>
             <Header login={login} />
-            <RepoList repositories={repositories} loading={loading} />
+            <div className='container-sm'>
+                <SearchBox onSearch={handleSearch} />
+                <RepoList repositories={searching ? filtered : repositories} loading={loading} />
+            </div>
         </>
     );
 };

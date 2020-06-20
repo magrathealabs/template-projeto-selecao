@@ -5,23 +5,21 @@ import GitHubLogin from 'react-github-login';
 
 import './styles.scss';
 
-const Login = (props) => {
+const Login = () => {
     const onSuccessGithub = (response) => {
-        console.log('REsponse: ', response);
         const code = response.code;
-
         window.location.href = 'http://localhost:5000/oauth/?code=' + code;
     };
 
     return (
         <section className='d-flex flex-justify-center flex-items-center '>
-            <div className='col-4 mt-5'>
+            <div className='col-3 mt-5'>
                 <div className='Box box-shadow'>
                     <div className='Box-row'>
                         <h3 className='m-0 text-center'>Git tag manager</h3>
                     </div>
                     <div className='Box-row'>
-                        <p className='mb-0 text-gray text-center'>Hey, log in with your GitHub account to get started</p>
+                        <p className='mb-0 text-gray text-center'>Hey, faça login com sua conta do Github para começar!</p>
                     </div>
                     <div className='Box-row text-center'>
                         <GitHubLogin
@@ -31,7 +29,7 @@ const Login = (props) => {
                             valid={true}
                             redirectUri='http://localhost:3000/'
                         >
-                            Login with Github
+                            Logar com Github
                         </GitHubLogin>
                     </div>
                 </div>
