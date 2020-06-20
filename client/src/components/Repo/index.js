@@ -8,7 +8,7 @@ import './styles.scss';
 
 const Repo = ({ id, name, description, url, language = '' }) => {
     const allTags = useSelector((state) => state.tags.list);
-    const repoTags = useSelector((state) => state.tags[id]);
+    const repoTags = useSelector((state) => state.tags.repoTags[id]);
 
     const [value, setValue] = useState([]);
     const [editMode, setEditMode] = useState(false);
@@ -103,10 +103,10 @@ const Repo = ({ id, name, description, url, language = '' }) => {
 
                     <div className='form-actions'>
                         <button type='button' className='btn btn-primary' onClick={updateTags}>
-                            Save changes
+                            Salvar
                         </button>
                         <button type='button' className='btn' onClick={() => setEditMode(false)}>
-                            Cancel
+                            Cancelar
                         </button>
                     </div>
                 </div>

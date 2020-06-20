@@ -3,9 +3,5 @@ import Routes from './routes';
 
 import './styles/global.scss';
 
-const App = () => (
-    <div className='container-md'>
-        <Routes />
-    </div>
-);
+const App = () => <Routes />;
 export default App;

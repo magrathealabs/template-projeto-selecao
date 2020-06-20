@@ -4,7 +4,7 @@ import Repo from '../Repo';
 
 const RepoList = ({ repositories = [], loading = true }) => {
     return (
-        <div id='repo-list' className='container-sm'>
+        <div id='repo-list'>
             {loading && (
                 <div className='text-center anim-fade-in'>
                     <h2 className='mt-4'>
