@@ -1,42 +1,33 @@
+import { useEffect } from 'react'
 import Router from 'next/router'
-import { Button, Flex, Avatar, Stack, Text, Box } from '@chakra-ui/core'
-import { useSession, signout } from 'next-auth/client'
+import { Flex, Grid } from '@chakra-ui/core'
+import { useSession } from 'next-auth/client'
 import { FullpageSpinner } from '../components/spinner'
+import { User } from '../components/user'
+import { RepositoryCard } from '../components/repository-card'
 
 function IndexPage() {
   const [session, loading] = useSession()
 
-  if (loading) {
-    return <FullpageSpinner />
-  }
+  useEffect(() => {
+    if (!loading && !session) {
+      Router.replace('/login')
+    }
+  }, [loading, session])
 
-  if (!loading && !session) {
-    Router.replace('/login')
+  if (loading) {
+    return <FullpageSpinner h="100vh" />
   }
 
   return (
-    <Flex>
+    <Flex direction="column">
       <Flex
         p={4}
         borderBottomColor="gray.200"
         borderBottomWidth={1}
         width="100%"
       >
-        <Stack spacing={2} align="center" isInline>
-          <Avatar name={session.user.name} src={session.user.image} />
-          <Box>
-            <Text>{session.user.name}</Text>
-            <Button
-              size="xs"
-              variantColor="pink"
-              onClick={() =>
-                signout({ callbackUrl: 'http://localhost:3000/login' })
-              }
-            >
-              Sair
-            </Button>
-          </Box>
-        </Stack>
+        <User name={session?.user.name} image={session?.user.image} />
       </Flex>
     </Flex>
   )
