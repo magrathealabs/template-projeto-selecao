@@ -6,7 +6,7 @@ const App = ({ Component, pageProps }) => {
     <ThemeProvider>
       <CSSReset />
       <Head>
-        <title>GuhTags</title>
+        <title>TagHub</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
