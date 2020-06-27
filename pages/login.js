@@ -1,5 +1,6 @@
 import React from 'react'
-import { Flex, Button, Text, Stack, theme } from '@chakra-ui/core'
+import { signin } from 'next-auth/client'
+import { Flex, Button, Text, Stack } from '@chakra-ui/core'
 
 function LoginPage() {
   return (
@@ -14,7 +15,13 @@ function LoginPage() {
         <Text as="h1" fontSize="6xl" fontWeight="bolder" color="gray.500">
           TagHub
         </Text>
-        <Button size="lg" variantColor="pink">
+        <Button
+          size="lg"
+          variantColor="pink"
+          onClick={() =>
+            signin('github', { callbackUrl: 'http://localhost:3000/' })
+          }
+        >
           Entrar com github
         </Button>
       </Stack>
