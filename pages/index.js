@@ -1,9 +1,19 @@
-import { Flex, Grid } from '@chakra-ui/core'
+import { useState } from 'react'
+import {
+  Flex,
+  Grid,
+  useDisclosure,
+  FormControl,
+  Input,
+  Button,
+  FormHelperText,
+} from '@chakra-ui/core'
 import { useQuery } from 'react-query'
 import { User } from '../components/user'
 import { RepositoryCard } from '../components/repository-card'
 import { useUser } from '../context/user'
 import { FullpageSpinner } from '../components/spinner'
+import { Modal } from '../components/modal'
 
 const getStarredRepositoriesUrl = data => {
   const {
@@ -13,7 +23,14 @@ const getStarredRepositoriesUrl = data => {
 }
 
 function IndexPage() {
+  const { isOpen, onClose, onOpen } = useDisclosure(false)
+  const [repository, setRepository] = useState('')
   const { user } = useUser()
+
+  const openModal = repo => {
+    setRepository(repo)
+    onOpen()
+  }
 
   const { data: starred } = useQuery('starred', async () => {
     const data = await fetch(
@@ -48,8 +65,6 @@ function IndexPage() {
       </Flex>
 
       <Flex flexWrap="wrap">
-        {(status === 'loading' || isFetching) && <FullpageSpinner />}
-
         <Grid
           width="100%"
           gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))"
@@ -57,10 +72,33 @@ function IndexPage() {
           p={4}
         >
           {repositories?.map(repo => (
-            <RepositoryCard key={repo.id} {...repo} />
+            <RepositoryCard key={repo.id} openModal={openModal} {...repo} />
           ))}
         </Grid>
+
+        {(status === 'loading' || isFetching) && <FullpageSpinner />}
       </Flex>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <Input
+          name="id"
+          value={repository.id}
+          variant="filled"
+          isReadOnly
+          hidden
+        />
+
+        <FormControl>
+          <Input name="tag" placeholder="Tags" variant="filled" />
+          <FormHelperText>
+            Separe as tags por virgula. ex: node, backend
+          </FormHelperText>
+        </FormControl>
+
+        <Button width="100%" variantColor="pink" textTransform="uppercase">
+          Adicionar Tags
+        </Button>
+      </Modal>
     </Flex>
   )
 }
