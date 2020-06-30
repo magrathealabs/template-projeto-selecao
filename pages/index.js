@@ -8,6 +8,7 @@ import {
   Button,
   FormHelperText,
 } from '@chakra-ui/core'
+import { getSession } from 'next-auth/client'
 import { useQuery } from 'react-query'
 import { User } from '../components/user'
 import { RepositoryCard } from '../components/repository-card'
@@ -22,7 +23,18 @@ const getStarredRepositoriesUrl = data => {
   return `https://api.github.com/users/${user.login}/starred`
 }
 
-function IndexPage() {
+const getTagsFromRepository = (id, list) => {
+  const matches = list.filter(({ rid }) => id === rid)
+
+  if (matches.length > 0) {
+    const [head] = matches
+    return head.tags
+  }
+
+  return []
+}
+
+function IndexPage({ tags }) {
   const { isOpen, onClose, onOpen } = useDisclosure(false)
   const [repository, setRepository] = useState('')
   const { user } = useUser()
@@ -41,12 +53,18 @@ function IndexPage() {
   })
 
   const { data: repositories, status, isFetching } = useQuery(
-    ['repositories', starred],
+    ['repositories', starred, tags],
     async (__, starred) => {
       const url = getStarredRepositoriesUrl(starred)
       const data = await fetch(url)
+      const repos = await data.json()
 
-      return await data.json()
+      const repositories = repos.map(repo => ({
+        ...repo,
+        tags: getTagsFromRepository(repo.id, tags),
+      }))
+
+      return repositories
     },
     {
       enabled: starred,
@@ -81,6 +99,14 @@ function IndexPage() {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <Input
+          name="owner"
+          value={user.email}
+          variant="filled"
+          isReadOnly
+          hidden
+        />
+
+        <Input
           name="id"
           value={repository.id}
           variant="filled"
@@ -101,6 +127,17 @@ function IndexPage() {
       </Modal>
     </Flex>
   )
+}
+
+IndexPage.getInitialProps = async ctx => {
+  const { user } = await getSession(ctx)
+
+  const response = await fetch(
+    `${process.env.APP_DOMAIN}/api/tags?user=${user.email}`
+  )
+  const data = await response.json()
+
+  return { tags: data }
 }
 
 export default IndexPage

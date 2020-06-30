@@ -10,8 +10,10 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "emotion-theming": "^10.0.27",
+    "mongodb": "^3.5.9",
     "next": "^9.4.4",
     "next-auth": "^2.2.0",
+    "next-connect": "^0.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-query": "^2.4.2"

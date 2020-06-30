@@ -2,7 +2,7 @@ import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
 const options = {
-  site: process.env.DOMAIN || 'http://localhost:3000',
+  site: process.env.APP_DOMAIN || 'http://localhost:3000',
   secret: `iamapotato`,
   providers: [
     Providers.GitHub({

@@ -10,6 +10,12 @@ export function RepositoryCard({ name, description, tags, id, openModal }) {
 
       <Text fontSize="lg">{description}</Text>
 
+      <Stack isInline spacing={2}>
+        {tags?.map(tag => (
+          <Badge key={tag}>{tag}</Badge>
+        ))}
+      </Stack>
+
       <Button
         mt="auto"
         variant="solid"
@@ -18,12 +24,6 @@ export function RepositoryCard({ name, description, tags, id, openModal }) {
       >
         Adicionar Tags
       </Button>
-
-      <Stack isInline spacing={2}>
-        {tags?.map(tag => (
-          <Badge key={tag}>{tag}</Badge>
-        ))}
-      </Stack>
     </Stack>
   )
 }
