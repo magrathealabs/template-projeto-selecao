@@ -14,4 +14,18 @@ handler.get(async (req, res) => {
   res.json(tags)
 })
 
+handler.post(async (req, res) => {
+  const { owner, rid, tags } = JSON.parse(req.body)
+
+  const response = await req.db.collection('tags').updateOne(
+    { owner, rid },
+    { $set: { owner, rid }, $addToSet: { tags: { $each: tags } } },
+    {
+      upsert: true,
+    }
+  )
+
+  return res.json(response)
+})
+
 export default handler

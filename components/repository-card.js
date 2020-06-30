@@ -10,9 +10,11 @@ export function RepositoryCard({ name, description, tags, id, openModal }) {
 
       <Text fontSize="lg">{description}</Text>
 
-      <Stack isInline spacing={2}>
+      <Stack isInline spacing={2} flexWrap="wrap">
         {tags?.map(tag => (
-          <Badge key={tag}>{tag}</Badge>
+          <Badge mb={2} key={tag}>
+            {tag}
+          </Badge>
         ))}
       </Stack>
 

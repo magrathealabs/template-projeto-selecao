@@ -10,6 +10,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "emotion-theming": "^10.0.27",
+    "formik": "^2.1.4",
     "mongodb": "^3.5.9",
     "next": "^9.4.4",
     "next-auth": "^2.2.0",

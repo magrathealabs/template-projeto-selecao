@@ -1,16 +1,31 @@
-import { Flex, Grid } from '@chakra-ui/core'
-import { getSession } from 'next-auth/client'
-import { useQuery } from 'react-query'
-import { User } from '../components/user'
-import { RepositoryCard } from '../components/repository-card'
+import { useState, useEffect } from 'react'
+import { Flex, Grid, useDisclosure } from '@chakra-ui/core'
+import { useQuery, useMutation, queryCache } from 'react-query'
+import { useFormik } from 'formik'
+import {
+  User,
+  RepositoryCard,
+  FullpageSpinner,
+  AddTagModal,
+} from '../components'
 import { useUser } from '../context/user'
-import { FullpageSpinner } from '../components/spinner'
-import { fetchUserData, fetchStarredRepositories } from '../services'
+import {
+  fetchTags,
+  fetchUserData,
+  fetchStarredRepositories,
+  addTagsToRepository,
+} from '../services'
 
-function IndexPage({ tags }) {
+function IndexPage() {
   const { user } = useUser()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [repository, setRepository] = useState(null)
 
   const { data: starred } = useQuery(['starred', user], fetchUserData, {
+    enabled: user,
+  })
+
+  const { data: tags } = useQuery(['tags', user], fetchTags, {
     enabled: user,
   })
 
@@ -19,6 +34,46 @@ function IndexPage({ tags }) {
     fetchStarredRepositories,
     { enabled: starred }
   )
+
+  const [mutate] = useMutation(addTagsToRepository, {
+    onSettled: () => {
+      queryCache.invalidateQueries('tags')
+      queryCache.invalidateQueries('repositories')
+    },
+  })
+
+  const { handleSubmit, getFieldProps, resetForm } = useFormik({
+    initialValues: {
+      tags: '',
+    },
+    onSubmit: async values => {
+      const data = {
+        owner: user.email,
+        rid: repository.id,
+        tags: values.tags.split(',').map(tag => tag.trim()),
+      }
+
+      await mutate({ data })
+
+      closeModal()
+    },
+  })
+
+  const tagsField = getFieldProps('tags')
+
+  const openModal = repo => {
+    setRepository(repo)
+    onOpen()
+  }
+
+  const closeModal = () => {
+    resetForm()
+    onClose()
+  }
+
+  useEffect(() => {
+    console.log(tags)
+  }, [tags])
 
   return (
     <Flex direction="column">
@@ -39,25 +94,21 @@ function IndexPage({ tags }) {
           p={4}
         >
           {repositories?.map(repo => (
-            <RepositoryCard key={repo.id} {...repo} />
+            <RepositoryCard key={repo.id} openModal={openModal} {...repo} />
           ))}
         </Grid>
 
         {(status === 'loading' || isFetching) && <FullpageSpinner />}
       </Flex>
+
+      <AddTagModal
+        field={tagsField}
+        onSubmit={handleSubmit}
+        isOpen={isOpen}
+        onClose={closeModal}
+      />
     </Flex>
   )
-}
-
-IndexPage.getInitialProps = async ctx => {
-  const session = await getSession(ctx)
-
-  const response = await fetch(
-    `${process.env.APP_DOMAIN}/api/tags?user=${session?.user.email}`
-  )
-  const data = await response.json()
-
-  return { tags: data }
 }
 
 export default IndexPage
