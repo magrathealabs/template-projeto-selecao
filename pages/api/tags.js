@@ -11,7 +11,7 @@ handler.get(async (req, res) => {
   const results = await req.db.collection('tags').find({ owner })
   const tags = await results.toArray()
 
-  res.statusCode(200)
+  res.statusCode = 200
   res.json(tags)
 })
 
@@ -26,7 +26,7 @@ handler.post(async (req, res) => {
     }
   )
 
-  res.statusCode(201)
+  res.statusCode = 201
   res.json(response)
 })
 
