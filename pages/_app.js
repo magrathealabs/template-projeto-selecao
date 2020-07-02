@@ -4,12 +4,12 @@ import { ThemeProvider, CSSReset } from '@chakra-ui/core'
 import { UserProvider } from '../context/user'
 
 const App = ({ Component, pageProps }) => {
-  const { session } = pageProps
+  const { session, callbackUrl: site } = pageProps
 
   return (
     <ThemeProvider>
       <CSSReset />
-      <Provider options={{ site: process.env.VERCEL_URL }} session={session}>
+      <Provider options={{ site }} session={session}>
         <UserProvider>
           <Head>
             <title>TagHub</title>

@@ -2,9 +2,7 @@ import React from 'react'
 import { signin } from 'next-auth/client'
 import { Flex, Button, Text, Stack } from '@chakra-ui/core'
 
-function LoginPage() {
-  console.log(process.env.VERCEL_URL)
-
+function LoginPage({ callbackUrl }) {
   return (
     <Flex
       p={4}
@@ -20,15 +18,18 @@ function LoginPage() {
         <Button
           size="lg"
           variantColor="pink"
-          onClick={() =>
-            signin('github', { callbackUrl: process.env.VERCEL_URL })
-          }
+          onClick={() => signin('github', { callbackUrl })}
         >
           Entrar com github
         </Button>
       </Stack>
     </Flex>
   )
+}
+
+LoginPage.getInitialProps = ctx => {
+  const callbackUrl = process.env.VERCEL_URL
+  return { callbackUrl }
 }
 
 export default LoginPage

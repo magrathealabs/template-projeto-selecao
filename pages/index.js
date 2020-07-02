@@ -24,7 +24,7 @@ import {
   addTagsToRepository,
 } from '../services'
 
-function IndexPage() {
+function IndexPage({ callbackUrl }) {
   const { user } = useUser()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [repository, setRepository] = useState(null)
@@ -116,7 +116,7 @@ function IndexPage() {
         borderBottomWidth={1}
         width="100%"
       >
-        <User name={user?.name} image={user?.image} />
+        <User name={user?.name} image={user?.image} callbackUrl={callbackUrl} />
       </Flex>
 
       <Search
@@ -163,6 +163,12 @@ function IndexPage() {
       />
     </Flex>
   )
+}
+
+IndexPage.getInitialProps = ctx => {
+  const callbackUrl = process.env.VERCEL_URL
+
+  return { callbackUrl }
 }
 
 export default IndexPage

@@ -2,7 +2,7 @@ import React from 'react'
 import { Stack, Avatar, Text, Button, Box } from '@chakra-ui/core'
 import { signout } from 'next-auth/client'
 
-export function User({ name, image }) {
+export function User({ name, image, callbackUrl }) {
   return (
     <Stack spacing={2} align="center" isInline>
       <Avatar name={name} src={image} />
@@ -11,9 +11,7 @@ export function User({ name, image }) {
         <Button
           size="xs"
           variantColor="pink"
-          onClick={() =>
-            signout({ callbackUrl: `${process.env.VERCEL_URL}/login` })
-          }
+          onClick={() => signout({ callbackUrl })}
         >
           Sair
         </Button>
