@@ -22,6 +22,7 @@ import {
   fetchUserData,
   fetchStarredRepositories,
   addTagsToRepository,
+  removeTagFromRepository,
 } from '../services'
 
 function IndexPage({ callbackUrl }) {
@@ -45,7 +46,14 @@ function IndexPage({ callbackUrl }) {
     { enabled: tags }
   )
 
-  const [mutate] = useMutation(addTagsToRepository, {
+  const [mutate, { status: adding }] = useMutation(addTagsToRepository, {
+    onSettled: () => {
+      queryCache.invalidateQueries('tags')
+      queryCache.invalidateQueries('repositories')
+    },
+  })
+
+  const [removeTag] = useMutation(removeTagFromRepository, {
     onSettled: () => {
       queryCache.invalidateQueries('tags')
       queryCache.invalidateQueries('repositories')
@@ -143,12 +151,24 @@ function IndexPage({ callbackUrl }) {
           p={4}
         >
           {results?.map(repo => (
-            <RepositoryCard key={repo.id} openModal={openModal} {...repo} />
+            <RepositoryCard
+              key={repo.id}
+              openModal={openModal}
+              onRemoveTag={removeTag}
+              {...repo}
+              owner={user.email}
+            />
           ))}
 
           {results.length <= 0 &&
             repositories?.map(repo => (
-              <RepositoryCard key={repo.id} openModal={openModal} {...repo} />
+              <RepositoryCard
+                key={repo.id}
+                openModal={openModal}
+                onRemoveTag={removeTag}
+                {...repo}
+                owner={user.email}
+              />
             ))}
         </Grid>
 
@@ -160,6 +180,7 @@ function IndexPage({ callbackUrl }) {
         onSubmit={handleSubmit}
         isOpen={isOpen}
         onClose={closeModal}
+        isLoading={adding === 'loading'}
       />
     </Flex>
   )

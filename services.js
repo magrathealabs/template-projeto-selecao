@@ -48,3 +48,9 @@ export const addTagsToRepository = ({ data }) =>
     method: 'POST',
     body: JSON.stringify(data),
   })
+
+export const removeTagFromRepository = ({ rid, owner, tag }) =>
+  fetcher(`${TAGS_URL}?rid=${rid}&tag=${tag}&owner=${owner}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ rid, owner, tag }),
+  })

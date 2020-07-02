@@ -30,4 +30,15 @@ handler.post(async (req, res) => {
   res.json(response)
 })
 
+handler.patch(async (req, res) => {
+  const { owner, rid, tag } = req.query
+
+  const response = await req.db
+    .collection('tags')
+    .updateOne({ owner, rid: Number(rid) }, { $pull: { tags: tag } })
+
+  res.statusCode = 200
+  res.json(response)
+})
+
 export default handler
