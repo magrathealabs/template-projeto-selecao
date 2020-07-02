@@ -16,6 +16,10 @@ const getStarredRepositoriesUrl = data => {
 }
 
 const getTagsFromRepository = (id, list) => {
+  if (!list) {
+    return []
+  }
+
   const matches = list.filter(({ rid }) => id === rid)
 
   if (matches.length > 0) {

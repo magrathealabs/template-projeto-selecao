@@ -90,11 +90,15 @@ function IndexPage() {
       return
     }
 
-    const results = repositories.filter(({ tags }) =>
-      tags
-        .map(tag => tag.toLowerCase())
-        .includes(term.trim().toLocaleLowerCase())
-    )
+    const results = repositories.filter(({ tags }) => {
+      const searchTerm = term.trim().toLowerCase()
+      const lowerTages = tags.map(tags => tags.toLowerCase())
+
+      return (
+        lowerTages.includes(searchTerm) ||
+        lowerTages.filter(tag => tag.startsWith(searchTerm)).length > 0
+      )
+    })
 
     setResults(old => results)
   }
