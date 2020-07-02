@@ -42,7 +42,7 @@ function IndexPage({ callbackUrl }) {
   const { data: repositories, status, isFetching } = useQuery(
     ['repositories', starred, tags],
     fetchStarredRepositories,
-    { enabled: starred }
+    { enabled: tags }
   )
 
   const [mutate] = useMutation(addTagsToRepository, {
