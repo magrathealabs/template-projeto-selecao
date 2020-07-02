@@ -1,5 +1,12 @@
 import { useState } from 'react'
-import { Flex, Grid, useDisclosure } from '@chakra-ui/core'
+import {
+  Flex,
+  Grid,
+  useDisclosure,
+  Box,
+  Tag,
+  TagCloseButton,
+} from '@chakra-ui/core'
 import { useQuery, useMutation, queryCache } from 'react-query'
 import { useFormik } from 'formik'
 import {
@@ -92,6 +99,11 @@ function IndexPage() {
     setResults(old => results)
   }
 
+  const resetSearch = () => {
+    setTerm('')
+    setResults(old => [])
+  }
+
   return (
     <Flex direction="column">
       <Flex
@@ -103,7 +115,21 @@ function IndexPage() {
         <User name={user?.name} image={user?.image} />
       </Flex>
 
-      <Search onChange={handleChangeTerm} onSearch={handleSearch} term={term} />
+      <Search
+        onChange={handleChangeTerm}
+        onSearch={handleSearch}
+        onReset={resetSearch}
+        term={term}
+        showResetButton={results.length > 0 && term}
+      />
+
+      <Box pl={4} pr={4}>
+        {term && results.length > 0 && (
+          <Tag size="lg" rounded="full" variantColor="pink">
+            {term} <TagCloseButton onClick={resetSearch} />
+          </Tag>
+        )}
+      </Box>
 
       <Flex flexWrap="wrap">
         <Grid

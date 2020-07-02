@@ -7,7 +7,7 @@ import {
   Button,
 } from '@chakra-ui/core'
 
-export function Search({ onChange, onSearch, term }) {
+export function Search({ onChange, onSearch, term, onReset, showResetButton }) {
   return (
     <Box p={4} pt={8}>
       <InputGroup>
@@ -20,14 +20,25 @@ export function Search({ onChange, onSearch, term }) {
         <InputRightElement
           width="6em"
           children={
-            <Button
-              size="sm"
-              leftIcon="search"
-              variantColor="pink"
-              onClick={onSearch}
-            >
-              Filtrar
-            </Button>
+            showResetButton ? (
+              <Button
+                size="sm"
+                leftIcon="close"
+                onClick={onReset}
+                variantColor="red"
+              >
+                Limpar
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                leftIcon="search"
+                variantColor="pink"
+                onClick={onSearch}
+              >
+                Filtrar
+              </Button>
+            )
           }
         />
       </InputGroup>
