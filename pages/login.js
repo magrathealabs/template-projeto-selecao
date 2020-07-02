@@ -3,6 +3,8 @@ import { signin } from 'next-auth/client'
 import { Flex, Button, Text, Stack } from '@chakra-ui/core'
 
 function LoginPage({ callbackUrl }) {
+  console.log(callbackUrl, '--- login page')
+
   return (
     <Flex
       p={4}
@@ -28,7 +30,7 @@ function LoginPage({ callbackUrl }) {
 }
 
 LoginPage.getInitialProps = ctx => {
-  const callbackUrl = process.env.VERCEL_URL
+  const callbackUrl = process.env.APP_DOMAIN
   return { callbackUrl }
 }
 

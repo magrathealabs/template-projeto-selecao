@@ -166,7 +166,7 @@ function IndexPage({ callbackUrl }) {
 }
 
 IndexPage.getInitialProps = ctx => {
-  const callbackUrl = process.env.VERCEL_URL
+  const callbackUrl = process.env.APP_DOMAIN
 
   return { callbackUrl }
 }
