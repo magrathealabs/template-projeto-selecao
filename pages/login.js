@@ -3,6 +3,8 @@ import { signin } from 'next-auth/client'
 import { Flex, Button, Text, Stack } from '@chakra-ui/core'
 
 function LoginPage() {
+  console.log(process.env.VERCEL_URL)
+
   return (
     <Flex
       p={4}
