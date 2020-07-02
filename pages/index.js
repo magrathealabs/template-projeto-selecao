@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Flex, Grid, useDisclosure } from '@chakra-ui/core'
 import { useQuery, useMutation, queryCache } from 'react-query'
 import { useFormik } from 'formik'
@@ -7,6 +7,7 @@ import {
   RepositoryCard,
   FullpageSpinner,
   AddTagModal,
+  Search,
 } from '../components'
 import { useUser } from '../context/user'
 import {
@@ -20,6 +21,8 @@ function IndexPage() {
   const { user } = useUser()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [repository, setRepository] = useState(null)
+  const [term, setTerm] = useState('')
+  const [results, setResults] = useState([])
 
   const { data: starred } = useQuery(['starred', user], fetchUserData, {
     enabled: user,
@@ -71,9 +74,23 @@ function IndexPage() {
     onClose()
   }
 
-  useEffect(() => {
-    console.log(tags)
-  }, [tags])
+  const handleChangeTerm = ({ target }) => {
+    setTerm(() => target.value)
+  }
+
+  const handleSearch = () => {
+    if (!repositories) {
+      return
+    }
+
+    const results = repositories.filter(({ tags }) =>
+      tags
+        .map(tag => tag.toLowerCase())
+        .includes(term.trim().toLocaleLowerCase())
+    )
+
+    setResults(old => results)
+  }
 
   return (
     <Flex direction="column">
@@ -86,6 +103,8 @@ function IndexPage() {
         <User name={user?.name} image={user?.image} />
       </Flex>
 
+      <Search onChange={handleChangeTerm} onSearch={handleSearch} term={term} />
+
       <Flex flexWrap="wrap">
         <Grid
           width="100%"
@@ -93,9 +112,14 @@ function IndexPage() {
           gridGap={4}
           p={4}
         >
-          {repositories?.map(repo => (
+          {results?.map(repo => (
             <RepositoryCard key={repo.id} openModal={openModal} {...repo} />
           ))}
+
+          {results.length <= 0 &&
+            repositories?.map(repo => (
+              <RepositoryCard key={repo.id} openModal={openModal} {...repo} />
+            ))}
         </Grid>
 
         {(status === 'loading' || isFetching) && <FullpageSpinner />}
