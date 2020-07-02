@@ -31,6 +31,7 @@ function IndexPage({ callbackUrl }) {
   const [repository, setRepository] = useState(null)
   const [term, setTerm] = useState('')
   const [results, setResults] = useState([])
+  const [criteria, setCriteria] = useState('')
 
   const { data: starred } = useQuery(['starred', user], fetchUserData, {
     enabled: user,
@@ -98,6 +99,8 @@ function IndexPage({ callbackUrl }) {
       return
     }
 
+    setCriteria(term)
+
     const results = repositories.filter(({ tags }) => {
       const searchTerm = term.trim().toLowerCase()
       const lowerTages = tags.map(tags => tags.toLowerCase())
@@ -113,6 +116,7 @@ function IndexPage({ callbackUrl }) {
 
   const resetSearch = () => {
     setTerm('')
+    setCriteria('')
     setResults(old => [])
   }
 
@@ -136,9 +140,9 @@ function IndexPage({ callbackUrl }) {
       />
 
       <Box pl={4} pr={4}>
-        {term && results.length > 0 && (
+        {criteria && results.length > 0 && (
           <Tag size="lg" rounded="full" variantColor="pink">
-            {term} <TagCloseButton onClick={resetSearch} />
+            {criteria} <TagCloseButton onClick={resetSearch} />
           </Tag>
         )}
       </Box>

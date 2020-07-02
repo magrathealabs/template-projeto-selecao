@@ -18,18 +18,23 @@ export function Search({ onChange, onSearch, term, onReset, showResetButton }) {
           value={term}
         />
         <InputRightElement
-          width="6em"
+          width="fit-content"
+          pr={2}
+          justifyContent="flex-end"
           children={
-            showResetButton ? (
-              <Button
-                size="sm"
-                leftIcon="close"
-                onClick={onReset}
-                variantColor="red"
-              >
-                Limpar
-              </Button>
-            ) : (
+            <>
+              {showResetButton && (
+                <Button
+                  size="sm"
+                  leftIcon="close"
+                  onClick={onReset}
+                  variantColor="red"
+                  mr={2}
+                >
+                  Limpar
+                </Button>
+              )}
+
               <Button
                 size="sm"
                 leftIcon="search"
@@ -38,7 +43,7 @@ export function Search({ onChange, onSearch, term, onReset, showResetButton }) {
               >
                 Filtrar
               </Button>
-            )
+            </>
           }
         />
       </InputGroup>
