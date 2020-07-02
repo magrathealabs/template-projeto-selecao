@@ -2,7 +2,7 @@ import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
 const options = {
-  site: process.env.APP_DOMAIN || 'http://localhost:3000',
+  site: process.env.VERCEL_URL || 'http://localhost:3000',
   secret: process.env.APP_SECRET,
   providers: [
     Providers.GitHub({

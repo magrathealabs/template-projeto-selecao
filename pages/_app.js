@@ -9,7 +9,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <ThemeProvider>
       <CSSReset />
-      <Provider options={{ site: process.env.APP_DOMAIN }} session={session}>
+      <Provider options={{ site: process.env.VERCEL_URL }} session={session}>
         <UserProvider>
           <Head>
             <title>TagHub</title>

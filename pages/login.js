@@ -19,7 +19,7 @@ function LoginPage() {
           size="lg"
           variantColor="pink"
           onClick={() =>
-            signin('github', { callbackUrl: process.env.APP_DOMAIN })
+            signin('github', { callbackUrl: process.env.VERCEL_URL })
           }
         >
           Entrar com github
