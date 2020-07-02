@@ -3,7 +3,7 @@ import Providers from 'next-auth/providers'
 
 const options = {
   site: process.env.APP_DOMAIN || 'http://localhost:3000',
-  secret: `iamapotato`,
+  secret: process.env.APP_SECRET,
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_ID,

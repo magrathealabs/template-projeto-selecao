@@ -12,7 +12,7 @@ export function User({ name, image }) {
           size="xs"
           variantColor="pink"
           onClick={() =>
-            signout({ callbackUrl: `${process.env.DOMAIN}/login` })
+            signout({ callbackUrl: `${process.env.APP_DOMAIN}/login` })
           }
         >
           Sair

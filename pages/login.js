@@ -19,7 +19,7 @@ function LoginPage() {
           size="lg"
           variantColor="pink"
           onClick={() =>
-            signin('github', { callbackUrl: 'http://localhost:3000/' })
+            signin('github', { callbackUrl: process.env.APP_DOMAIN })
           }
         >
           Entrar com github
