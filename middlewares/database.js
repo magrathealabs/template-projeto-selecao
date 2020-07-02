@@ -11,7 +11,7 @@ async function database(req, res, next) {
     await client.connect()
   }
 
-  req.db = client.db('taghub')
+  req.db = client.db(process.env.DATABASE)
   return next()
 }
 

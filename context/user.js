@@ -13,8 +13,13 @@ export function UserProvider(props) {
     return <FullpageSpinner h="100vh" />
   }
 
-  if (!loading && !session && Router.pathname !== '/login') {
+  if (!loading && !session?.user && Router.pathname !== '/login') {
     Router.replace('/login')
+    return null
+  }
+
+  if (!loading && session?.user && Router.pathname === '/login') {
+    Router.replace('/')
     return null
   }
 
