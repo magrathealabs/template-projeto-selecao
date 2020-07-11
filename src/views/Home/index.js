@@ -8,6 +8,7 @@ import Calendar from '../../components/Calendar';
 import Modal from '../../components/Modal';
 import BirthdayCard from '../../components/BirthdayCard';
 import './style.scss';
+import '../../styles/balloon.scss';
 
 const Home =  ({
   birthdays,
@@ -37,6 +38,7 @@ const Home =  ({
     const nextWeek = moment().weekYear(year).week(week).add(1, 'w');
     fetchBirthdays(nextWeek.week(), nextWeek.weekYear());
   }
+
   const getPreviousWeek = () => {
     const previousWeek = moment().weekYear(year).week(week).subtract(1, 'w');
     fetchBirthdays(previousWeek.week(), previousWeek.weekYear());
@@ -44,6 +46,16 @@ const Home =  ({
 
   return (
     <div className="birthday contained">
+      <CSSTransition
+        in={inProp}
+        timeout={400}
+        onEntered={()=> {
+          setInProp(false);
+          selectCard(-1);
+          setWeekList(birthdays);
+        }}
+      ><div/></CSSTransition>
+
       <Modal show={showModal} handleClose={() => setShowModal(false)}>
         <Calendar
           activeStartDate={moment(weekList[0].date).toDate()}
@@ -54,18 +66,11 @@ const Home =  ({
           }}
         />
       </Modal>
+
       <button className="birthday__calendar-button" onClick={() => setShowModal(true)}>
         {moment(weekList[0].date).format('DD/MMM')} - {moment(weekList[6].date).format('DD/MMM')}
       </button>
-      <CSSTransition
-        in={inProp}
-        timeout={400}
-        onEntered={()=> {
-          setInProp(false);
-          selectCard(-1);
-          setWeekList(birthdays);
-        }}
-      ><div/></CSSTransition>
+
       <div className="birthday__button-group">
         <button
           className="birthday__button"
@@ -80,27 +85,25 @@ const Home =  ({
           {'>'}
         </button>
       </div>
+
       <div className="birthday__card-list">
-        {weekList.map((day, index) => {
-          const date = moment(day.date);
-          return (
-            <div className="birthday__card-container" key={index}>
-              <div className="balloon"/>
-              <CSSTransition
-                in={inProp}
-                timeout={400}
-                classNames="flip"
-              >
-                <BirthdayCard
-                  handleClick={() => selectCard(index === selectedCard ? -1 : index)}
-                  date={date}
-                  birthdays={day.birthdays}
-                  cardSelected={selectedCard === index}
-                />
-              </CSSTransition>
-            </div>
-          )
-        })}
+        {weekList.map((day, index) => (
+          <div className="birthday__card-container" key={index}>
+            <div className="balloon"/>
+            <CSSTransition
+              in={inProp}
+              timeout={400}
+              classNames="flip"
+            >
+              <BirthdayCard
+                handleClick={() => selectCard(index === selectedCard ? -1 : index)}
+                date={moment(day.date)}
+                birthdays={day.birthdays}
+                cardSelected={selectedCard === index}
+              />
+            </CSSTransition>
+          </div>
+        ))}
       </div>
     </div>
   )
