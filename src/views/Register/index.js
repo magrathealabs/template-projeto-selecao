@@ -40,7 +40,9 @@ const Register = ({
 
   return (
     <div className="contained register">
-      <h3 className="register__title">New Birthday</h3>
+      <h3 className="register__title">
+        New Birthday
+      </h3>
       <form onSubmit={submit} className="register__form">
         <div className="register__form-group">
           <label className="register__label">
