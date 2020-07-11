@@ -3,12 +3,13 @@ import moment from 'moment';
 import ClassNames from 'classnames';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
+
 import { fetchBirthdays } from '../../redux/actions/birthdays';
-import Calendar from '../../components/calendar';
-import Modal from '../../components/modal';
-import './birthday-card.scss';
-import './flip.scss';
-import '../../components/balloon.scss';
+import Calendar from '../../components/Calendar';
+import Modal from '../../components/Modal';
+import '../../styles/flip.scss';
+import '../../styles/balloon.scss';
+import './style.scss';
 
 const Home =  ({
   birthdays,

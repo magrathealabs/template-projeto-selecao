@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
+
 import {
   fetchSharedBirthdays,
   resetSharedBirthdays,
 } from '../../redux/actions/shared-birthdays';
-import './shared-birthdays.scss';
-import '../../components/balloon.scss';
+import '../../styles/balloon.scss';
+import './style.scss';
 
 const SharedBirthdays = ({
   history,

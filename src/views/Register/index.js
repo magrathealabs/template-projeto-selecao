@@ -8,9 +8,9 @@ import {
   resetForm,
   submitForm,
 } from '../../redux/actions/birthday-form';
-import ErrorMessage from './components/ErrorMessage';
-import Calendar from '../../components/calendar';
-import './register.scss';
+import ErrorMessage from '../../components/ErrorMessage';
+import Calendar from '../../components/Calendar';
+import './style.scss';
 
 const Register = ({
   handleChange,

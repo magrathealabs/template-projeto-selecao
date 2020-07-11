@@ -1,7 +1,8 @@
 import React from 'react';
 import Calendar from 'react-calendar';
 import ClassNames from 'classnames'
-import './calendar.scss';
+
+import './style.scss';
 
 export default ({
   error,
