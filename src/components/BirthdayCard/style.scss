@@ -1,0 +1,51 @@
+@import '../../variables.scss';
+
+.birthday-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 14rem;
+  height: 22rem;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: $white-shade;
+  transition: width 0.4s ease-out, height 0.4s ease-out;
+
+  &--selected {
+    width: 16rem;
+    height: 26rem;
+    overflow-y: auto;
+  }
+
+  &__date {
+    font-size: 1.2rem;
+    color: $gray;
+
+    &:nth-child(2) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__name {
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    text-align: center;
+  }
+}
+
+@media (min-width: $lg) {
+  .birthday-card {
+    width: 16rem;
+    margin: 0 0.5rem 1rem;;
+
+    &:hover, &--selected {
+      width: 19rem;
+      height: 26rem;
+      overflow-y: auto;
+    }
+  }
+}

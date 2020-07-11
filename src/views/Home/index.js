@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import ClassNames from 'classnames';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
 import { fetchBirthdays } from '../../redux/actions/birthdays';
 import Calendar from '../../components/Calendar';
 import Modal from '../../components/Modal';
-import '../../styles/flip.scss';
-import '../../styles/balloon.scss';
+import BirthdayCard from '../../components/BirthdayCard';
 import './style.scss';
 
 const Home =  ({
@@ -19,7 +17,6 @@ const Home =  ({
   week,
   year,
 }) => {
-  moment("12-12-1212", "MM-DD-YYYY");
 
   const [showModal, setShowModal] = useState(false);
   const [inProp, setInProp] = useState(false);
@@ -83,37 +80,23 @@ const Home =  ({
           {'>'}
         </button>
       </div>
-      <div className="birthday-card__list">
+      <div className="birthday__card-list">
         {weekList.map((day, index) => {
           const date = moment(day.date);
           return (
-            <div className="birthday-card__container" key={index}>
+            <div className="birthday__card-container" key={index}>
               <div className="balloon"/>
               <CSSTransition
                 in={inProp}
                 timeout={400}
                 classNames="flip"
               >
-                <div
-                  onClick={() => selectCard(index === selectedCard ? -1 : index)}
-                  className={ClassNames(
-                    'birthday-card',
-                    {'birthday-card--selected': selectedCard === index},
-                  )}
-                >
-                  <span className="birthday-card__date">
-                    {date.format('dddd')}
-                  </span>
-                  <span className="birthday-card__date">
-                    {date.format('DD/MMM')}
-                  </span>
-                  <ul>
-                    {day.birthdays.length
-                      ? day.birthdays.map((birthday, birthdayIndex) => <li key={birthdayIndex} className="birthday-card__name">{birthday}</li>)
-                      : <li>No Birthdays today :(</li>
-                    }
-                  </ul>
-                </div>
+                <BirthdayCard
+                  handleClick={() => selectCard(index === selectedCard ? -1 : index)}
+                  date={date}
+                  birthdays={day.birthdays}
+                  cardSelected={selectedCard === index}
+                />
               </CSSTransition>
             </div>
           )
