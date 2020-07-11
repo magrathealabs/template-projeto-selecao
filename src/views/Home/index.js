@@ -29,11 +29,11 @@ const Home =  ({
     if(!isFetching && isLoaded) {
       setInProp(true);
     }
-  }, [ birthdays, isFetching, isLoaded ]);
+  }, [ birthdays, isFetching, isLoaded ]);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     fetchBirthdays(week, year)
-  }, []);
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   const getNextWeek = () => {
     const nextWeek = moment().weekYear(year).week(week).add(1, 'w');

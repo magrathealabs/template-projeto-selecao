@@ -1,25 +1,45 @@
 {
   "name": "birthdays",
-  "version": "1.0.0",
-  "scripts": {
-    "setup": "npm install && cd client && npm install",
-    "client": "cd client && npm start",
-    "server": "cd api && node server.js",
-    "dev": "concurrently --kill-others-on-fail \"cd api && nodemon server.js\" \"npm run client\"",
-    "test": "cd api && mocha \"./tests/**/*.test.js\""
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "version": "2.0.0",
+  "private": true,
   "dependencies": {
-    "express": "^4.17.1",
-    "moment": "^2.24.0"
+    "classnames": "^2.2.6",
+    "moment": "^2.27.0",
+    "node-sass": "^4.14.1",
+    "query-string": "^6.13.1",
+    "react": "^16.13.1",
+    "react-calendar": "^2.19.2",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-transition-group": "^4.2.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
-    "concurrently": "^4.1.1",
-    "mocha": "^6.1.4",
-    "nodemon": "^1.19.1"
-  }
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "react-hooks/exhaustive-deps": "off"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:5000/"
 }

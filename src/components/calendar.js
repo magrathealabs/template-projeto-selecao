@@ -5,7 +5,7 @@ import './calendar.scss';
 
 export default ({
   error,
-  ...props,
+  ...props
 }) => (
   <Calendar
     {...props}

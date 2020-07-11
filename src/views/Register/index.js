@@ -8,7 +8,7 @@ import {
   resetForm,
   submitForm,
 } from '../../redux/actions/birthday-form';
-import ErrorMessage from './components/errorMessage';
+import ErrorMessage from './components/ErrorMessage';
 import Calendar from '../../components/calendar';
 import './register.scss';
 
@@ -21,14 +21,14 @@ const Register = ({
   success,
   history,
 }) => {
-  useEffect(() => resetForm, []);
+  useEffect(() => resetForm, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if(success) {
       resetForm();
       history.push('/shared');
     }
-  }, [success])
+  }, [success])// eslint-disable-line react-hooks/exhaustive-deps
 
   const submit = (e) => {
     e.preventDefault();
