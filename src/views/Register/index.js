@@ -6,7 +6,7 @@ import {
   handleChange,
   validateForm,
   resetForm,
-  submitForm,
+  submitBirthdayForm,
 } from '../../redux/actions/birthday-form';
 import ErrorMessage from '../../components/ErrorMessage';
 import Calendar from '../../components/Calendar';
@@ -16,7 +16,7 @@ const Register = ({
   handleChange,
   validateForm,
   resetForm,
-  submitForm,
+  submitBirthdayForm,
   error,
   success,
   history,
@@ -34,7 +34,7 @@ const Register = ({
     e.preventDefault();
 
     if(validateForm()) {
-      submitForm();
+      submitBirthdayForm();
     }
   }
 
@@ -91,6 +91,6 @@ export default connect(
     handleChange,
     validateForm,
     resetForm,
-    submitForm,
+    submitBirthdayForm
   },
 )(Register);

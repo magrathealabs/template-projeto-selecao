@@ -1,3 +1,5 @@
+import { postNewBirthday } from '../../services/api';
+import { formValidations } from '../../helpers/birthdayForm';
 import {
   BIRTHDAY_FORM_SET_FIELD,
   BIRTHDAY_FORM_SET_ERROR,
@@ -7,83 +9,60 @@ import {
   BIRTHDAY_FORM_SUBMIT_ERROR,
 } from '../actionNames';
 
-const validations = {
-  name: (name) => {
-    var error = null;
-    if(name === '') {
-      error = 'Name is required.';
-    }
-
-    return error;
-  },
-  date: (date) => {
-    var error = null;
-    if(date === null) {
-      error = 'Date is required.';
-    }
-
-    return error;
-  },
-}
-
 export const handleChange = (field, value) => (dispatch, getState) => {
-  dispatch({type: BIRTHDAY_FORM_SET_FIELD, payload: {field, value}});
-  const { birthdayForm: {error} } = getState();
+  dispatch({
+    type: BIRTHDAY_FORM_SET_FIELD,
+    payload: { field, value },
+  });
+  const { birthdayForm: { error } } = getState();
 
   dispatch({
     type: BIRTHDAY_FORM_SET_ERROR,
-    payload: {error: {
-      ...error,
-      [field]: validations[field](value)
-    }},
+    payload: {
+      error: {
+        ...error,
+        [field]: formValidations[field](value)
+      },
+    },
   })
 };
 
 export const validateForm = () => (dispatch, getState) => {
-  const { birthdayForm: {
-    name,
-    date,
-    error,
-  } } = getState();
-  const _error = {
-    ...error,
-    name: validations['name'](name),
-    date: validations['date'](date)
+  const { birthdayForm: { name, date }} = getState();
+
+  const error = {
+    name: formValidations['name'](name),
+    date: formValidations['date'](date)
   }
+
   dispatch({
     type: BIRTHDAY_FORM_SET_ERROR,
-    payload: {error: _error},
+    payload: { error },
   });
-  return !_error.name && !_error.date;
+
+  return !error.name && !error.date;
 };
 
-export const submitForm = () => async (dispatch, getState) => {
-  dispatch({type: BIRTHDAY_FORM_SUBMIT});
-  const { birthdayForm: {date, name} } = getState();
+export const submitBirthdayForm = () => async (dispatch, getState) => {
+  dispatch({ type: BIRTHDAY_FORM_SUBMIT });
+  const { birthdayForm } = getState();
 
-  const response = await fetch(`api/birthdays`, {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      date: date.format("MM-DD-YYYY"),
-      name,
-    }),
-  });
-  if(!response.ok) {
+  try {
+    await postNewBirthday(birthdayForm);
     dispatch({
-      type: BIRTHDAY_FORM_SUBMIT_ERROR,
-      payload: {error: response.error},
-    });
+      type: BIRTHDAY_FORM_SUBMIT_SUCCESS,
+      payload: birthdayForm,
+    })
     return;
   }
-  dispatch({
-    type: BIRTHDAY_FORM_SUBMIT_SUCCESS,
-    payload: {name, date},
-  })
+  catch(error) {
+    dispatch({
+      type: BIRTHDAY_FORM_SUBMIT_ERROR,
+      payload: { error },
+    });
+  };
 };
 
 export const resetForm = () => dispatch => {
-  dispatch({type: BIRTHDAY_FORM_RESET});
+  dispatch({ type: BIRTHDAY_FORM_RESET });
 };

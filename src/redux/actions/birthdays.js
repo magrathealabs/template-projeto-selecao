@@ -1,4 +1,4 @@
-import qs from 'querystring';
+import { getBirthdays } from '../../services/api';
 import {
   FETCH_BIRTHDAYS,
   FETCH_BIRTHDAYS_SUCCESS,
@@ -7,21 +7,20 @@ import {
 
 export const fetchBirthdays = (week, year) => async dispatch => {
   dispatch({type: FETCH_BIRTHDAYS});
-  const response = await fetch(`api/birthdays?${qs.stringify({week, year})}`);
-  if(!response.ok) {
+
+  try {
+    const results = await getBirthdays(week, year);
     dispatch({
-      type: FETCH_BIRTHDAYS_ERROR,
-      payload: {error: response.error},
+      type: FETCH_BIRTHDAYS_SUCCESS,
+      payload: { week, year, results },
     });
     return;
   }
-  const results = await response.json();
-  dispatch({
-    type: FETCH_BIRTHDAYS_SUCCESS,
-    payload: {
-      week,
-      year,
-      results,
-    }
-  });
+  catch(error) {
+    dispatch({
+      type: FETCH_BIRTHDAYS_ERROR,
+      payload: { error },
+    });
+    return;
+  }
 };
