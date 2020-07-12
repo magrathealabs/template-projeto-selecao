@@ -21,12 +21,31 @@
     overflow-y: auto;
   }
 
+  &--error {
+    border: 2px solid $red;
+    padding: 1.5rem;
+  }
+
   &__date {
     font-size: 1.2rem;
+    line-height: 1.3rem;
     color: $gray;
+    margin-bottom: 0.25rem;
 
     &:nth-child(2) {
       margin-bottom: 1rem;
+    }
+  }
+
+  &__error {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    color: $red;
+    margin-bottom: 1rem;
+    text-align: center;
+
+    &:nth-child(1) {
+      font-weight: 700;
     }
   }
 
@@ -46,6 +65,17 @@
       width: 19rem;
       height: 26rem;
       overflow-y: auto;
+    }
+
+    &--error {
+      border: 2px solid $red;
+      padding: 3rem 0.75rem;
+    }
+
+    &__error {
+      font-size: 1.2rem;
+      line-height: 1.3rem;
+      margin-bottom: 1.5rem;
     }
   }
 }
