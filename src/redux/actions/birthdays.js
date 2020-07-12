@@ -19,7 +19,7 @@ export const fetchBirthdays = (week, year) => async dispatch => {
   catch(error) {
     dispatch({
       type: FETCH_BIRTHDAYS_ERROR,
-      payload: { error },
+      payload: { error: error.toString() },
     });
     return;
   }

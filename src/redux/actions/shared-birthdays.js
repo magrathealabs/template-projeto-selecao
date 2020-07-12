@@ -17,7 +17,7 @@ export const fetchSharedBirthdays = (date) => async (dispatch, getState) => {
   catch (error) {
     dispatch({
       type: FETCH_SHARED_BIRTHDAYS_ERROR,
-      payload: {error},
+      payload: { error: error.toString() },
     });
     return;
   }

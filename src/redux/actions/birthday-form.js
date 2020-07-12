@@ -53,10 +53,10 @@ export const submitBirthdayForm = () => async (dispatch, getState) => {
     })
     return true;
   }
-  catch(requestError) {
+  catch(error) {
     dispatch({
       type: BIRTHDAY_FORM_SUBMIT_ERROR,
-      payload: { requestError },
+      payload: { requestError: error.toString() },
     });
     return false;
   };
