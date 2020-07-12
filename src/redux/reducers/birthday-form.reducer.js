@@ -8,29 +8,36 @@ import {
 } from '../actionNames';
 
 const defaultState = {
-  name: '',
-  date: null,
-  error: {
+  values: {
+    name: '',
+    date: null,
+  },
+  errors: {
     name: null,
     date: null,
   },
-  submitError: '',
+  requestError: '',
   isLoading: false,
-  success: false,
 };
 
-export default (state = defaultState, {type, payload}) => {
+export default (state = defaultState, { type, payload }) => {
   switch (type) {
     case BIRTHDAY_FORM_SET_FIELD:
       return  {
         ...state,
-        [payload.field]: payload.value,
+        values: {
+          ...state.values,
+          [payload.field]: payload.value,
+        },
       };
 
     case BIRTHDAY_FORM_SET_ERROR:
       return  {
         ...state,
-        error: payload.error,
+        errors: {
+          ...state.errors,
+          ...payload.errors,
+        },
       };
 
     case BIRTHDAY_FORM_SUBMIT:
@@ -43,14 +50,14 @@ export default (state = defaultState, {type, payload}) => {
       return  {
         ...state,
         isLoading: false,
-        submitError: payload.submitError,
+        requestError: payload.requestError,
       };
 
     case BIRTHDAY_FORM_SUBMIT_SUCCESS:
       return  {
         ...state,
         isLoading: false,
-        success: true,
+        requestError: defaultState.requestError,
       };
 
     case BIRTHDAY_FORM_RESET:

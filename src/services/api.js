@@ -1,5 +1,5 @@
 import qs from 'querystring';
-import Moment from 'moment';
+import moment from 'moment';
 
 export const postNewBirthday = async({ date, name }) => {
   const response = await fetch(`api/birthdays`, {
@@ -14,7 +14,7 @@ export const postNewBirthday = async({ date, name }) => {
   });
 
   if(!response.ok) {
-    throw response.error
+    throw response.statusText;
   }
 
   return response.json();
@@ -24,18 +24,18 @@ export const getBirthdays = async(week, year) => {
   const response = await fetch(`api/birthdays?${qs.stringify({ week, year })}`);
 
   if(!response.ok) {
-    throw response.error
+    throw response.statusText;
   }
 
   return response.json();
 };
 
 export const getSharedBirthdays = async(date) => {
-  const parsedDate = Moment(date).toDate().toString()
+  const parsedDate = moment(date).toDate().toString()
   const response = await fetch(`api/birthdays/${parsedDate}`);
 
   if(!response.ok) {
-    throw response.error
+    throw response.statusText;
   }
 
   return response.json();

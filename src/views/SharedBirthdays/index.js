@@ -49,7 +49,7 @@ const SharedBirthdays = ({
               <p className="shared-birthdays__card-title">
                 Users with the same birthday:
               </p>
-              {Boolean(sameBirthday.length)
+              {!!sameBirthday.length
                 ? sameBirthday.map((username, index) => (
                 <span key={index} className="shared-birthdays__card-name">
                   {username}
@@ -69,7 +69,7 @@ const SharedBirthdays = ({
               <p className="shared-birthdays__card-title">
                 Users with the same age:
               </p>
-              {Boolean(sameAge.length)
+              {!!sameAge.length
                 ? sameAge.map((username, index) => (
                 <span key={index} className="shared-birthdays__card-name">
                   {username}

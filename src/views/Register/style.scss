@@ -38,7 +38,6 @@
     border: 1px solid $purple;
     border-radius: 0.5rem;
     padding: 1rem;
-    font-family: 'Roboto';
     font-weight: 500;
     background-color: $white-shade;
     font-family: 'Poppins', sans-serif;
@@ -49,10 +48,14 @@
   }
 
   &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     color: $white;
     background-color: rgba($purple, 0.4);
     border-radius: 0.5rem;
+    border: 1px solid $purple;
     height: 3rem;
     font-family: 'Great Vibes', cursive;
     font-size: 1.75rem;
@@ -60,6 +63,22 @@
 
     &:hover {
       background-color: rgba($purple, 0.6);
+    }
+  }
+
+  &__error {
+    font-weight: 500;
+    color: $white;
+    font-family: 'Poppins', sans-serif;
+
+    &-container {
+      width: 90%;
+      min-height: 3.12rem;
+      border: 1px solid $red;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      background-color: rgba($red, 0.8);
+      // background-color: $white-shade;
     }
   }
 }

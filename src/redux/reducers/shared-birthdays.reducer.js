@@ -16,7 +16,7 @@ const defaultState = {
   isLoaded: false,
 };
 
-export default (state = defaultState, {type, payload}) => {
+export default (state = defaultState, { type, payload }) => {
   switch (type) {
     case BIRTHDAY_FORM_SUBMIT_SUCCESS:
       return  {
