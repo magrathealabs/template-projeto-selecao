@@ -128,15 +128,6 @@ const Home =  ({
   )
 }
 
-const mapStateToProps = (state) => ({
-  birthdays: state.birthdays.results,
-  isLoaded: state.birthdays.isLoaded,
-  isFetching: state.birthdays.isFetching,
-  week: state.birthdays.week,
-  year: state.birthdays.year,
-  error: state.birthdays.error,
-});
-
 Home.propTypes = {
   birthdays: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
@@ -146,6 +137,15 @@ Home.propTypes = {
   year: PropTypes.number.isRequired,
   error: PropTypes.string,
 }
+
+const mapStateToProps = (state) => ({
+  birthdays: state.birthdays.results,
+  isLoaded: state.birthdays.isLoaded,
+  isFetching: state.birthdays.isFetching,
+  week: state.birthdays.week,
+  year: state.birthdays.year,
+  error: state.birthdays.error,
+});
 
 export default connect(
   mapStateToProps,

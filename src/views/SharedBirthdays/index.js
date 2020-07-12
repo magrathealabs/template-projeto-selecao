@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
@@ -17,8 +18,8 @@ const SharedBirthdays = ({
   date,
   sameAge,
   sameBirthday,
-  fetchSharedBirthdays,
   isLoaded,
+  fetchSharedBirthdays,
 }) => {
 
   useEffect(() => {
@@ -83,6 +84,16 @@ const SharedBirthdays = ({
       }
     </div>
   )
+}
+
+SharedBirthdays.propTypes = {
+  history: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  date: PropTypes.object.isRequired,
+  sameAge: PropTypes.array.isRequired,
+  sameBirthday: PropTypes.array.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
+  fetchSharedBirthdays: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({sharedBirthdays}) => ({

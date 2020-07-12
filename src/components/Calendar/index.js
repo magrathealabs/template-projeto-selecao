@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Calendar from 'react-calendar';
 import ClassNames from 'classnames'
 
 import './style.scss';
 
-export default ({
+const CalendarComponent = ({
   error,
   ...props
 }) => (
@@ -12,8 +13,14 @@ export default ({
     {...props}
     className={ClassNames(
       'calendar',
-      {'calendar--error': !!error},
+      {'calendar--error': error},
     )}
     calendarType="US"
   />
-)
+);
+
+CalendarComponent.propTypes = {
+  error: PropTypes.bool,
+};
+
+export default CalendarComponent;

@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './style.scss';
 
-export default ({
+const Modal = ({
   handleClose,
   show,
   children,
@@ -16,3 +18,11 @@ export default ({
     </div>
   </>
 );
+
+Modal.propTypes = {
+  handleClose: PropTypes.func.isRequired,
+  show: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+export default Modal;

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import ClassNames from 'classnames';
 import { connect } from 'react-redux';
@@ -90,6 +91,17 @@ const Register = ({
     </div>
   )
 }
+
+Register.propTypes = {
+  formValues: PropTypes.object.isRequired,
+  formErrors: PropTypes.object.isRequired,
+  requestError: PropTypes.string,
+  history: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  validateForm: PropTypes.func.isRequired,
+  resetForm: PropTypes.func.isRequired,
+  submitBirthdayForm: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   formValues: state.birthdayForm.values,
