@@ -5,7 +5,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 export const postNewBirthday = async({ date, name }) => {
   const response = await fetch(`${API_URL}/birthdays`, {
-    method: 'post',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -33,7 +33,7 @@ export const getBirthdays = async(week, year) => {
 };
 
 export const getSharedBirthdays = async(date) => {
-  const parsedDate = moment(date).toDate().toString()
+  const parsedDate = moment(date).format('MM-DD-YYYT');
   const response = await fetch(`${API_URL}/birthdays/${parsedDate}`);
 
   if(!response.ok) {

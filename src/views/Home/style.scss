@@ -104,55 +104,55 @@
           color: $blue;
         }
       }
-    }
 
-    &:nth-child(1), &:nth-child(4) {
-      .birthday-card__name {
-        &:nth-child(1n) {
-          font-family: 'Dancing Script', cursive;
-        }
-        &:nth-child(2n) {
-          font-family: 'Satisfy', cursive;
-        }
-        &:nth-child(3n) {
-          font-family: 'Sacramento', cursive;
-        }
-        &:nth-child(4n) {
-          font-family: 'Great Vibes', cursive !important;
+      &:nth-child(1), &:nth-child(4) {
+        .birthday-card__name {
+          &:nth-child(1n) {
+            font-family: 'Dancing Script', cursive;
+          }
+          &:nth-child(2n) {
+            font-family: 'Satisfy', cursive;
+          }
+          &:nth-child(3n) {
+            font-family: 'Sacramento', cursive;
+          }
+          &:nth-child(4n) {
+            font-family: 'Great Vibes', cursive !important;
+          }
         }
       }
-    }
 
-    &:nth-child(3), &:nth-child(5), &:nth-child(7) {
-      .birthday-card__name {
-        &:nth-child(1n) {
-          font-family: 'Sacramento', cursive;
-        }
-        &:nth-child(2n) {
-          font-family: 'Great Vibes', cursive;
-        }
-        &:nth-child(3n) {
-          font-family: 'Dancing Script', cursive;
-        }
-        &:nth-child(4n) {
-          font-family: 'Satisfy', cursive !important;
+      &:nth-child(3), &:nth-child(5), &:nth-child(7) {
+        .birthday-card__name {
+          &:nth-child(1n) {
+            font-family: 'Sacramento', cursive;
+          }
+          &:nth-child(2n) {
+            font-family: 'Great Vibes', cursive;
+          }
+          &:nth-child(3n) {
+            font-family: 'Dancing Script', cursive;
+          }
+          &:nth-child(4n) {
+            font-family: 'Satisfy', cursive !important;
+          }
         }
       }
-    }
 
-    &:nth-child(2), &:nth-child(6) {
-      .birthday-card__name {
-        &:nth-child(1n) {
-          font-family: 'Satisfy', cursive;
-        }
-        &:nth-child(2n) {
-          font-family: 'Sacramento', cursive;
-        }
-        &:nth-child(3n) {
-          font-family: 'Great Vibes', cursive;
-        }
-        &:nth-child(4n) {
-          font-family: 'Dancing Script', cursive !important;
+      &:nth-child(2), &:nth-child(6) {
+        .birthday-card__name {
+          &:nth-child(1n) {
+            font-family: 'Satisfy', cursive;
+          }
+          &:nth-child(2n) {
+            font-family: 'Sacramento', cursive;
+          }
+          &:nth-child(3n) {
+            font-family: 'Great Vibes', cursive;
+          }
+          &:nth-child(4n) {
+            font-family: 'Dancing Script', cursive !important;
+          }
         }
       }
     }
