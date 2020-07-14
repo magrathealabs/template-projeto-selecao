@@ -29,7 +29,7 @@ https://github.com/maiconboer/project-github-backend
 ------------------------------------------
 
 
-## 2º - Criar Github OAuth Apps, ele irá gerar credenciais para nosso podemos fazer o login com Github na nossa aplicação: 
+## 2º - Criar Github OAuth Apps, ele irá gerar credenciais para podemos fazer o login com Github na nossa aplicação: 
 
 Clique na sua foto no canto direito do github e vá em **Settings > Developer settings > Oauth Apps > New Oauth App**
 
