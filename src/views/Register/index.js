@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import ClassNames from 'classnames';
 import { connect } from 'react-redux';
+
 import {
-  handleChange,
-  validateForm,
+  updateForm,
+  formValidation,
   resetForm,
   submitBirthdayForm,
 } from '../../redux/actions/birthday-form';
+import { validateForm, validateField } from '../../helpers/birthdayForm';
 import ErrorMessage from '../../components/ErrorMessage';
 import Calendar from '../../components/Calendar';
 import './style.scss';
@@ -18,8 +20,8 @@ const Register = ({
   formErrors,
   requestError,
   history,
-  handleChange,
-  validateForm,
+  updateForm,
+  formValidation,
   resetForm,
   submitBirthdayForm,
 }) => {
@@ -28,16 +30,24 @@ const Register = ({
   const submit = async(e) => {
     e.preventDefault();
 
-    if(!validateForm()) {
-      return;
-    }
+    const { errors, isValid } = validateForm(formValues);
 
-    const successful = await submitBirthdayForm();
+    if(!isValid) {
+      formValidation(errors);
+      return;
+    };
+
+    const successful = await submitBirthdayForm(formValues);
     if(successful) {
       resetForm();
       history.push('/shared');
     }
-  }
+  };
+
+  const handleChange = (field, value) => {
+    formValidation({ [field]: validateField(field, value) });
+    updateForm(field, value);
+  };
 
   return (
     <div className="contained register">
@@ -97,8 +107,8 @@ Register.propTypes = {
   formErrors: PropTypes.object.isRequired,
   requestError: PropTypes.string,
   history: PropTypes.object.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  validateForm: PropTypes.func.isRequired,
+  updateForm: PropTypes.func.isRequired,
+  formValidation: PropTypes.func.isRequired,
   resetForm: PropTypes.func.isRequired,
   submitBirthdayForm: PropTypes.func.isRequired,
 };
@@ -113,8 +123,8 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {
-    handleChange,
-    validateForm,
+    updateForm,
+    formValidation,
     resetForm,
     submitBirthdayForm
   },
