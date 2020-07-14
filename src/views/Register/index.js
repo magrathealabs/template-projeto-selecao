@@ -10,6 +10,7 @@ import {
   resetForm,
   submitBirthdayForm,
 } from '../../redux/actions/birthday-form';
+import { setNewUser } from '../../redux/actions/shared-birthdays';
 import { validateForm, validateField } from '../../helpers/birthdayForm';
 import ErrorMessage from '../../components/ErrorMessage';
 import Calendar from '../../components/Calendar';
@@ -24,6 +25,7 @@ const Register = ({
   formValidation,
   resetForm,
   submitBirthdayForm,
+  setNewUser,
 }) => {
   useEffect(() => resetForm, []);// eslint-disable-line react-hooks/exhaustive-deps
 
@@ -39,6 +41,7 @@ const Register = ({
 
     const successful = await submitBirthdayForm(formValues);
     if(successful) {
+      setNewUser(formValues.name, formValues.date);
       resetForm();
       history.push('/shared');
     }
@@ -111,6 +114,7 @@ Register.propTypes = {
   formValidation: PropTypes.func.isRequired,
   resetForm: PropTypes.func.isRequired,
   submitBirthdayForm: PropTypes.func.isRequired,
+  setNewUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -126,6 +130,7 @@ export default connect(
     updateForm,
     formValidation,
     resetForm,
-    submitBirthdayForm
+    submitBirthdayForm,
+    setNewUser,
   },
 )(Register);

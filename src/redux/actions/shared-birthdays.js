@@ -1,36 +1,25 @@
 import { getSharedBirthdays  } from '../../services/api';
 import { removeUser } from '../../helpers/sharedBirthdays';
-import {
-  RESET_SHARED_BIRTHDAYS,
-  FETCH_SHARED_BIRTHDAYS,
-  FETCH_SHARED_BIRTHDAYS_SUCCESS,
-  FETCH_SHARED_BIRTHDAYS_ERROR,
-} from '../actionNames';
+import * as sharedBirthdaysDispatches from '../dispaches/shared-birthdays';
 
-export const fetchSharedBirthdays = (date) => async (dispatch, getState) => {
-  dispatch({type: FETCH_SHARED_BIRTHDAYS});
+export const setNewUser = (name, date) => (dispatch) =>
+  dispatch(sharedBirthdaysDispatches.setNewUser(name, date));
 
-  let response;
+export const fetchSharedBirthdays = (date, name) => async (dispatch) => {
+  dispatch(sharedBirthdaysDispatches.fetchSharedBirthdaysRequest());
+
   try {
-    response = await getSharedBirthdays(date);
+    const { sameAge, sameBirthday}= await getSharedBirthdays(date);
+
+    dispatch(sharedBirthdaysDispatches.fetchSharedBirthdaysSuccess(
+      removeUser(name, sameAge),
+      removeUser(name, sameBirthday)
+    ));
   }
   catch (error) {
-    dispatch({
-      type: FETCH_SHARED_BIRTHDAYS_ERROR,
-      payload: { error: error.toString() },
-    });
-    return;
+    dispatch(sharedBirthdaysDispatches.fetchSharedBirthdaysError(error.toString()));
   }
-
-  const { sharedBirthdays: { name }} = getState();
-
-  dispatch({
-    type: FETCH_SHARED_BIRTHDAYS_SUCCESS,
-    payload: {
-      sameAge: removeUser(name, response.sameAge),
-      sameBirthday: removeUser(name, response.sameBirthday),
-    },
-  });
 };
 
-export const resetSharedBirthdays = () => dispatch => dispatch({ type: RESET_SHARED_BIRTHDAYS });
+export const clearSharedBirthdays = () => (dispatch) =>
+  dispatch(sharedBirthdaysDispatches.clearSharedBirthdays());

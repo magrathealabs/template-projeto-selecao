@@ -1,10 +1,9 @@
 import {
-  BIRTHDAY_FORM_SUBMIT_SUCCESS,
-
+  SET_NEW_USER,
   FETCH_SHARED_BIRTHDAYS,
   FETCH_SHARED_BIRTHDAYS_SUCCESS,
   FETCH_SHARED_BIRTHDAYS_ERROR,
-  RESET_SHARED_BIRTHDAYS,
+  CLEAR_SHARED_BIRTHDAYS,
 } from '../actionNames';
 
 const defaultState = {
@@ -18,7 +17,7 @@ const defaultState = {
 
 export default (state = defaultState, { type, payload }) => {
   switch (type) {
-    case BIRTHDAY_FORM_SUBMIT_SUCCESS:
+    case SET_NEW_USER:
       return  {
         ...state,
         name: payload.name,
@@ -48,7 +47,7 @@ export default (state = defaultState, { type, payload }) => {
         error: payload.error,
       };
 
-    case RESET_SHARED_BIRTHDAYS:
+    case CLEAR_SHARED_BIRTHDAYS:
       return  defaultState;
 
     default:

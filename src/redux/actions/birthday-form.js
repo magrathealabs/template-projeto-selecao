@@ -13,7 +13,7 @@ export const submitBirthdayForm = (form) => async (dispatch) => {
   dispatch(formDispatches.submitBirthdayRequest());
   try {
     await postNewBirthday(form);
-    dispatch(formDispatches.submitBirthdaySuccess(form))
+    dispatch(formDispatches.submitBirthdaySuccess())
     return true;
   }
   catch(error) {

@@ -71,7 +71,7 @@ describe('birthday form actions', () => {
 
         const expectedActions = [
           dispatches.submitBirthdayRequest(),
-          dispatches.submitBirthdaySuccess(form),
+          dispatches.submitBirthdaySuccess(),
         ];
 
         await store.dispatch(actions.submitBirthdayForm(form));

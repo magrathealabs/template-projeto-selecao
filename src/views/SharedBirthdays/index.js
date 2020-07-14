@@ -7,7 +7,7 @@ import moment from 'moment';
 
 import {
   fetchSharedBirthdays,
-  resetSharedBirthdays,
+  clearSharedBirthdays,
 } from '../../redux/actions/shared-birthdays';
 import '../../styles/balloon.scss';
 import './style.scss';
@@ -24,11 +24,11 @@ const SharedBirthdays = ({
 
   useEffect(() => {
     if(date) {
-      fetchSharedBirthdays(date);
+      fetchSharedBirthdays(date, name);
     } else  {
       history.push('/');
     }
-    return resetSharedBirthdays;
+    return clearSharedBirthdays;
   }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -96,8 +96,12 @@ SharedBirthdays.propTypes = {
   fetchSharedBirthdays: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({sharedBirthdays}) => ({
-  ...sharedBirthdays,
+const mapStateToProps = (state) => ({
+  name: state.sharedBirthdays.name,
+  date: state.sharedBirthdays.date,
+  sameAge: state.sharedBirthdays.sameAge,
+  sameBirthday: state.sharedBirthdays.sameBirthday,
+  isLoaded: state.sharedBirthdays.isLoaded,
 });
 
 export default compose(
