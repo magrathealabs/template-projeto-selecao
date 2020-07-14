@@ -1,26 +1,14 @@
 import { getBirthdays } from '../../services/api';
-import {
-  FETCH_BIRTHDAYS,
-  FETCH_BIRTHDAYS_SUCCESS,
-  FETCH_BIRTHDAYS_ERROR,
-} from '../actionNames';
+import * as birthdaysDispatches from '../dispaches/birthdays';
 
 export const fetchBirthdays = (week, year) => async dispatch => {
-  dispatch({type: FETCH_BIRTHDAYS});
+  dispatch(birthdaysDispatches.fetchBirthdaysRequest());
 
   try {
     const results = await getBirthdays(week, year);
-    dispatch({
-      type: FETCH_BIRTHDAYS_SUCCESS,
-      payload: { week, year, results },
-    });
-    return;
+    dispatch(birthdaysDispatches.fetchBirthdaysSuccess(week, year, results));
   }
   catch(error) {
-    dispatch({
-      type: FETCH_BIRTHDAYS_ERROR,
-      payload: { error: error.toString() },
-    });
-    return;
+    dispatch(birthdaysDispatches.fetchBirthdaysSuccess(error.toString()));
   }
 };

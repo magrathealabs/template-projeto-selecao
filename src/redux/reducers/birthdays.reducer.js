@@ -5,7 +5,7 @@ import {
   FETCH_BIRTHDAYS_ERROR,
 } from '../actionNames';
 
-const defaultState = {
+export const defaultState = {
   results: [
     {
       date: moment().day(0),
