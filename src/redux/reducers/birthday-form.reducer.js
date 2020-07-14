@@ -1,13 +1,13 @@
 import {
   BIRTHDAY_FORM_SET_FIELD,
-  BIRTHDAY_FORM_SET_ERROR,
+  BIRTHDAY_FORM_SET_ERRORS,
   BIRTHDAY_FORM_RESET,
   BIRTHDAY_FORM_SUBMIT,
   BIRTHDAY_FORM_SUBMIT_SUCCESS,
   BIRTHDAY_FORM_SUBMIT_ERROR,
 } from '../actionNames';
 
-const defaultState = {
+export const defaultState = {
   values: {
     name: '',
     date: null,
@@ -31,7 +31,7 @@ export default (state = defaultState, { type, payload }) => {
         },
       };
 
-    case BIRTHDAY_FORM_SET_ERROR:
+    case BIRTHDAY_FORM_SET_ERRORS:
       return  {
         ...state,
         errors: {
