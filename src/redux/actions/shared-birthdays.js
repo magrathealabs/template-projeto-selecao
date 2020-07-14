@@ -9,7 +9,7 @@ export const fetchSharedBirthdays = (date, name) => async (dispatch) => {
   dispatch(sharedBirthdaysDispatches.fetchSharedBirthdaysRequest());
 
   try {
-    const { sameAge, sameBirthday}= await getSharedBirthdays(date);
+    const { sameAge, sameBirthday }= await getSharedBirthdays(date);
 
     dispatch(sharedBirthdaysDispatches.fetchSharedBirthdaysSuccess(
       removeUser(name, sameAge),

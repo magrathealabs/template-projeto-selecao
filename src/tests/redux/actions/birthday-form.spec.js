@@ -24,7 +24,7 @@ describe('birthday form actions', () => {
   });
 
   describe('updateForm()', () => {
-    it('dispatches a BIRTHDAY_FORM_SET_FIELD actions', () => {
+    it('dispatches a BIRTHDAY_FORM_SET_FIELD action', () => {
       const field = 'name';
       const value = 'Louise von Test';
 
@@ -38,7 +38,7 @@ describe('birthday form actions', () => {
   });
 
   describe('formValidation()', () => {
-    it('dispatches a BIRTHDAY_FORM_SET_ERRORS actions', () => {
+    it('dispatches a BIRTHDAY_FORM_SET_ERRORS action', () => {
       const errors = {
         name: null,
         date: null,
@@ -112,7 +112,7 @@ describe('birthday form actions', () => {
   });
 
   describe('resetForm()', () => {
-    it('dispatches a BIRTHDAY_FORM_RESET actions', () => {
+    it('dispatches a BIRTHDAY_FORM_RESET action', () => {
 
       const expectedActions = [
         dispatches.resetBirthdayForm(),
