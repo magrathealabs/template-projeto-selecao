@@ -28,8 +28,7 @@ describe('<BirthdayCard />', () => {
       };
 
       const wrapper = shallow(<BirthdayCard {...props} />);
-      wrapper.find('.birthday-card').simulate('click');
-      expect(props.handleClick.mock.calls.length).toBe(1);
+      expect(wrapper.find('.birthday-card__date').getElements().length).toBe(2);
     });
 
     context('When cardSelected is true', () => {
@@ -78,7 +77,7 @@ describe('<BirthdayCard />', () => {
     });
 
     context('When the card is clicked', () => {
-      it('executes the handleClick prop', () => {
+      it('executes the handleClick function', () => {
         const props = {
           handleClick: jest.fn(),
           cardSelected: false,
@@ -87,9 +86,8 @@ describe('<BirthdayCard />', () => {
         };
 
         const wrapper = shallow(<BirthdayCard {...props} />);
-        expect(wrapper.find('.birthday-card__date').getElements().length).toBe(2);
-        expect(wrapper.find('.birthday-card__date').at(0).text()).toBe(props.date.format('dddd'));
-        expect(wrapper.find('.birthday-card__date').at(1).text()).toBe(props.date.format('DD/MMM'));
+        wrapper.find('.birthday-card').simulate('click');
+        expect(props.handleClick.mock.calls.length).toBe(1);
       });
     })
   });
