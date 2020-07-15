@@ -19,9 +19,7 @@ export const setErrors = (errors) => ({
 
 export const submitBirthdayRequest = () => ({ type: BIRTHDAY_FORM_SUBMIT });
 
-export const submitBirthdaySuccess = () => ({
-  type: BIRTHDAY_FORM_SUBMIT_SUCCESS,
-});
+export const submitBirthdaySuccess = () => ({ type: BIRTHDAY_FORM_SUBMIT_SUCCESS });
 
 export const submitBirthdayError = (requestError) => ({
   type: BIRTHDAY_FORM_SUBMIT_ERROR,
