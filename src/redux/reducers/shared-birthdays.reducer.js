@@ -6,7 +6,7 @@ import {
   CLEAR_SHARED_BIRTHDAYS,
 } from '../actionNames';
 
-const defaultState = {
+export const defaultState = {
   name: '',
   date: null,
   sameAge: [],
