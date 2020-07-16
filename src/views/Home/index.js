@@ -70,6 +70,7 @@ const Home =  ({
       </Modal>
 
       <button className="birthday__calendar-button" onClick={() => setShowModal(true)}>
+        <span className="birthday__calendar-button-icon" role='img' aria-label='search'>🔍</span>
         {moment(weekList[0].date).format('DD/MMM')} - {moment(weekList[6].date).format('DD/MMM')}
       </button>
 
