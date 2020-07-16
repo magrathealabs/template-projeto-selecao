@@ -7,8 +7,9 @@ A live version of this can be found on [birthdays-leokayn.netlify.app](https://b
 To run this code locally, first clone this repo using:
 To install dependencies:
 ```bash
-git clone https://github.com/LeonardoKalyn/birthdays-client.git
+git clone https://github.com/LeonardoKalyn/template-projeto-selecao.git
 ```
+NOTE: The original repo of this project can be found [here](https://github.com/LeonardoKalyn/birthdays-client)
 
 Then enter the repo folder and install the dependencies:
 And to run the project :
