@@ -4,8 +4,6 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
@@ -24,7 +22,9 @@
   "devDependencies": {
     "jest-fetch-mock": "^3.0.3",
     "jest-plugin-context": "^2.9.0",
-    "redux-mock-store": "^1.5.4"
+    "redux-mock-store": "^1.5.4",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2"
   },
   "scripts": {
     "start": "react-scripts start",
