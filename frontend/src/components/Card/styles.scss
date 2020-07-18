@@ -1,0 +1,119 @@
+.repo__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  background: #131313;
+  border-radius: 5px;
+  height: 300px;
+  width: 100%;
+
+  > div {
+    > h3 {
+      font-size: 26px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    > p {
+      font-size: 16px;
+      line-height: 28px;
+      opacity: 0.5;
+      margin-bottom: 10px;
+    }
+
+    > div {
+      white-space: nowrap;
+      overflow-y: auto;
+      padding: 7.5px 0;
+
+      &::-webkit-scrollbar {
+        height: 3px;
+        width: 3px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #131313;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #333;
+      }
+
+      > small {
+        font-size: 12px;
+        line-height: 18px;
+        border-radius: 2em;
+        padding: 5px 10px;
+        color: #eee;
+        background: #333;
+        transition: all 0.25s;
+
+        &:hover {
+          background: #222;
+        }
+
+        & + small {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+  > section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    > a {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+
+      > svg {
+        transition: all 0.25s;
+        margin-left: 5px;
+      }
+
+      &:hover {
+        > svg {
+          margin-left: 20px;
+        }
+      }
+    }
+
+    > button {
+      background: #2ecc71;
+      border: 0;
+      border-radius: 5px;
+      padding: 10px;
+      font-weight: 500;
+      transition: all 0.25s;
+      cursor: pointer;
+
+      &:hover {
+        background: #27ae60;
+      }
+
+      > svg {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  & + .repo__card {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .repo__card {
+    & + .repo__card {
+      margin-top: 0;
+    }
+  }
+}
