@@ -1,0 +1,107 @@
+main {
+  > section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 30px;
+
+    > h2 {
+      font-size: 40px;
+      font-weight: 500;
+    }
+
+    > div {
+      margin-top: 50px;
+
+      > .login__card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 30px;
+        background: #131313;
+        border-radius: 5px;
+        height: 200px;
+        width: 100%;
+
+        ~ .--facebook {
+          background: linear-gradient(125deg, #15a4fa, #0268e2);
+
+          a {
+            cursor: text;
+          }
+
+          &:hover {
+            svg {
+              margin-left: 5px;
+            }
+          }
+        }
+
+        > h3 {
+          font-size: 26px;
+          font-weight: 500;
+        }
+
+        > a {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          transition: all 0.25s;
+          cursor: pointer;
+
+          > svg {
+            transition: all 0.25s;
+            margin-left: 5px;
+          }
+
+          &:hover {
+            > svg {
+              margin-left: 25px;
+            }
+          }
+        }
+
+        & + .login__card {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    > section {
+      padding: 100px;
+
+      > div {
+        display: grid;
+        grid-template-columns: repeat(2, 295px);
+        grid-gap: 20px;
+
+        > .login__card {
+          & + .login__card {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  main {
+    > section {
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+      grid-gap: 50px;
+
+      > div {
+        margin-top: -150px;
+      }
+    }
+  }
+}
