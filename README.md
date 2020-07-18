@@ -36,6 +36,7 @@ Backend
 - [Axios](https://github.com/axios/axios)
 - [Eslint](https://eslint.org/)
 - [Express](https://expressjs.com/)
+- [Jest](https://jestjs.io/)
 - [Mongoose](https://mongoosejs.com/mul)
 - [Prettier](https://prettier.io/)
 - [Typescript](https://www.typescriptlang.org/)
@@ -67,6 +68,9 @@ $ cd backend && yarn
 
 # Run backend
 $ yarn dev
+
+# Run test
+$ yarn test
 
 # Go into the frontend and install dependencies
 $ cd ../frontend && yarn
