@@ -1,45 +1,84 @@
-# PROJETO DE SELEÇÃO
+<h1 align="center">
+    <img alt="Magrathea" src="https://res.cloudinary.com/dtifsqadc/image/upload/v1595023226/epPzt1AR_400x400_d4n2vo.jpg" />
+</h1>
 
-Ao conhecer uma pessoa que está aplicando para a Magrathea gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+<p align="center">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/melquisedecfelipe/magrathea.svg">
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/melquisedecfelipe/magrathea.svg">
 
-## O QUE VAMOS AVALIAR
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/melquisedecfelipe/magrathea.svg">
 
-Queremos avaliar sua capacidade de fornecer um produto simples com documentação suficiente para outros desenvolvedores contribuírem ativamente para o projeto posteriormente. Na entrevista vamos prestar atenção nos seguintes itens:
+  <a href="https://github.com/melquisedecfelipe/magrathea/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/melquisedecfelipe/magrathea.svg">
+  </a>
 
-* Comunicação na revisão do código presencial;
-* Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
+  <a href="https://github.com/melquisedecfelipe/magrathea/issues">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/melquisedecfelipe/magrathea.svg">
+  </a>
 
-Ao revisar seu código vamos prestar atenção nos seguintes itens:
+  <img alt="GitHub" src="https://img.shields.io/github/license/melquisedecfelipe/magrathea.svg">
+</p>
 
-* Organização do código;
-* Código bem escrito, limpo e coeso;
-* Arquitetura e princípios de desenvolvimento;
-* Documentação (README.md) com instruções claras para reproduzir o projeto;
-* Uso adequado de versionamento do código em git;
-* Uso de testes automatizados;
-* Deploy da aplicação: recomendamos Heroku por ter plano free;
-* O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-* Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado.
+<p align="center">
+  <a href="https://magrathea.netlify.app">Demo</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-license">License</a>
+</p>
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é você programar de graça para nós, nem te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+## :rocket: Technologies
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Se quiser uma revisão no seu código em um Pull Request no Github, pode nos chamar. Estamos disponíveis para te ajudar a finalizar esse processo.
-Ah, por último. Você acha que consegue nos responder em quanto tempo? Duas semanas é ok para você?
+This project was developed with the following technologies:
 
-## IDEIAS DE PROJETOS
+Backend
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+- [Axios](https://github.com/axios/axios)
+- [Eslint](https://eslint.org/)
+- [Express](https://expressjs.com/)
+- [Mongoose](https://mongoosejs.com/mul)
+- [Prettier](https://prettier.io/)
+- [Typescript](https://www.typescriptlang.org/)
 
-* [Cliente para o GitHub](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/GITHUB.md);
-* [Cliente para o Twitter](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/TWITTER.md);
-* [Cliente para o Meetup](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/MEETUP.md).
+Frontend
 
-Tem alguma outra ideia? Tem algum projeto que já está pronto e gostaria de apresentar? Fale com a gente :)
+- [Axios](https://github.com/axios/axios)
+- [Eslint](https://eslint.org/)
+- [Eslint import](https://github.com/Tibfib/eslint-plugin-import-helpers)
+- [Node sass](https://github.com/sass/node-sass)
+- [Pretty quick](https://github.com/azz/pretty-quick)
+- [React icons](https://react-icons.netlify.com/)
+- [React router](https://reacttraining.com/react-router/)
+- [Typescript](https://www.typescriptlang.org/)
 
-## COMO COMPARTILHAR O PROJETO CONOSCO
+## :information_source: How To Use
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+To clone and run this application, [Node.js v10.16](https://nodejs.org/) or higher + [Yarn v1.13](https://yarnpkg.com/) or higher installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/melquisedecfelipe/magrathea
+
+# Go into the repository
+$ cd magrathea
+
+# Go into the backend and install dependencies
+$ cd backend && yarn
+
+# Run backend
+$ yarn dev
+
+# Go into the frontend and install dependencies
+$ cd ../frontend && yarn
+
+# Run frontend
+$ yarn start
+```
+
+## :memo: License
+
+This project is under the MIT license. See the [LICENSE](https://github.com/melquisedecfelipe/magrathea/blob/master/LICENSE) for more information.
+
+---
+
+:wave: [Get in touch!](https://www.linkedin.com/in/melquisedecfelipe/)
