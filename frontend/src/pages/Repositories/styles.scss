@@ -1,0 +1,139 @@
+main {
+  > section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 30px;
+
+    > section {
+      display: flex;
+
+      > img {
+        height: 150px;
+        width: 150px;
+        border-radius: 5px;
+        margin-right: 15px;
+        transition: all 0.25s;
+
+        &:hover {
+          margin-top: -10px;
+          margin-bottom: 15px;
+        }
+      }
+
+      > div {
+        > small {
+          font-size: 12px;
+          opacity: 0.5;
+        }
+
+        > h3 {
+          font-size: 25px;
+          font-weight: 500;
+          margin: 5px 0;
+        }
+
+        > p {
+          font-size: 16px;
+          line-height: 28px;
+          opacity: 0.5;
+        }
+
+        > form {
+          display: flex;
+          margin-top: 5px;
+          align-items: center;
+          justify-content: center;
+
+          > input {
+            flex: 1;
+            border: none;
+            background: #eee;
+            padding: 10px 5px 10px 10px;
+            border-radius: 5px 0 0 5px;
+            width: 100%;
+            color: #000;
+            border: 1px solid transparent;
+
+            &:focus {
+              border-color: #0366d6;
+              box-shadow: 0 0 0 2px rgba(3, 102, 214, 0.5);
+            }
+
+            &::placeholder {
+              color: #555;
+            }
+          }
+
+          > button {
+            background: #2ecc71;
+            border: 0;
+            border-radius: 0 5px 5px 0;
+            padding: 10px 20px;
+            font-weight: 500;
+            transition: all 0.25s;
+            cursor: pointer;
+
+            &:hover {
+              background: #27ae60;
+            }
+          }
+        }
+      }
+    }
+
+    > div {
+      margin-top: 50px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    > section {
+      padding: 100px;
+
+      > div {
+        display: grid;
+        grid-template-columns: repeat(2, 295px);
+        grid-gap: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  main {
+    > section {
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+      grid-gap: 50px;
+
+      > section {
+        flex-direction: column;
+
+        > img {
+          margin-right: 0px;
+          margin-bottom: 5px;
+        }
+
+        > div {
+          > h3 {
+            font-size: 40px;
+          }
+
+          > form {
+            margin-top: 50px;
+          }
+        }
+      }
+
+      > div {
+        margin-top: -150px;
+      }
+    }
+  }
+}
