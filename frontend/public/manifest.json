@@ -1,0 +1,20 @@
+{
+  "name": "Github Magrathea",
+  "theme_color": "#fff",
+  "background_color": "#191919",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

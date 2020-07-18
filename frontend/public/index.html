@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#fff" />
+    <meta name="description" content="Agathos template for Create React App" />
+    <title>Github Magrathea</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker
+            .register('service-worker.js')
+            .then(
+              function(registration) {
+                console.log(
+                  'ServiceWorker registration successful with scope: ',
+                  registration.scope,
+                );
+              },
+              function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+              },
+            )
+            .catch(function(err) {
+              console.log(err);
+            });
+        });
+      } else {
+        console.log('ServiceWorker is not supported');
+      }
+    </script>
+    <div id="root"></div>
+  </body>
+</html>
