@@ -8,7 +8,7 @@ export default class SignInController {
 
     if (!code) {
       return response.status(404).json({
-        message: 'Não foi possível recuperar o código de acesso.',
+        message: 'Código de acesso inválido.',
       });
     }
 
