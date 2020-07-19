@@ -3,7 +3,7 @@ import { FiLogOut } from 'react-icons/fi';
 
 import './styles.scss';
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/useAuth';
 
 const Template: React.FC = ({ children }) => {
   const { token, signOut } = useAuth();

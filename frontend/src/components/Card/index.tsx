@@ -53,7 +53,7 @@ const Card: React.FC<CardProps> = ({ repository }) => {
           <h3 title={repository.name}>{truncateString(repository.name, 15)}</h3>
           <p title={repository.description}>{truncateString(repository.description)}</p>
           <div>
-            {repository.tags.map((tag) => (
+            {repository.tags.map(tag => (
               <small key={tag}>{tag}</small>
             ))}
           </div>

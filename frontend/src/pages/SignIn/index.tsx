@@ -6,7 +6,7 @@ import Template from '../../components/Template';
 
 import './styles.scss';
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/useAuth';
 
 const SignIn: React.FC = () => {
   const { signIn } = useAuth();
@@ -14,7 +14,7 @@ const SignIn: React.FC = () => {
   const history = useHistory();
 
   const handleSignInWithGithub = useCallback(
-    async (code) => {
+    async code => {
       await signIn(code);
 
       history.push('/repositories');

@@ -1,14 +1,9 @@
 import React from 'react';
 
-import { AuthProvider } from './auth';
-import { RequestProvider } from './request';
+import { AuthProvider } from './useAuth';
 
 const AppProvider: React.FC = ({ children }) => {
-  return (
-    <AuthProvider>
-      <RequestProvider>{children}</RequestProvider>
-    </AuthProvider>
-  );
+  return <AuthProvider>{children}</AuthProvider>;
 };
 
 export default AppProvider;
