@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { FiSearch } from 'react-icons/fi';
 
 import Card from '../../components/Card';
@@ -7,8 +7,8 @@ import Template from '../../components/Template';
 
 import './styles.scss';
 
-import { useAuth } from '../../hooks/auth';
-import { useRequest } from '../../hooks/request';
+import { useAuth } from '../../hooks/useAuth';
+import useFetch from '../../hooks/useFetch';
 
 interface RepositoryStarred {
   _id: string;
@@ -20,39 +20,24 @@ interface RepositoryStarred {
 }
 
 const Repositories: React.FC = () => {
-  const [repositories, setRepositories] = useState([] as any);
   const [searchTag, setSearchTag] = useState('');
-  const [load, setLoad] = useState(false);
+
+  const { data, mutate } = useFetch<RepositoryStarred[]>(['repositories', searchTag]);
 
   const { user } = useAuth();
-  const { updateAt, getData } = useRequest();
-
-  useEffect(() => {
-    setLoad(true);
-
-    if (searchTag) {
-      setRepositories(JSON.parse(localStorage.getItem('@Magrathea:repositories') || '[]'));
-      setLoad(false);
-    } else {
-      getData().then((response) => {
-        setRepositories(response);
-        setLoad(false);
-      });
-    }
-  }, [searchTag, updateAt, getData]);
 
   const handleSearchRepositoryPerTag = useCallback(
-    (e) => {
+    e => {
       e.preventDefault();
 
-      getData(searchTag);
+      mutate();
     },
-    [searchTag, getData],
+    [mutate],
   );
 
   return (
     <Template>
-      {load ? (
+      {!data ? (
         <Load />
       ) : (
         <main>
@@ -64,12 +49,11 @@ const Repositories: React.FC = () => {
                 <h3>{user.name}</h3>
                 <p>followers: {user.followers}</p>
                 <p>following: {user.following}</p>
-                <form onSubmit={(e) => handleSearchRepositoryPerTag(e)}>
+                <form onSubmit={e => handleSearchRepositoryPerTag(e)}>
                   <input
-                    placeholder="search tag"
+                    placeholder="filter by tag"
                     defaultValue={searchTag}
-                    onChange={(e) => setSearchTag(e.target.value)}
-                    required
+                    onBlur={e => setSearchTag(e.target.value)}
                   />
                   <button type="submit">
                     <FiSearch />
@@ -78,10 +62,9 @@ const Repositories: React.FC = () => {
               </div>
             </section>
             <div>
-              {repositories &&
-                repositories.map((repository: RepositoryStarred) => (
-                  <Card key={repository._id} repository={repository} />
-                ))}
+              {data?.map((repository: RepositoryStarred) => (
+                <Card key={repository._id} repository={repository} />
+              ))}
             </div>
           </section>
         </main>
