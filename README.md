@@ -50,6 +50,7 @@ Frontend
 - [Pretty quick](https://github.com/azz/pretty-quick)
 - [React icons](https://react-icons.netlify.com/)
 - [React router](https://reacttraining.com/react-router/)
+- [SWR](https://swr.vercel.app/)
 - [Typescript](https://www.typescriptlang.org/)
 
 ## :information_source: How To Use
