@@ -22,6 +22,7 @@
   },
   "plugins": ["@typescript-eslint", "eslint-plugin-import-helpers"],
   "rules": {
+    "no-shadow": "off",
     "no-unused-vars": "off",
     "no-underscore-dangle": "off",
     "prettier/prettier": "error",
