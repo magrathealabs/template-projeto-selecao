@@ -1,0 +1,13 @@
+{% extends "quem_foi_para_mar_core/base.html" %}
+
+{% block content %}
+<div class="post">
+    <h2>Detalhes do pescador</h2>
+        <ul>
+          <li>Nome: {{post.nome}}</li>
+          <li>Endereco: {{post.endereco}}</li>
+          <li>Telefone: {{post.telefone}}</li>
+          <li>Email: {{post.email}}</li>
+        </ul>
+    </div>
+{% endblock %}

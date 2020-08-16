@@ -1,0 +1,48 @@
+{% load static %}
+{% load bootstrap %}
+<html>
+  <head>
+      <link href="data:image/x-icon;base64,AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAtaJEA/4QAAKOxxAD/6M8A9/n6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAERERRBERFERERBERERERERERERERRBERMzMAAAAAAzMzMAAAAAAAMzAAAAAAAAADAAAAAAAAAAAAAAAAAAAAADMzMzAzMzMzMiIiICIiIjMyIiIgIiIiMzMiIiAiIjMzMzMiICIjMzMzMzIgIjMzMzMzMiAiMzMzMzMzICMzMzMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+      <title>Quem foi para o mar ?</title>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+      <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="{% static 'css/quem_foi_para_mar_core.css' %}">
+  </head>
+
+
+  <body>
+      <div class="page-header">
+          <h2>Bem-vindo, {{ user.username|default:'Pescador' }}!</h2>
+          <h3>Barcos que estão no mar hoje</h3>
+      </div>
+      <div class="post-form">
+        <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+    </div>
+  <ul class="nav navbar-nav navbar-left">
+          <li><a href="{% url "cadastrar_viagem" %}">Nova Viagem</a></li>
+          <li><a href="{% url "cadastrar_pescador" %}">Registrar Pescador</a></li>
+          <li><a href="{% url "cadastrar_embarcacao" %}">Registrar Embarcação</a></li>
+          <li><a href="{% url "lista_viagens" %}">Histórico de Viagens</a></li>
+          <li><a href="{% url "cadastro" %}">Cadastre-se</a></li>
+          <li><a href="{% url "busca" %}">Busca</a></li>
+          <li><a href="/admin/logout/">Sair</a></li>
+    </ul>
+  </nav>
+      </div>
+      <div class="content-container">
+          <div class="row">
+              <div class="col-md-8">
+                <br>
+              {% block content %}
+              {% endblock %}
+              </div>
+          </div>
+      </div>
+
+
+</body>
+</html>

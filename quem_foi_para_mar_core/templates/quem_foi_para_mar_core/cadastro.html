@@ -1,0 +1,9 @@
+{% extends "quem_foi_para_mar_core/base.html" %}
+{% load bootstrap %}
+{% block content %}
+    <h2>Novo usuário</h2>
+    <form method="POST" class="post-form">{% csrf_token %}
+          {{ form|bootstrap }}
+        <button type="submit" class="save btn btn-primary">Salvar</button>
+    </form>
+{% endblock %}

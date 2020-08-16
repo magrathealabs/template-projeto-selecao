@@ -1,0 +1,16 @@
+{% extends "quem_foi_para_mar_core/base.html" %}
+{% load bootstrap %}
+{% block content %}
+        <form method="get">
+            {{ filter.form|bootstrap }}
+            <button type="submit" class="save btn btn-primary">Busca</button>
+        </form>
+  <ul>
+    {% for viagem in filter.qs %}
+            <li>{{ viagem.destino }}</li>
+            <li>{{ viagem.data_partida}}</li>
+            <li>{{ viagem.data_chegada_prevista}}</li>
+            <li>{{ viagem.tripulacao }}</>
+  {% endfor %}
+  </ul>
+{% endblock %}

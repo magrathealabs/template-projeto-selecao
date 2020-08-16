@@ -1,0 +1,14 @@
+{% extends "quem_foi_para_mar_core/base.html" %}
+
+{% block content %}
+<div class="post">
+    <h2>Detalhes da viagem</h2>
+        <ul>
+          <li>Destino: {{post.destino}}</li>
+          <li>Data de partida: {{post.data_partida}}</li>
+          <li>Data de chegada prevista: {{post.data_chegada_prevista}}</li>
+          <li>Tripulantes: {{post.tripulacao}}</li>
+          <li>Embarção: {{post.embarcacao_id}}</li>
+        </ul>
+    </div>
+{% endblock %}
