@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block titulo %} Login/Cadastro {% endblock %}
+
+{% block conteudo %} 
+
+{% if not autenticado %}
+<div class="row">
+    <div class="col-lg">
+        <h1> Login </h1>
+            <form method="POST" action="{% url 'user:login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="InputLogin">Login</label>
+                    <input type="text" name="login" class="form-control" id="InputLogin" aria-describedby="emailHelp" placeholder="Entrar com login/email"> 
+                </div>
+                
+                <div class="form-group">
+                    <label for="InputPassword">Senha</label>
+                    <input type="password" name="senha" class="form-control" id="InputPassword" placeholder="Senha">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form> 
+
+    </div>
+    <div class="col-lg">
+    <h1> Cadastro </h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ userform|crispy }}
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class='btn btn-primary btn-block btn-lg'>
+                        Cadastrar
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% else %}
+{% url 'repos:error' %}
+{% endif %}
+
+
+{% endblock %}

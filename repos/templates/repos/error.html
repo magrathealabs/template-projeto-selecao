@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Erro de página {% endblock %}
+
+{% block conteudo %} 
+    
+    <h1>{{ error.code }}</h1>
+
+    <h5>{{ error.msg }}</h5>
+{% endblock %}

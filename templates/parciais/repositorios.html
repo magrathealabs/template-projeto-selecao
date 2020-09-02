@@ -1,0 +1,39 @@
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title"> Nome: {{ repositorio.nome }}</h4>
+        
+        {% if infos.autenticacao %}
+            <p>Tag: {{ repositorio.tag }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            
+                {% comment %} {% if repositorio.tag %} {% endcomment %}
+{% comment %}   {% endcomment %}
+            <form method="POST" action="{% url 'repos:edit' %}">
+                {% csrf_token %}   
+                <input type="hidden" name="infos" value="{{repositorio}} }-{ {{infos}}"/>
+                <button type="submit" name="editar" class="btn btn-primary"> 
+                    Editar Tags 
+                </button>
+                {% comment %} <button type="submit" value="interview_HTML">HTML</button> {% endcomment %}
+            </form>
+                    {% comment %} {% include 'parciais/tags.html' %} {% endcomment %}
+
+                {% comment %} {% endif %} {% endcomment %}
+            {% comment %} <button name= "add" class="btn btn-primary" onclick="add_text({{ repositorio }})">Adicionar Tag</button>
+            
+            </p>
+            
+
+            <form method="POST" action="{% url 'repos:tag' %}">
+                {% csrf_token %}
+                <div id='tags' name="campo"></div> 
+                <div id='salvar' name='salvar'></div>
+            </form> {% endcomment %}
+
+        {% endif %}
+        <p id="tags"> ID: {{ repositorio.id }}</p>
+        <p class="card-text"> Descricao: {{ repositorio.descricao }}</p>
+        <p>    URL: <a href="{{ repositorio.url }}" > Acessar o repositório </a><p>
+    </div>
+</div>
+<p></p>

@@ -1,0 +1,90 @@
+<script type="text/javascript">
+var a = []
+var val = 0;
+var qnt_linha = 0
+var table = document.createElement("table")
+var t_body = document.createElement("tbody")
+
+table.appendChild(t_body)
+
+t_body.id = "body_table"
+t_body.name = "tabela"
+
+function tags_text(repositorio){
+    repositorio = repositorio.split(",")
+    var len = repositorio.length;
+
+    for(i = 0; i < len; i++){
+        console.log(repositorio[i])
+        add_tag(repositorio[i])
+    }
+}
+
+function add_tag(tag_name){
+
+    var nova_div = document.createElement("div")
+    var nova_tag = document.createElement("input")
+    var botao_remover = document.createElement("button")
+    var tr_input = document.createElement("tr")
+    var td_input = document.createElement("td")
+    var td_button = document.createElement("td")
+
+    botao_remover.innerHTML = "Remover"
+    botao_remover.type = "button"
+    nova_tag.name = "tags_repo"
+
+    if (tag_name) {
+        console.log("Dentro do add tag = ", tag_name)
+        nova_tag.value = tag_name;
+    }
+
+    nova_div.appendChild(nova_tag) 
+    td_input.appendChild(nova_div)
+    td_button.appendChild(botao_remover)
+    tr_input.appendChild(td_input)
+    tr_input.appendChild(td_button)
+    t_body.appendChild(tr_input)
+
+
+    botao_remover.addEventListener("click",
+        function(){
+            qnt_linha--;
+            document.getElementById("body_table").removeChild(tr_input)
+                                
+    });
+    document.getElementById("tags").appendChild(table)
+
+}
+
+</script>
+
+{% extends 'base.html'%}
+
+{% block conteudo %}
+{% if infos.autenticacao %}
+    <h3><b>Repositório:</b> <u/>{{repositorio.nome}} </h3>
+    <br/>
+
+
+        <button name= "add" class="btn btn-primary" onclick="add_tag(false)">
+            Adicionar Tag
+        </button>
+
+        </p>
+
+        <p id="tags_db"></p>
+        {% comment %} <p id="tags"></p> {% endcomment %}
+        
+        <form method="POST" action="{% url 'repos:tag' %}">
+            {% csrf_token %}
+            
+            <div id='tags' name="campo"></div> 
+            <input type="hidden" name="infos" value="{{repositorio}}"/>
+            {% comment %} <div id='salvar' name='salvar'></div> {% endcomment %}
+        <button type="submit" name="salvar">Salvar</button>
+        </form>
+        <script>tags_text("{{repositorio.tag}}")</script>
+{% else %}
+    {% url 'user:criar' %}
+{% endif %}
+{% endblock %}
