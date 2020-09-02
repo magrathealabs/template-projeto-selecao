@@ -1,0 +1,47 @@
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+    
+    <a class="navbar-brand" href="{% url 'user:home' %}">Home</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'repos:list' %}">
+        <input name="termo" value="{{ request.GET.termo }}" class="form-control mr-sm-2" type="search" placeholder="Busca" aria-label="busca">
+        
+        <select class="nav-item dropdown" name="opcao" value="{{ request.GET.opcao }}" aria-labelledby="navbarDropdown" method="GET" action="{% url 'repos:list' %}" >
+            <option name="repositorio" >Repositorio</option>
+            <option name="tag">Tag</option>
+        </select>
+        
+        &nbsp;&nbsp;
+
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit"> Pesquisar</button>
+    </form>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+
+            {% if infos.autenticacao %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ infos.username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'user:perfil' %}">Repositórios</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'user:logout' %}">Logout</a>
+                    </div>
+                </li>
+
+            {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'user:criar' %}">Entrar/Cadastrar</a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </div>
+</nav>

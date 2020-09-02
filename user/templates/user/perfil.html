@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Perfil do Usuário {% endblock %}
+
+{% block conteudo %}
+
+    {% if infos.autenticacao %}
+
+        <div class="row">
+                <div class="columns">
+                <h4>Repositórios</h4>
+
+                {% include 'parciais/paginacao.html' %}
+
+                    {% for repositorio in page.object_list %}
+                        {% include 'parciais/repositorios.html' %}
+                    {% endfor %}
+
+                    {% include 'parciais/paginacao.html' %}
+                </div>
+                
+        </div>
+
+    {% else %}
+        <p>Estou deslogado </p>
+    {% endif %}
+
+{% endblock %}

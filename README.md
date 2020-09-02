@@ -1,45 +1,69 @@
-# PROJETO DE SELEÇÃO
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/django?color=092E20&logo=Django) [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-Ao conhecer uma pessoa que está aplicando para a Magrathea gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+# Cliente GitHub
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+## Descrição
+O sistema apresentado permite usuários logados buscarem repositórios do GitHub e adicionar diferentes tipos de tags aos mesmos, desta forma, possui uma facilidade para acessá-los futuramente. Cada repositório possui seu nome, descrição e uma URL para acessá-lo diretamente no GitHub.
 
-## O QUE VAMOS AVALIAR
 
-Queremos avaliar sua capacidade de fornecer um produto simples com documentação suficiente para outros desenvolvedores contribuírem ativamente para o projeto posteriormente. Na entrevista vamos prestar atenção nos seguintes itens:
+## Tabela de conteúdos
 
-* Comunicação na revisão do código presencial;
-* Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
+<!--ts-->
+   * [Descrição](#Descrição)
+   * [Tabela de Conteúdo](#tabela-de-conteudos)
+   * [Features](#features)
+   * [Dependências](#dependência)
+   * [Como usar](#como-usar)
+      * [Execução Produção](#execução-produção)
+      * [Execução Local](#execução-local)
+   * [Tecnologias](#tecnologias)
+<!--te-->
 
-Ao revisar seu código vamos prestar atenção nos seguintes itens:
+## Features
 
-* Organização do código;
-* Código bem escrito, limpo e coeso;
-* Arquitetura e princípios de desenvolvimento;
-* Documentação (README.md) com instruções claras para reproduzir o projeto;
-* Uso adequado de versionamento do código em git;
-* Uso de testes automatizados;
-* Deploy da aplicação: recomendamos Heroku por ter plano free;
-* O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-* Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado.
+- [X] Fazer autenticação e autorização de usuário.
+- [X] Busca de repositórios.
+- [X] Gerenciar tags de repositórios listados (por exemplo, adicionar, editar, excluir).
+- [X] Filtrar repositórios por tags.
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é você programar de graça para nós, nem te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+## Dependência
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Se quiser uma revisão no seu código em um Pull Request no Github, pode nos chamar. Estamos disponíveis para te ajudar a finalizar esse processo.
-Ah, por último. Você acha que consegue nos responder em quanto tempo? Duas semanas é ok para você?
+A dependência que consiste no projeto é a instalação do virtual environment.
 
-## IDEIAS DE PROJETOS
+`$ sudo apt-get install python3-pip`
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+`$ sudo pip3 install virtualenv `
 
-* [Cliente para o GitHub](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/GITHUB.md);
-* [Cliente para o Twitter](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/TWITTER.md);
-* [Cliente para o Meetup](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/MEETUP.md).
+Em caso de problemas de pacotes instalados dentro do ambiente virtual, o seguinte comando fará a instalação das depedências.
 
-Tem alguma outra ideia? Tem algum projeto que já está pronto e gostaria de apresentar? Fale com a gente :)
+`$ pip install -r requirements.txt `
 
-## COMO COMPARTILHAR O PROJETO CONOSCO
+## Como usar
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+### Execução Produção
+
+O deploy do sistema foi aplicado no heroku, para acessá-lo basta clicar no link abaixo.
+
+<https://magrathea-project.herokuapp.com>
+
+### Execução Local
+
+* Ativar environment
+
+`$  . venv/bin/activate`
+
+*  Executar o acesso local
+
+`$ heroku local` 
+
+* O servidor iniciará na porta 5000. Acesse:
+
+<http://localhost:5000>
+
+## Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [Heroku](https://www.heroku.com/) <img height="16" width="16" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/heroku.svg" />
+- [Django](https://www.djangoproject.com/) <img height="16" width="16" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/django.svg" />
+- [Python](https://www.python.org/) <img height="16" width="16" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/python.svg" />

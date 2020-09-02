@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block conteudo %} 
+
+    <div class="row">
+        <div class="columns">
+            {% if page.object_list %}
+
+                {% include 'parciais/paginacao.html' %}
+                
+                {% for repositorio in page.object_list %}
+                    {% include 'parciais/repositorios.html' %}
+                {% endfor %}
+
+                {% include 'parciais/paginacao.html' %}
+
+            {% else %}
+                <h1> Não foi encontrado nenhum resultado </h1>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
