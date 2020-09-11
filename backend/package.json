@@ -1,0 +1,43 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "backend is the ultimate backend solution",
+    "main": "src/server.js",
+    "scripts": {
+        "setup": "npm install && npm update",
+        "start": "node src/server.js",
+        "migration:init": "migrate init --migrations-dir ./src/migrations",
+        "migration:create": "migrate create --migrations-dir ./src/migrations --template-file ./src/migrations/.template.js",
+        "migration:list": "migrate list --migrations-dir ./src/migrations",
+        "migration:up": "migrate up --migrations-dir ./src/migrations --env ./.env",
+        "migration:down": "migrate down --migrations-dir ./src/migrations --env ./.env"
+    },
+    "keywords": [
+        "express",
+        "backend",
+        "backend"
+    ],
+    "license": "UNLICENSED",
+    "dependencies": {
+        "cookie-parser": "^1.4.4",
+        "cors": "^2.8.5",
+        "helmet": "^3.21.2",
+        "express-custom-error": "^1.8.4",
+        "http-status": "^1.3.2",
+        "has-keys": "^0.1.0",
+        "morgan": "^1.9.1",
+        "rotating-file-stream": "^1.4.6",
+        "mandatoryenv": "^1.1.1",
+        "module-alias": "^2.2.2",
+        "mongodb": "^3.3.3",
+        "express": "^4.17.1",
+        "migrate": "^1.6.2"
+    },
+    "_moduleAliases": {
+        "@root": "src",
+        "@controllers": "src/controllers",
+        "@models": "src/models",
+        "@util": "src/util",
+        "@routes": "src/routes"
+    }
+}
