@@ -1,0 +1,10 @@
+{
+    "notify": false,
+    "clearScreen": true,
+    "timestamp": true,
+    "vm": false,
+    "extensions": {
+      "ts": "typescript"
+    }
+    
+}
