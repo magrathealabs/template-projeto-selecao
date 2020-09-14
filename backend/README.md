@@ -8,22 +8,20 @@
 
 2. Install Dependencies
 
-> npm run setup
+> yarn
 
 3. Create .env with following content
 
 ````
 DB_URL=
-
-PORT=3000
-SECRET=AAA
+PORT=
 ````
 
 ## Run
 
 1. Start Server
 
-> npm start
+> yarn start
 
 2. Open in url or using an Endpoint tester (postman)
 
