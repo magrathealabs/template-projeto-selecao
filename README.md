@@ -1,45 +1,70 @@
-# PROJETO DE SELEÇÃO
+1. # GitHeart
 
-Ao conhecer uma pessoa que está aplicando para a Magrathea gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+   O projeto escolhido foi o de adicionar Tags nos Repositórios favoritados por um determinado usuário do GitHub. O projeto foi desenvolvido em *Python*, utilizando o framework **Django**.
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+   Após ter clonado o repositório da aplicação e ativar o virtualenvironment, é necessário instalar os requisitos da aplicação utilizando o **pip**.
 
-## O QUE VAMOS AVALIAR
+   ```bash
+   $ pip install -r requirements.txt
+   ```
 
-Queremos avaliar sua capacidade de fornecer um produto simples com documentação suficiente para outros desenvolvedores contribuírem ativamente para o projeto posteriormente. Na entrevista vamos prestar atenção nos seguintes itens:
+   Nesse projeto foi utilizado para gerenciar a database *githeart* o PostgreSQL. É preciso fazer as migrações para a database.
 
-* Comunicação na revisão do código presencial;
-* Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
+   ```bash
+   $ python manage.py makemigrations
+   $ python manage.py migrate
+   ```
 
-Ao revisar seu código vamos prestar atenção nos seguintes itens:
+   ## Estrutura do projeto
 
-* Organização do código;
-* Código bem escrito, limpo e coeso;
-* Arquitetura e princípios de desenvolvimento;
-* Documentação (README.md) com instruções claras para reproduzir o projeto;
-* Uso adequado de versionamento do código em git;
-* Uso de testes automatizados;
-* Deploy da aplicação: recomendamos Heroku por ter plano free;
-* O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-* Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado.
+   A estrutura do projeto ficou no seguinte formato. `githeart` é o nome do projeto. Um projeto pode ter várias aplicações, nesse caso possui a aplicação `starred_repos` o que torna o projeto `githeart` fácil de ser extendido para próximas versões. 
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é você programar de graça para nós, nem te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+   ```
+   template-projeto-selecao  
+   └─── githeart  
+       |___ __init__.py
+       |___ asgi.py
+       └─── settings.py
+       |___ urls.py
+       |___ wsgi.py
+   └─── starred_repos  
+       |___ __init__.py
+       |___ admin.py
+       |___ apps.py
+       |___ forms.py
+       |___ models.py
+       |___ tests.py
+       |___ urls.py
+       |___ views
+       	|___ __init__.py
+       	|___ repositorios.py
+       	|___ tags.py    	
+   |___ static
+   |___ templates
+   |___ manage.py
+   ​```
+   ```
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Se quiser uma revisão no seu código em um Pull Request no Github, pode nos chamar. Estamos disponíveis para te ajudar a finalizar esse processo.
-Ah, por último. Você acha que consegue nos responder em quanto tempo? Duas semanas é ok para você?
+   Dentro de `githeart` ficam as configurações de todo o projeto. 
 
-## IDEIAS DE PROJETOS
+   Dentro de `starred_repos` dois modelos foram criados: 
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+   - `GitHubRepo` é o modelo responsável por criar os repositórios favoritados no *GitHub* vindos da API do GitHub e que adiciona um campo para receber tags do tipo `Tag`
+   - `Tag` é o modelo responsável por criar essas tags.
 
-* [Cliente para o GitHub](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/GITHUB.md);
-* [Cliente para o Twitter](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/TWITTER.md);
-* [Cliente para o Meetup](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/MEETUP.md).
+   É possível criar, adicionar, editar e deletar todas as tags, as funções para isso estão em `views/tags.py`.
 
-Tem alguma outra ideia? Tem algum projeto que já está pronto e gostaria de apresentar? Fale com a gente :)
+   As tags são adicionadas lado a lado utilizando vírgulas como separador, por exemplo: `Django,Python,API` 
 
-## COMO COMPARTILHAR O PROJETO CONOSCO
+   As funções responsáveis por buscar as informações na [API do GitHub](https://api.github.com/users/andressadotpy/starred) e armazenar na aplicação estão em `views/repositorios.py`.
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+   Para rodar localmente, a partir da pasta root  do projeto:
+
+   ```bash
+   $ python manage.py runserver
+   ```
+
+   ## Melhorias que poderiam ser realizadas numa segunda versão
+
+   - Deixar os repositórios em `home.html` em cards lado a lado.
+   - Melhorar o frontend no geral.

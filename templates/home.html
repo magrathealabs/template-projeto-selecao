@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'partials/_menu.html' %}
+{% include 'partials/_busca.html' %}
+<div class="container pt-5">
+  <div class="jumbotron">
+    <h1>GitHeart</h1>      
+    <p>Seja bem vinde {{ user.username }}!</p>
+    <p>Aqui estao seus repositorios do <3</p>
+  </div>
+  <div class="row mb-2 posts">
+      {% for repo in repositorios %}
+      <div class="col-md-6">
+          <div class="card-body">
+            <a href="{% url 'repositorio' repo.id %}" class="card-title"><h5>{{ repo.descricao }}</h5></a>
+            <a href="{{ repo.url }}" class="card-subtitle mb-2 text-muted">Link pro GitHub</a>
+            {% for tag in repo.tags.all %}
+              <a href="{% url 'tagged' tag.id %}" class="badge badge-pill badge-dark">{{ tag.nome }}</a>
+            {% endfor %}
+            <a href="{% url 'repositorio' repo.id %}" class="card-link">Gerenciar tags</a>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+{% endblock %}

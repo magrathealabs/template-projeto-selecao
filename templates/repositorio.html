@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'partials/_menu.html' %}
+{% include 'partials/_busca.html' %}
+<div class="container pt-5">
+    {% if repositorio %}
+    <h2>{{ repositorio.descricao }}</h2>
+        <a href="{{ repositorio.url }}">
+            <button type="action">Url do GitHub</button></a>
+        <br></br>
+    {% for tag in repositorio.tags.all %}
+        <a href="" class="badge badge-info" >{{ tag.nome }}</a>
+    {% endfor %}
+    <div class="container pt-5">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Tags</label>
+                <input type="text" data-role="tagsinput" class="form-control" name="tags">
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar Tag</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}        
