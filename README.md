@@ -64,7 +64,7 @@
    $ python manage.py runserver
    ```
 
-   ## Melhorias que poderiam ser realizadas numa segunda versão
+   ## Melhorias para uma segunda versão
 
    - Deixar os repositórios em `home.html` em cards lado a lado.
    - Melhorar o frontend no geral.
