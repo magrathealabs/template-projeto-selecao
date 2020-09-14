@@ -1,11 +1,13 @@
 import dotenv = require('dotenv');
 import path from 'path';
 
+
 dotenv.config({
     path: path.resolve(__dirname, '..' ,'.env')
 });
 
 import express from 'express';
+import cors from 'cors';
 import routes from './routes/router'
 import dbConnection from './models/database';
 
@@ -13,6 +15,8 @@ dbConnection.on('error', console.error.bind(console, 'connection error:'));
 dbConnection.once('open', () => console.log('connected to Database:', dbConnection.name));
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
