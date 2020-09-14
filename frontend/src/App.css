@@ -13,6 +13,11 @@
   }
 }
 
+.teste {
+    font-size: 120px;
+    background-color: aqua;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
