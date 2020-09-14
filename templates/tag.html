@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'partials/_menu.html' %}
+{% include 'partials/_busca.html' %}
+<div class="container pt-5">
+    <div class="page-header">
+        <h2>{{ tag.nome }}</h2>
+        <a href="{% url 'editar_tag' tag.id %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Editar Tag</a>
+        <a href="{% url 'deletar_tag' tag.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Deletar Tag</a>
+    </div>
+    {% for repositorio in repositorios %}
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="mb-30">
+            <div>
+                <a href="{% url 'repositorio' repositorio.id %}"><h5>{{ repositorio.descricao }}</h5></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

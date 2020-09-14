@@ -1,0 +1,15 @@
+{% load static %}
+<div class="search-wrapper">
+    <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form id="searchform" action="{% url 'buscar' %}" method="GET">
+                    <div class="active-pink-3 active-pink-4 mb-4">
+                        <input class="form-control" name="buscar" type="text" placeholder="Django" aria-label="Search">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

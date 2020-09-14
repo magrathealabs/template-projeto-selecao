@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'partials/_menu.html' %}
+{% include 'partials/_busca.html' %}
+    <div class="container">
+        <div class="row">
+            {% if tags %}
+            {% for tag in tags %}
+            <div class="col-12 col-sm-6 col-lg-4">
+                <a href="{% url 'tag' tag.id %}">
+                    <h5>{{ tag.nome }}</h5>
+                </a>
+            </div>
+            {% endfor %}
+            {% else %}
+                <p>Tag inexistente.</p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

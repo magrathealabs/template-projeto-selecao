@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'partials/_menu.html' %}
+{% include 'partials/_busca.html' %}
+<div class="container pt-5">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>{{ tag.nome }}</label>
+            <input type="text" data-role="tagsinput" class="form-control" name="tags">
+        </div>
+        <button type="submit" class="btn btn-primary">Editar tag</button>
+    </form>
+</div>
+{% endblock content %}    
