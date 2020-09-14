@@ -7,14 +7,14 @@
    Após ter clonado o repositório da aplicação e ativar o virtualenvironment, é necessário instalar os requisitos da aplicação utilizando o **pip**.
    
    ```bash
-$ pip install -r requirements.txt
+   $ pip install -r requirements.txt
    ```
 
    Nesse projeto foi utilizado para gerenciar a database *githeart* o PostgreSQL. É preciso fazer as migrações para a database.
    
    ```bash
    $ python manage.py makemigrations
-$ python manage.py migrate
+   $ python manage.py migrate
    ```
 
    ## Estrutura do projeto
@@ -44,14 +44,13 @@ $ python manage.py migrate
    |___ static
    |___ templates
    |___ manage.py
-​```
-   ```
-
-   Dentro de `githeart` ficam as configurações de todo o projeto. 
-
-   Dentro de `starred_repos` dois modelos foram criados: 
    
-- `GitHubRepo` é o modelo responsável por criar os repositórios favoritados no *GitHub* vindos da API do GitHub e que adiciona um campo para receber tags do tipo `Tag`
+
+  Dentro de `githeart` ficam as configurações de todo o projeto. 
+
+  Dentro de `starred_repos` dois modelos foram criados: 
+   
+   - `GitHubRepo` é o modelo responsável por criar os repositórios favoritados no *GitHub* vindos da API do GitHub e que adiciona um campo para receber tags do tipo `Tag`
    - `Tag` é o modelo responsável por criar essas tags.
 
    É possível criar, adicionar, editar e deletar todas as tags, as funções para isso estão em `views/tags.py`.
@@ -63,7 +62,7 @@ $ python manage.py migrate
    Para rodar localmente, a partir da pasta root  do projeto:
    
    ```bash
-$ python manage.py runserver
+   $ python manage.py runserver
    ```
 
    ## Melhorias para uma segunda versão
