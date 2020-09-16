@@ -19,7 +19,7 @@ export default (props) => {
 
     return (
     <>
-        <Card className="Flex-card" bg="light">
+        <Card className="Flex-card">
             <Card.Body>
                 <Card.Title>{props.repository}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{props.author}</Card.Subtitle>
