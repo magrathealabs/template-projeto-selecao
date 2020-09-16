@@ -13,11 +13,6 @@
   }
 }
 
-.teste {
-    font-size: 120px;
-    background-color: aqua;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -40,4 +35,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Card-folder {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }
