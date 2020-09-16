@@ -38,7 +38,15 @@
 }
 
 .Card-folder {
+    width:75%;
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Folder-folder {
+    width: 100%;
     display: flex;
     justify-content: center;
 }

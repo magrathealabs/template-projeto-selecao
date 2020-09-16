@@ -35,37 +35,40 @@ function App() {
     return (
         <div className="App">
             <Navbar/>
-            <CardDeck className="Card-folder">
-                <Card
-                repository="Test Repo"
-                author="unkown"
-                readme="Little experimental text to check if card is doing ok"
-                tags={tags}/>
+            <div className="Folder-folder">
+                <CardDeck className="Card-folder">
+                    <Card
+                    repository="Test Repo"
+                    author="unkown"
+                    readme="Little experimental text to check if card is doing ok"
+                    tags={tags}/>
 
-                <Card
-                repository="Test Repo"
-                author="unkown"
-                readme="Little experimental text to check if card is doing ok"
-                tags={tags}/>
+                    <Card
+                    repository="Test Repo"
+                    author="unkown"
+                    readme="Little experimental text to check if card is doing ok"
+                    tags={tags}/>
 
-                <Card
-                repository="Test Repo"
-                author="unkown"
-                readme="Little experimental text to check if card is doing ok"
-                tags={tags}/>
+                    <Card
+                    repository="Test Repo"
+                    author="unkown"
+                    readme="Little experimental text to check if card is doing ok"
+                    tags={tags}/>
 
-                <Card
-                repository="Test Repo"
-                author="unkown"
-                readme="Little experimental text to check if card is doing ok"
-                tags={tags}/>
+                    <Card
+                    repository="Test Repo"
+                    author="unkown"
+                    readme="Little experimental text to check if card is doing ok"
+                    tags={tags}/>
 
-                <Card
-                repository="Test Repo"
-                author="unkown"
-                readme="Little experimental text to check if card is doing ok"
-                tags={tags}/>
-            </CardDeck>
+                    <Card
+                    repository="Test Repo"
+                    author="unkown"
+                    readme="Little experimental text to check if card is doing ok"
+                    tags={tags}/>
+
+                </CardDeck>
+            </div>
         </div>
     );
 }
