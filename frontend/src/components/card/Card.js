@@ -1,22 +1,9 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Badge from 'react-bootstrap/Badge';
+import Tag from '../tag/Tag'
 import './Card.css';
 
 export default (props) => {
-
-    const renderTag = (tag, i) => {
-        return (
-            <Badge
-            className="Tag"
-            pill
-            variant={tag.variant}
-            index={i}>
-                {tag.text}
-            </Badge>
-        );
-    };
-
     return (
     <>
         <Card className="Flex-card">
@@ -27,7 +14,8 @@ export default (props) => {
                     {props.readme}
                 </Card.Text>
                 <div>
-                    {props.tags.map((tag, i) => renderTag(tag, i))}
+                    <Tag tags={props.tags}/>
+                    {/* {props.tags.map((tag, i) => renderTag(tag, i))} */}
                 </div>
             </Card.Body>
         </Card>

@@ -10,10 +10,5 @@
 } 
 
 .Flex-card p {
-    color: orange;
-    flex: 1;
-}
-
-.Tag {
-    margin-right: 5px;
+    font-weight: 900;
 }

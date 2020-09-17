@@ -4,4 +4,8 @@ const api = axios.create({
   baseURL: 'http://localhost:3333'
 });
 
+const getUsers = async () => {
+    return await api.get('/');
+};
+
 export default api;
