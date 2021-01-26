@@ -4,7 +4,10 @@ import { IUser } from './interfaces/user';
 
 const userSchema = new mongoose.Schema<IUser>({
     name: String,
-    email: String,
+    sessionId: String,
+    gitId: String,
+    gitToken: String,
+
     starred: [{
         url: String,
         tags: Array

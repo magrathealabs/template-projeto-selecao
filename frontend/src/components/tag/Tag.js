@@ -9,7 +9,7 @@ export default props => {
             return (
                 <Badge
                 className="Tag"
-                index={i}
+                key={i}
                 pill
                 variant={tag.variant}
                 >

@@ -9,7 +9,7 @@ export default props => {
             {props.repos.map((repo, i) => {
                 return (
                     <Card
-                    index={i}
+                    key={i}
                     repository={repo.repository}
                     author={repo.author}
                     readme={repo.readme}

@@ -98,7 +98,7 @@ function App() {
             tags: tags.slice(Math.floor(Math.random()*7), Math.floor(7+Math.random()*7))
         }
         ]
-    )
+    );
 
     return (
         <div className="App">
