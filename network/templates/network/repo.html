@@ -1,0 +1,56 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+    <h1>Repositorie: <span style="font-weight: normal"> {{ repo.name }} </span> </h1>
+    ADD
+    <form method = "post", action="{% url 'add' repo.id   %}">
+        {% csrf_token %}
+        {{form_name}}
+        <input type="submit", name = 'add', value = "add">
+    </form>
+    <ul>
+        <li>Id Github: {{ repo.id }}</li>
+        <li>Description: {{ repo.description}}</li>
+        <li>Link: <a href= "{{repo.link}}"}> {{repo.link}}</a></li>
+        <li>Tags: 
+            {%for tag in repo.tags.all%}
+                {%if tag in user.tags.all%}
+                    {{tag.name}}
+                {% endif %}
+            {%endfor%}
+        </li>
+    </ul>
+    DELETE
+    <form method = "post", name = "delete", action="{% url 'delete' repo.id%}">
+        {% csrf_token %}
+        <select name="delete" id="">
+            {% for tagDel in repo.tags.all %}
+                {% if tagDel in user.tags.all %}
+                    <option value="{{tagDel.id}}">{{tagDel}}</option>
+                {% endif %}
+            {% endfor %}    
+        </select>
+        <input type = "submit", value = "delete"> 
+    </form>
+    EDIT
+    <form method = "post", name = "edit", action="{% url 'edit' repo.id%}">
+        {% csrf_token %}
+        <select name="edit" id="">
+            {% for tagEdit in repo.tags.all %}
+                {% if tagEdit in user.tags.all %}
+                    <option value="{{tagEdit.id}}">{{tagEdit}}</option>
+                {% endif %}
+            {% endfor %}    
+        </select>
+    {{form_edit}} 
+    <input type="submit", value = "edit">
+    </form>
+  MESSAGE:  {{error}}
+ {% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
