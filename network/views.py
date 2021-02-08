@@ -36,8 +36,8 @@ def index(request):
                x.delete()
 
     return render(request, "network/index.html", {
-        "repos": request.user.repos.all(),
-        "tags": request.user.tags.all(),
+      #  "repos": request.user.repos.all(),
+      #  "tags": request.user.tags.all(),
     })
 
 def login_view(request):
@@ -89,6 +89,7 @@ def add(request, repo_id):
 
                 else:
                     tag = Tag.objects.get(name=tagName, user=request.user)
+                    repo.tags.add(tag)
 
                     return HttpResponseRedirect(reverse('repo', args=[repo_id]))
 

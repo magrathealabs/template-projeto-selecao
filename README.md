@@ -35,6 +35,7 @@ Projeto para seleção de estágio da Magrathea Labs.
 
 ### Construido com: 
 - Django 3.1.5
+- SQLite
 - Coverage para testes
   
 <br />
