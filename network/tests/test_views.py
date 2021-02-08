@@ -15,15 +15,10 @@ class IndexTestCase(TestCase):
         cls.user12 = User.objects.create(username='12', password='12345', is_active=True, is_staff=True, is_superuser=True) 
         cls.user13 = User.objects.create(username='13', password='12345', is_active=True, is_staff=True, is_superuser=True)
 
-        cls.tag11=  Tag.objects.create(id=11,  name="tag2")
-        cls.tag12=  Tag.objects.create(id=12,  name="tag2")
-        cls.tag13=  Tag.objects.create(id=13,  name="tag3")   #tag inserida para repo1 no user1 mas nao em user2
+        cls.tag11=  Tag.objects.create(id=11,  name="tag2", user=cls.user11)
+        cls.tag12=  Tag.objects.create(id=12,  name="tag2", user=cls.user11)
+        cls.tag13=  Tag.objects.create(id=13,  name="tag3", user=cls.user11)   
 
-            
-        cls.user11.tags.add(cls.tag11)
-        cls.user11.tags.add(cls.tag12)
-        cls.user11.tags.add(cls.tag13)
-           
         super(IndexTestCase, cls).setUpClass()
 
     #testa  acesso e se retorna numero de repo e tags
@@ -45,9 +40,8 @@ class RepoTestCase(TestCase):
         cls.c= Client()
         #meu usuario no Github, pode ser trocado para testar qualquer um
         cls.user15 = User.objects.create(username='15', password='12345', is_active=True, is_staff=True, is_superuser=True) 
-        cls.tag15=  Tag.objects.create(id=15,  name="tag2")
+        cls.tag15=  Tag.objects.create(id=15,  name="tag2", user=cls.user15)
 
-        cls.user15.tags.add(cls.tag15)
         super(RepoTestCase, cls).setUpClass()
 
 
@@ -70,21 +64,10 @@ class  AddTestCase(TestCase):
             
         cls.c= Client()
         cls.user16 = User.objects.create(username='16', password='12345', is_active=True, is_staff=True, is_superuser=True) 
-        cls.tag16=  Tag.objects.create(id=16,  name="tagTest")
+        cls.tag16=  Tag.objects.create(id=16,  name="tagTest", user=cls.user16)
 
-        cls.user16.tags.add(cls.tag16)
         super(AddTestCase, cls).setUpClass()
 
-    #testa acesso
-    def test_add_acess(self):
-        
-        self.c.force_login(self.user16)
-        repo16 = Repo.objects.create(id=16, name="16", description="A little test2", link="wwww.test.ts2")
-        self.user16.repos.add(repo16)
-
-        response = self.c.get(f"/repo/{repo16.id}/add")
-
-        self.assertEqual(response.status_code, 302)
 
     #testa se adiciona tag
     def test_add_valid(self):
@@ -106,10 +89,9 @@ class  AddTestCase(TestCase):
         self.c.force_login(self.user16)
         repo18 = Repo.objects.create(id=18, name="18", description="A little test2", link="wwww.test.ts2")
         self.user16.repos.add(repo18)
-        tag18  =  Tag.objects.create(name="old tag")
+        tag18 = Tag.objects.create(name="old tag", user=self.user16)
         repo18.tags.add(tag18)
-        self.user16.tags.add(tag18)
-
+     
         response = self.c.post(f"/repo/{repo18.id}/add",  {
                     "name" : "old tag"
         })
@@ -124,22 +106,9 @@ class  DelTestCase(TestCase):
             
         cls.c= Client()
         cls.user20 = User.objects.create(username='20', password='12345', is_active=True, is_staff=True, is_superuser=True) 
-        cls.tag20=  Tag.objects.create(id=20,  name="tagTest")
+        cls.tag20=  Tag.objects.create(id=20,  name="tagTest", user=cls.user20)
 
-        cls.user20.tags.add(cls.tag20)
         super(DelTestCase, cls).setUpClass()
-
-
-     #testa acesso
-    def test_del_acess(self):
-        
-        self.c.force_login(self.user20)
-        repo20 = Repo.objects.create(id=20, name="20", description="A little test2", link="wwww.test.ts2")
-        self.user20.repos.add(repo20)
-
-        response = self.c.get(f"/repo/{repo20.id}/delete")
-
-        self.assertEqual(response.status_code, 302)
 
     #testa se deleta tag
     def test_del_confirm(self):
@@ -161,7 +130,7 @@ class  DelTestCase(TestCase):
         
         self.c.force_login(self.user20)
         repo22 = Repo.objects.create(id="22", name="catch22", description="A little test2", link="wwww.test.ts2")
-        tag22 = Tag.objects.create(id=22, name="catch22")
+        tag22 = Tag.objects.create(id=22, name="catch22", user=self.user20)
         self.user20.repos.add(repo22)
         repo22.tags.add(tag22)
 
@@ -179,21 +148,9 @@ class  EditTestCase(TestCase):
             
         cls.c= Client()
         cls.user23 = User.objects.create(username='23', password='12345', is_active=True, is_staff=True, is_superuser=True) 
-        cls.tag23=  Tag.objects.create(id=23,  name="tagTest")
+        cls.tag23=  Tag.objects.create(id=23,  name="tagTest", user=cls.user23)
 
-        cls.user23.tags.add(cls.tag23)
         super(EditTestCase, cls).setUpClass()
-
-    #testa acesso
-    def test_edit_acess(self):
-        
-        self.c.force_login(self.user23)
-        repo23 = Repo.objects.create(id=23, name="23", description="A little test2", link="wwww.test.ts2")
-        self.user23.repos.add(repo23)
-
-        response = self.c.get(f"/repo/{repo23.id}/edit")
-
-        self.assertEqual(response.status_code, 302)
 
     #testa se consegue editar quando nao ha outra com esse nome
     def test_edit_sucess(self):
@@ -222,14 +179,12 @@ class  EditTestCase(TestCase):
         repo24 = Repo.objects.create(id=24, name="24", description="A little test2", link="wwww.test.ts2")
         self.user23.repos.add(repo24)
         
-        tag25 = Tag.objects.create(id=25, name="25")
+        tag25 = Tag.objects.create(id=25, name="25", user=self.user23)
         repo24.tags.add(tag25)
-        self.user23.tags.add(tag25)
         
-        tag26 = Tag.objects.create(id=26, name="26")
+        tag26 = Tag.objects.create(id=26, name="26", user=self.user23)
         repo24.tags.add(tag26)
-        self.user23.tags.add(tag26)
-        
+
         response = self.c.post(f"/repo/{repo24.id}/edit",{
             'edit' : '25',
             'name' : '26',
@@ -237,12 +192,3 @@ class  EditTestCase(TestCase):
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(tag25.name,"25")
-
-
-
-
-
-
-
-
-

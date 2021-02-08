@@ -14,7 +14,7 @@ from .models import User, Repo, Tag
 
 @login_required
 def index(request):
-    
+
     name = request.user.username 
     r = requests.get(f"https://api.github.com/users/{name}/starred")
     data = json.loads(r.content)
@@ -24,11 +24,13 @@ def index(request):
 
         repo = Repo(id = index["id"], name = index["name"], description = index["description"], 
                     link = index["html_url"])
-        repo.save()
+       
+        if  not any (x.id == repo.id for x in Repo.objects.all()):
+            repo.save()
+        
         request.user.repos.add(repo)
         listId.append(index["id"])
         
-
     for x in request.user.repos.all():
            if int(x.id) not in listId:
                x.delete()
@@ -68,28 +70,27 @@ def add(request, repo_id):
             tagName = form_name.cleaned_data["name"].lower()
             repo = Repo.objects.get(id= repo_id)
 
-            #se tag nao esta nesse usuario,se cria
-            if not any (x.name == tagName for x in request.user.tags.all()):
-        
-                tag = Tag.objects.create(name = tagName.lower())
-                repo.tags.add(tag)
-                request.user.tags.add(tag)
-
-                return HttpResponseRedirect(reverse('repo', args=[repo_id]))
-
-            #se já existe nesse usuario, mas nao nesse repo, se adiciona para ela
-            elif not any (x.name == tagName for x in repo.tags.all()):
+            try:
                 
-                tag= Tag.objects.get(name=tagName)
-                repo.tags.add(tag)
-                return HttpResponseRedirect(reverse('repo', args=[repo_id]))
-
-            else:
+                Tag.objects.get(user=request.user, repo=repo, name=tagName)
                 messages.success(request, "Tag already used!")
                 
                 return HttpResponseRedirect(reverse('repo', args=[repo_id]))
-    
-    return HttpResponseRedirect(reverse('repo', args=[repo_id]))
+            
+            except:
+            #se nao tem tem nesse usuario, cria 
+                if not any (x.name == tagName for x in request.user.tags.all()):
+
+                    tag = Tag.objects.create(name = tagName.lower(), user=request.user)
+                    repo.tags.add(tag)
+                    request.user.tags.add(tag)
+                
+                    return HttpResponseRedirect(reverse('repo', args=[repo_id]))
+
+                else:
+                    tag = Tag.objects.get(name=tagName, user=request.user)
+
+                    return HttpResponseRedirect(reverse('repo', args=[repo_id]))
 
 def delete(request, repo_id):
 
@@ -109,8 +110,6 @@ def delete(request, repo_id):
 
         return HttpResponseRedirect(reverse('repo', args=[repo_id]))
     
-    return HttpResponseRedirect(reverse('repo', args=[repo_id]))
-
 def edit(request, repo_id):
 
     if request.method == "POST":
@@ -125,12 +124,18 @@ def edit(request, repo_id):
 
             tagName = form_edit.cleaned_data['name'].lower()
 
-            if not any (x.name == tagName for x in repo.tags.all()):
+            try:
+                
+                Tag.objects.get(user=request.user, repo=repo, name=tagName)
+                messages.success(request, "Tag already used!")
+                
+                return HttpResponseRedirect(reverse('repo', args=[repo_id]))
+
+            except:
+                pass
 
                 repo = Repo.objects.get(pk=repo_id)
-
                 tag_id = int(request.POST["edit"])
-
                 tag = Tag.objects.get(pk=tag_id)
                 
                 repo.tags.remove(tag)
@@ -140,22 +145,14 @@ def edit(request, repo_id):
 
                 #ve essa tag esta em outra repo para adicionar na atual
                 try:
-                    Tag.objects.get(name=tagName)
-                    newTag = Tag.objects.get(name=Tag)
+                    newTag = Tag.objects.get(name=tagName, user=request.user)
                     repo.tags.add(newTag)
                         
                     return HttpResponseRedirect(reverse('repo', args=[repo_id]))
                     
                 except:
-                    tag = Tag.objects.create(name = tagName.lower())
+                    tag = Tag.objects.create(name = tagName, user=request.user)
                     repo.tags.add(tag)
                     request.user.tags.add(tag)
 
-                return HttpResponseRedirect(reverse('repo', args=[repo_id]))
-
-            else:
-                messages.success(request, "Tag already used!")
-    
-                return HttpResponseRedirect(reverse('repo', args=[repo_id]))
-
-    return HttpResponseRedirect(reverse('repo', args=[repo_id]))
+                    return HttpResponseRedirect(reverse('repo', args=[repo_id]))

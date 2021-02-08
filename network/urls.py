@@ -15,5 +15,4 @@ urlpatterns = [
     path("repo/<int:repo_id>/delete", views.delete,  name= "delete"),
     path("repo/<int:repo_id>/edit", views.edit,  name= "edit"),
     url('', include('social_django.urls', namespace='social')),
-
 ]
