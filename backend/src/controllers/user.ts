@@ -69,9 +69,8 @@ let login = async (req: Request, res: Response) => {
         .catch((err: Error) => res.status(500).json({message: err.message}));
     };
 
-module.exports = {
+export default {
     getUserById,
     getAll,
     login
 };
-
