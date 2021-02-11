@@ -1,9 +1,8 @@
 import api from './api';
 
-const loginWithGithub = async () => {    
-    const res = await api.get('/api/login');
-    console.log(res);
+const LoginWithGithub = async (code) => {    
+    return await api.get(`api/login?code=${code}`);
 }
 
-export default loginWithGithub;
+export default LoginWithGithub;
 

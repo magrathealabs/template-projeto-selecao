@@ -1,18 +1,25 @@
 import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from './github';
-import GitHubLogin from 'react-github-login';
+
 
 export default () => { 
     const clientId = '89edf55f75ba76e63567';
-    const [authorize, setAuthorize] = useState(false);
+    const [gitText, setGitText] = useState("asd");
 
-    useEffect( () => {
-        if (authorize) {
-            console.log("AE")
-            window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}`;
+
+    function isLoggedIn() {
+        return localStorage.getItem("gttk") != null;
+    }
+
+    function github() {
+        if (isLoggedIn()) {
+            localStorage.removeItem("gttk");
+            window.location.href = "https://localhost:3000/";
+        } else {
+            window.location.href=`https://github.com/login/oauth/authorize?scope=user&client_id=${clientId}&redirect_uri=http://127.0.0.1:3000/login`;
         }
-    });
+    }
 
     return (
     <>
@@ -34,11 +41,9 @@ export default () => {
                     </InputGroup>
                 </Form>
                 <Form inline>
-                    <GitHubLogin clientId={clientId}
-                    onSuccess={(res) => {console.log(res)}}
-                    onFailure={(res) => {console.log(res)}}
-                    />
-                    {/* <Button type="login" onClick={e => { e.preventDefault(); setAuthorize(true)} }>Login with Github</Button> */}
+                    <Button type="button" onCompositionEnd={_ => {setGitText(isLoggedIn() ? "Logout" : "Login with Github")}} variant="light" onClick={_ => github()}>
+                    {gitText}
+                    </Button>
                 </Form>
         </Navbar>
     </>
