@@ -1,7 +1,6 @@
 import dotenv = require('dotenv');
 import path from 'path';
 
-
 dotenv.config({
     path: path.resolve(__dirname, '..' ,'.env')
 });
@@ -25,3 +24,5 @@ app.use(routes);
 app.listen(process.env.PORT, () => {
     console.log(`listening at ${process.env.PORT}`);
 });
+
+export default app;

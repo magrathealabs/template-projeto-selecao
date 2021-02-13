@@ -4,23 +4,20 @@ import { Request, Response } from 'express';
 import userModel from '../models/users';
 import { IUser } from '../models/interfaces/user';
 
-const has = require('has-keys');
 const clientId = '89edf55f75ba76e63567';
 const clientSecret = 'e475a4c0226361572be5c3ab1232530859ec4ca7';
 
 
 let getUserById = async (req: Request, res: Response) => {
 
-        if(!has(req.params, 'id')) return res.status(400).send({ error: 'An id must be supplied' });
+    let {id} = req.params;
 
-        let {id} = req.params;
+    let data = await userModel.findOne({_id: id})
 
-        let data = await userModel.findOne({_id: id})
+    if(!data) return res.status(400).send({ error: 'User not found' });
 
-        if(!data) return res.status(400).send({ error: 'User not found' });
-
-        res.json({status: true, message: 'Returning user', data});
-    };
+    res.json({status: true, message: 'Returning user', data});
+};
 
 let getAll = async (req: Request, res: Response) => {
         let data = await userModel.find();
