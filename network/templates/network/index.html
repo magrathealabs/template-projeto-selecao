@@ -1,0 +1,33 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <head> 
+        <link rel="stylesheet" href="{% static 'network/styles.css' %}">
+        <script src = "/static/network/table.js"></script>
+    </head>
+    <h1> Repositories </h1>
+    <input type="text" id="searchName" onkeyup="searchName()" placeholder="Search for names..">
+    <input type="text" id="searchTag" onkeyup="searchTag()" placeholder="Search for tags.."> 
+    <table id="repoTable">
+    <tr class="header">
+      <th style="width:60%;">Name</th>
+      <th style="width:40%;">Tag</th>
+    </tr>
+    {% for repo in user.repos.all %}
+        <tr>
+            <td>
+                Name:
+                <a style="text-decoration: none;" href="{% url 'repo' repo.id %}">
+                    {{repo.name}}
+                </a> 
+            <td> 
+                {%for tag in user.tags.all%}
+                    {% if tag in repo.tags.all %}
+                        {{tag.name}}
+                    {%endif%}
+                {%endfor%}
+            </td>
+       </tr>
+    {% endfor %}
+ {% endblock %}
