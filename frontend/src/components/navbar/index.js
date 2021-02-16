@@ -2,7 +2,8 @@ import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 import React from 'react';
 import Image from './github';
 
-export default () => { return (
+export default () => { 
+    return (
     <>
         <Navbar className="bg-dark justify-content-between">
             <Form inline>

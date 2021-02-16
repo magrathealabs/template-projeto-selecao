@@ -3,7 +3,7 @@ import Navbar from './components/navbar/Navbar';
 import CardDeck from './components/deck/Deck';
 import './App.css';
 
-function App() {
+function App(props) {
 
     const [tags, setTags] = useState(
         [
@@ -102,7 +102,7 @@ function App() {
 
     return (
         <div className="App">
-            <Navbar/>
+            <Navbar login={props.token} />
             <div className="Folder-folder">
                 <CardDeck repos={repos}/>
             </div>
