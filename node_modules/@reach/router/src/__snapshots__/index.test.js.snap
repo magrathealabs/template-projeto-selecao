@@ -1,0 +1,1011 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Match matches a path 1`] = `
+<pre>
+  {
+  "location": {
+    "pathname": "/groups/123",
+    "search": "",
+    "state": null,
+    "key": "initial"
+  },
+  "match": {
+    "groupId": "123",
+    "uri": "/groups/123",
+    "path": "/groups/:groupId"
+  }
+}
+</pre>
+`;
+
+exports[`Router children allows for fragments 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Annual Report
+  </div>
+</div>
+`;
+
+exports[`Router children ignores falsey chidlren 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Home
+  </div>
+</div>
+`;
+
+exports[`ServerLocation works 1`] = `"<div style=\\"outline:none\\" tabindex=\\"-1\\" role=\\"group\\"><div>Home</div></div>"`;
+
+exports[`ServerLocation works 2`] = `"<div style=\\"outline:none\\" tabindex=\\"-1\\" role=\\"group\\" data-reactroot=\\"\\"><div>Group: <!-- -->123</div></div>"`;
+
+exports[`disrespect has complete disrespect for leading and trailing slashes 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Dash 
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        Reports 
+        <div
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
+          tabIndex="-1"
+        >
+          <div>
+            Annual Report
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`hooks useLocation returns the location 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  path: /this/path/is/returned
+</div>
+`;
+
+exports[`hooks useNavigate navigates relative 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  IF_THIS_IS_IN_SNAPSHOT_BAAAAADDDDDDDD
+</div>
+`;
+
+exports[`hooks useNavigate navigates relative 2`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  THIS_IS_WHAT_WE_WANT_TO_SEE_IN_SNAPSHOT
+</div>
+`;
+
+exports[`hooks useParams gives an object of the params from the route 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  {"bar":"123","bax":"hi"}
+</div>
+`;
+
+exports[`links renders links with relative hrefs 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    <h1>
+      Parent
+    </h1>
+    <a
+      aria-current="page"
+      href="/dash/reports"
+      onClick={[Function]}
+    >
+      /dash/reports
+    </a>
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        <h2>
+          Child
+        </h2>
+        <a
+          aria-current={undefined}
+          href="/dash"
+          onClick={[Function]}
+        >
+          /dash
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`links uses the right href in multiple root paths 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    <div>
+      Parent URI: 
+      /
+    </div>
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        <div>
+          Parent URI: 
+          /
+        </div>
+        <div
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
+          tabIndex="-1"
+        >
+          <div>
+            <div>
+              Parent URI: 
+              /one
+            </div>
+            <div
+              style={
+                Object {
+                  "outline": "none",
+                }
+              }
+              tabIndex="-1"
+            >
+              <div>
+                <div>
+                  Child URI: 
+                  /one/two
+                </div>
+                <a
+                  aria-current={undefined}
+                  href="/one/two/three"
+                  onClick={[Function]}
+                >
+                  /one/two/three
+                </a>
+                <a
+                  aria-current={undefined}
+                  href="/one"
+                  onClick={[Function]}
+                >
+                  /one
+                </a>
+                <a
+                  aria-current={undefined}
+                  href="/"
+                  onClick={[Function]}
+                >
+                  /
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`location correctly parses pathname, search and hash fields 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    <div>
+      location.pathname: [
+      /print-location
+      ]
+    </div>
+    <div>
+      location.search: [
+      ?it=works&with=queries
+      ]
+    </div>
+  </div>
+</div>
+`;
+
+exports[`nested rendering matches multiple nested / down to a child with a path 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Dash 
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        Dash 
+        <div
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
+          tabIndex="-1"
+        >
+          <div>
+            Dash 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`nested rendering renders a child 'index' nested path 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Dash 
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        Reports 
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`nested rendering renders a nested path 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Dash 
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        Reports 
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`nested rendering renders a really nested path 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Dash 
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        Reports 
+        <div
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
+          tabIndex="-1"
+        >
+          <div>
+            Annual Report
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`nested rendering renders at a path with nested paths 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Dash 
+  </div>
+</div>
+`;
+
+exports[`nested rendering yo dawg 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Dash 
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        Dash 
+        <div
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
+          tabIndex="-1"
+        >
+          <div>
+            Dash 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`nested rendering yo dawg again 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Dash 
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        Dash 
+        <div
+          style={
+            Object {
+              "outline": "none",
+            }
+          }
+          tabIndex="-1"
+        >
+          <div>
+            Dash 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`nested routers allows arbitrary Router nesting through context 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Home
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        Chat Home
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`passed props parses dynamic segments and passes to components 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Group: 
+    123
+  </div>
+</div>
+`;
+
+exports[`passed props parses multiple params when nested 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    123
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        123
+         - 
+        456
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`passed props passes the matched URI to the component 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <pre>
+    {
+  "path": "/groups/:groupId/users/:userId",
+  "groupId": "123",
+  "userId": "456",
+  "uri": "/groups/123/users/456",
+  "location": {
+    "pathname": "/groups/123/users/456",
+    "search": "",
+    "state": null,
+    "key": "initial"
+  }
+}
+  </pre>
+</div>
+`;
+
+exports[`passed props router location prop to nested path 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Dash 
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        Reports 
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`passed props shadows params in nested paths 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Group: 
+    burger
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        Group: 
+        milkshake
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`relative navigate prop navigates relative 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    User:
+    123
+  </div>
+</div>
+`;
+
+exports[`relative navigate prop navigates relative 2`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    User:
+    123
+    <div
+      style={
+        Object {
+          "outline": "none",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div>
+        Settings
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`route ranking / 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Root
+  </div>
+</div>
+`;
+
+exports[`route ranking /groups 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Groups
+  </div>
+</div>
+`;
+
+exports[`route ranking /groups/123 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Group Id: 
+    123
+  </div>
+</div>
+`;
+
+exports[`route ranking /groups/123/users 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Users
+  </div>
+</div>
+`;
+
+exports[`route ranking /groups/123/users/456 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    User id: 
+    456
+    , Group Id: 
+    123
+  </div>
+</div>
+`;
+
+exports[`route ranking /groups/123/users/a/bunch/of/junk 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Users Splat: 
+  </div>
+</div>
+`;
+
+exports[`route ranking /groups/123/users/me 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Me!
+  </div>
+</div>
+`;
+
+exports[`route ranking /groups/mine 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    MyGroup
+  </div>
+</div>
+`;
+
+exports[`route ranking /groups/mine/users 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    MyGroupUsers
+  </div>
+</div>
+`;
+
+exports[`route ranking /groups/mine/users/me 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Mine and Me!
+  </div>
+</div>
+`;
+
+exports[`route ranking /one/two/three/four/five 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Fiver 
+    one
+     
+    two
+     
+    three
+     
+    four
+     
+    five
+  </div>
+</div>
+`;
+
+exports[`smoke tests renders at a path 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Dash 
+  </div>
+</div>
+`;
+
+exports[`smoke tests renders the root component at "/" 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Home
+  </div>
+</div>
+`;
+
+exports[`trailing wildcard passes down '*' as the prop name if not specified 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  README.md
+</div>
+`;
+
+exports[`trailing wildcard passes down to Match as unnamed '*' 1`] = `
+<div>
+  i/mean/really/deep
+</div>
+`;
+
+exports[`trailing wildcard passes down to Match as well 1`] = `
+<div>
+  i/mean/really/deep
+</div>
+`;
+
+exports[`trailing wildcard passes down wildcard name to the component as prop 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  README.md
+</div>
+`;
+
+exports[`transitions keeps the stack right on interrupted transitions 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Annual Report
+  </div>
+</div>
+`;
+
+exports[`transitions transitions pages 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Home
+  </div>
+</div>
+`;
+
+exports[`transitions transitions pages 2`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
+>
+  <div>
+    Reports 
+  </div>
+</div>
+`;

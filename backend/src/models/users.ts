@@ -3,10 +3,10 @@ import mongoose from 'mongoose';
 import { IUser } from './interfaces/user';
 
 const userSchema = new mongoose.Schema<IUser>({
+    _id: Number,
     name: String,
     sessionId: String,
-    gitId: String,
-    gitToken: String,
+    _token: String,
 
     starred: [{
         url: String,

@@ -1,11 +1,10 @@
-import { Document } from 'mongoose';
+import { Document, Schema } from 'mongoose';
 
 export interface IUser extends Document {
-
+    _id: Number;
     name: string;
     sessionId: string;
-    gitId: string;
-    gitToken: string;
+    _token: string;
 
     starred?: starred[];
 

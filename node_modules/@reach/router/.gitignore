@@ -1,0 +1,8 @@
+/es
+/node_modules
+/umd
+/index.js
+/lib
+/compat
+npm-debug.log*
+yarn-error.log*

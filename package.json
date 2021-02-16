@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@reach/router": "reach/router"
+  }
+}
