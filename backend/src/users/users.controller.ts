@@ -9,13 +9,10 @@ export class UsersController {
   @Get('/login')
   async login(@Query('code') code: string, @Res() res: Response) {
     const out = await this.usersService.login(code);
-    console.log(out);
     if (out === null) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({'Error': 'Internal Error'});
     }
-    console.log("fodase");
     return res.status(HttpStatus.OK).json(out);
-    
   }
 
 }
