@@ -24,3 +24,5 @@ app.listen(process.env.PORT, () => {
 
 dbConnection.on('error', console.error.bind(console, 'connection error:'));
 dbConnection.once('open', () => console.log('connected to Database:', dbConnection.name));
+
+export default app;
