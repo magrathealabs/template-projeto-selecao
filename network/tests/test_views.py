@@ -29,8 +29,6 @@ class IndexTestCase(TestCase):
         response = self.c.get("")
             
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context['repos']), 4)
-        self.assertEqual(len(response.context['tags']), 3)
     
 class RepoTestCase(TestCase):
 
