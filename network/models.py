@@ -5,9 +5,9 @@ class User(AbstractUser):
     pass
 
 class Repo(models.Model):
-    id = models.CharField(max_length=250, primary_key = True)
-    name = models.CharField(max_length=64)
-    description = models.CharField(max_length=128, null = True)
+    id = models.CharField(max_length=255, primary_key = True)
+    name = models.CharField(max_length=255)
+    description = models.TextField()
     link =  models.CharField(max_length=128)
     user = models.ManyToManyField(User, related_name="repos", blank=False)
 

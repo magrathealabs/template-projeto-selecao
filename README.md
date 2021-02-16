@@ -63,13 +63,3 @@ Projeto para seleção de estágio da Magrathea Labs.
 - -  *especifico para Views. O nome do usuario pode ser mudado em IndexTestCase para certificar que carrega os repositorios favoritados usando force_login*
 
 - python manage.py test network.tests.test_models
-
-
-
-
-
-
-
-
-
-
