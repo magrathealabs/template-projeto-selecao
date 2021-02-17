@@ -21,6 +21,9 @@ export class User {
 
     @Prop()
     details: string;
+
+    @Prop({type: Boolean, default: true})
+    isPrivate: boolean
     
 }
 

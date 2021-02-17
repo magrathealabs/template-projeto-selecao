@@ -15,6 +15,15 @@ export class UsersService {
 
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) { }
 
+  validateUser(user: UserDocument, sessionId: string): boolean {
+    if (user) {
+      if (user?.sessionId == sessionId || !user?.isPrivate) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   async create(createUserDto: CreateUserDto): Promise<User> {
     const createdUser = new this.userModel(createUserDto);
     return createdUser.save();
@@ -46,19 +55,19 @@ export class UsersService {
       const createdUser = await this.create(createUserDto);
 
       if (createdUser) {
-        this.findStarred(createUserDto.name);
+        this.findStarred(createdUser.name, createdUser.sessionId);
         return { sessionId };
       }
     }
     return null;
   }
 
-  async findStarred(name: string) {
-    const user = await this.userModel.findOne({ name: name }).select('details name _token');
-    const gitStarred = await getStarredRepos(user._token, user.name);
-    const userDetails = JSON.parse(user.details);
-
-    if (user) {
+  async findStarred(name: string, sessionId: string) {
+    const user = await this.userModel.findOne({ name: name }).select('details sessionId name');
+    const gitStarred = await getStarredRepos(name);
+    
+    if (this.validateUser(user, sessionId)) {
+      const userDetails = JSON.parse(user.details);
       let hasUpdated = false;
       for (let repo of gitStarred) {
         const repoKey = repo.owner + '/' + repo.id;
@@ -73,7 +82,7 @@ export class UsersService {
         console.log(userDetails);
         user.updateOne({$set: {details: JSON.stringify(userDetails)}}).exec().then(_ => console.log(_));
       }
-    } 
+    }
 
     return gitStarred;
   }

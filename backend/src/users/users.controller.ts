@@ -1,4 +1,4 @@
-import { Controller, Get, Query, HttpException, HttpStatus, Res, Post } from '@nestjs/common';
+import { Controller, Get, Query, HttpStatus, Res, Headers } from '@nestjs/common';
 import { Response } from 'express';
 import { UsersService } from './users.service';
 
@@ -16,8 +16,8 @@ export class UsersController {
   }
 
   @Get('/starred')
-  async findStarred(@Query('user') user) {
-    return this.usersService.findStarred(user);
+  async findStarred(@Headers('Authorization') sessionId: string = "",  @Query('user') user) {
+    return this.usersService.findStarred(user, sessionId);
   }
 
 }

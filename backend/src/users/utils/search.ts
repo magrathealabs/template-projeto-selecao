@@ -9,9 +9,9 @@ export interface userStarred {
     tags: string[];
 };
 
-export async function getStarredRepos(_token: string, name: string): Promise<userStarred[]> {
-    const opts = { headers: { Authorization: `bearer  ${_token}` } };
-    const results = await axios.get(`https://api.github.com/users/${name}/starred`, opts);
+export async function getStarredRepos(name: string): Promise<userStarred[]> {
+    // const opts = { headers: { Authorization: `bearer  ${_token}` } };
+    const results = await axios.get(`https://api.github.com/users/${name}/starred`);
     
     return results.data.map(({ id, owner, name, description }) => { 
         return { 
