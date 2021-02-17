@@ -3,23 +3,26 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import LoginWithGithub from '../services/login';
 import api from '../services/api';
 
-const AuthContext = createContext({ user: {}, signed: false, signIn: {}, signOut: {}, checkLocalStorage: {} });
+const AuthContext = createContext({ user: '', sessionId: '', signed: false, signIn: {}, signOut: {}, checkLocalStorage: {} });
 
-// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
 
 	const [user, setUser] = useState('');
+  const [sessionId, setSessionId] = useState('');
 
 	const signIn = async (code) => {
 		const res = await LoginWithGithub(code);
 		if (res.status === 200) {
-			console.log(res.status)
+      console.log(res.data);
+			let name = res.data['name'];
 			let sessionId = res.data['sessionId'];
-			if (sessionId /* && token */) {
+			if (sessionId && name) {
 				console.log("Successful login");
 				api.defaults.headers.authorization = `Bearer ${sessionId}`;
-				setUser(sessionId);
-				localStorage.setItem('user', sessionId);
+				setUser(name);
+        setSessionId(sessionId);
+				localStorage.setItem('user', name);
+        localStorage.setItem('sessionId', sessionId);
 			} else return false;
 		} else return false;
 			
@@ -27,19 +30,26 @@ export const AuthProvider = ({ children }) => {
 	}
 
   const signOut = () => {
-    setUser({}); 
+    setUser('');
+    setSessionId(''); 
     localStorage.clear();
     api.defaults.headers.authorization = '';
   };
 
   const checkLocalStorage = () => {
+    console.log('checkLocalStorage');
     const checkUser = localStorage.getItem('user');
-    
-    if (!checkUser) return setUser({});
-    
+    const checkSession = localStorage.getItem('sessionId');
+
+    if (!checkUser) setUser('');
+    if (!checkSession) return setSessionId('');
+    console.log('check', checkUser, checkSession);
     setUser(checkUser);
+    setSessionId(checkSession);
+
+    api.defaults.headers.authorization = `Bearer ${checkSession}`;
     
-    return Boolean(checkUser);
+    return Boolean(checkSession);
   };
 
   useEffect(() => {
@@ -47,7 +57,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
   
   return (
-    <AuthContext.Provider value={{ user, signed: Object.keys(user).length !== 0, signIn, signOut, checkLocalStorage }}>
+    <AuthContext.Provider value={{ user, sessionId, signed: (user !== '' && sessionId !== ''), signIn, signOut, checkLocalStorage }}>
       {children}
     </AuthContext.Provider>
   );

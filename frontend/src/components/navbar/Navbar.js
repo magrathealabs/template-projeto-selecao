@@ -37,9 +37,12 @@ export default (props) => {
 
     function handleSearch(e) {
         e.preventDefault();
-        api.get('/users/starred?user=' + search, useAuth).then(res => {
-            // console.log(res.data);
-            props.updater(res.data);
+        api.get('/users/starred?user=' + search).then(res => {
+            let data = {
+                cards: res.data,
+                user: search
+            };
+            props.setRepos(data);
         });
     }
 

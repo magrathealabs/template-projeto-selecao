@@ -14,10 +14,8 @@ export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) { }
 
   validateUser(user: UserDocument, sessionId: string): boolean {
-    if (user) {
-      if (sessionId) {
-        sessionId = sessionId.split(" ")[1];
-      }
+    if (user && sessionId) {
+      sessionId = sessionId.split(" ")[1];
       if (user?.sessionId == sessionId || !user?.isPrivate) {
         return true;
       }
@@ -48,17 +46,20 @@ export class UsersService {
     const user = await this.userModel.findOne({ _id: userData.id }).exec();
 
     if (user) {
-      user.update({ $set: { sessionId: sessionId } }).exec();
+      user.updateOne({ $set: { sessionId: sessionId } }).exec();
       user.save();
-      return { sessionId: sessionId };
+      
+      return { name: user.name, sessionId: sessionId };
     } else {
+
       const createUserDto = new CreateUserDto(userData.id, userData.name, sessionId, accessToken.toString());
       const createdUser = await this.create(createUserDto);
 
       if (createdUser) {
         this.findStarred(createdUser.name, createdUser.sessionId);
-        return { sessionId };
+        return { name: createdUser.name, sessionId };
       }
+
     }
     return null;
   }
@@ -74,7 +75,7 @@ export class UsersService {
       for (let repo of gitStarred) {
         const repoKey = repo.owner + '/' + repo.id;
         if (!(repoKey in userDetails)) {
-          userDetails[repoKey] = [''];
+          userDetails[repoKey] = [{variant: '', text: ''}];
           hasUpdated = true;
           console.log(userDetails[repoKey]);
         }
@@ -85,7 +86,26 @@ export class UsersService {
         user.updateOne({$set: {details: JSON.stringify(userDetails)}}).exec().then(_ => console.log(_));
       }
     }
-
+    console.log(gitStarred);
     return gitStarred;
+  }
+
+  async addTag(name: string, key: string, tag: string, sessionId: string) {
+    const user = await this.userModel.findOne({name: name}).exec();
+    if (!this.validateUser(user, sessionId)) {
+      throw new Error('You are not authorized to update');
+    }
+
+    const userDetails = JSON.parse(user.details);
+    if (!(key in userDetails)) {
+      userDetails[key] = [{variant: '', text: tag}];
+    } else {
+      if (userDetails[key].find(f => f.text === tag)) {
+        throw new Error('Can\'t add ' + tag);
+      }
+      userDetails[key].push({variant: '', text: tag});
+    }
+    
+    return user.updateOne({$set: {details: JSON.stringify(userDetails)}}).exec()
   }
 }

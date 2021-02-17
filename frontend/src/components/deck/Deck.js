@@ -4,9 +4,9 @@ import Card from '../card/Card';
 import './Deck.css';
 
 export default props => {
+
     return (
         <CardDeck className="Card-folder">
-            {}
             {props.repos.length ? props.repos.map((repo, i) => {
                 return (
                     <Card
@@ -17,11 +17,11 @@ export default props => {
                     readme={repo.description}
                     tags={repo.tags || [""]}
                     url={repo.url}
+                    user={props.user}
                     />
                 )
             }) : (<Card
                 key={0}
-                // url={window.location.href}
                 repository={"Oops"}
                 author={"Not found"}
                 readme={"This user has not starred any repositories :/"}

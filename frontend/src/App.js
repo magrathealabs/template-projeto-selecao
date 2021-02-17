@@ -5,108 +5,13 @@ import './App.css';
 
 function App(props) {
 
-    // const [tags, setTags] = useState(
-    //     [
-    //         {
-    //             variant:'secondary', 
-    //             text: 'Javascript'
-    //         },
-    //         {
-    //             variant:'success',
-    //             text: 'C++'
-    //         },
-    //         {
-    //             variant:'secondary',
-    //             text: "Ana"
-    //         },
-    //         {
-    //             variant:'light',
-    //             text: "ovo"
-    //         },
-    //         {
-    //             variant:'light',
-    //             text: "ovo"
-    //         },
-    //         {
-    //             variant:'light',
-    //             text: "ovo"
-    //         },
-    //         {
-    //             variant:'light',
-    //             text: "ovo"
-    //         },
-    //         {
-    //             variant:'light',
-    //             text: "ovo"
-    //         },
-    //         {
-    //             variant:'light',
-    //             text: "Voce destruiu o meu ovo"
-    //         },
-    //         {
-    //             variant:'light',
-    //             text: "ovo"
-    //         },
-    //         {
-    //             variant:'light',
-    //             text: "ovo"
-    //         },
-
-    //         {
-    //             variant:'light',
-    //             text: "ovo"
-    //         },
-    //         {
-    //             variant:'light',
-    //             text: "ovo"
-    //         },
-    //         {
-    //             variant:'light',
-    //             text: "ovo"
-    //         },
-    //         {
-    //             variant:'light',
-    //             text: "ovo"
-    //         },
-
-    //     ]
-    // );
-
-    // const [repos, setRepos] = useState([
-    //     {
-    //         repository: 'Repositorio 1',
-    //         author: 'Autor 1',
-    //         readme: 'Um pequeno texto para verificar se a Tag esta funcionando...',
-    //         tags: tags.slice(Math.floor(Math.random()*7), Math.floor(7+Math.random()*7))
-    //     },
-    //     {
-    //         repository: 'Repositorio 1',
-    //         author: 'Autor 1',
-    //         readme: 'Um pequeno texto para verificar se a Tag esta funcionando...',
-    //         tags: tags.slice(Math.floor(Math.random()*7), Math.floor(7+Math.random()*7))
-    //     },
-    //     {
-    //         repository: 'Repositorio 1',
-    //         author: 'Autor 1',
-    //         readme: 'Um pequeno texto para verificar se a Tag esta funcionando...',
-    //         tags: tags.slice(Math.floor(Math.random()*7), Math.floor(7+Math.random()*7))
-    //     },
-    //     {
-    //         repository: 'Repositorio 1',
-    //         author: 'Autor 1',
-    //         readme: 'Um pequeno texto para verificar se a Tag esta funcionando...',
-    //         tags: tags.slice(Math.floor(Math.random()*7), Math.floor(7+Math.random()*7))
-    //     }
-    //     ]
-    // );
-
-    const [repos, setRepos] = useState([])
+    const [repos, setRepos] = useState({cards: [], user: undefined});
 
     return (
         <div className="App">
-            <Navbar updater={setRepos}/>
+            <Navbar setRepos={setRepos}/>
             <div className="Folder-folder">
-                <CardDeck repos={repos}/>
+                <CardDeck repos={repos.cards} user={repos.user} />
             </div>
         </div>
     );

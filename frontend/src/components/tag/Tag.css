@@ -1,3 +1,20 @@
 .Tag {
     margin-right: 5px;
 }
+
+.NewTag {
+    margin-top: 10px;
+    visibility: hidden;
+    display: block;
+}
+
+input {
+    background-color: transparent;
+    outline: transparent;
+    border: unset;
+    text-align: center;
+}
+
+::placeholder {
+    color:whitesmoke;
+}

@@ -6,8 +6,11 @@
     max-width: 300px !important;
     margin-bottom: 20px !important;   
     display: flex;
-    
 } 
+
+.Flex-card:hover .NewTag {
+    visibility: visible;
+}
 
 .Flex-card p {
     font-weight: 900;
