@@ -6,7 +6,7 @@ import './Card.css';
 export default (props) => {
     return (
     <>
-        <Card className="Flex-card">
+        <Card className="Flex-card" onClick={props.url ? () => window.open(props.url, "_blank") : () => {}}>
             <Card.Body>
                 <Card.Title>{props.repository}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{props.author}</Card.Subtitle>
@@ -15,7 +15,6 @@ export default (props) => {
                 </Card.Text>
                 <div>
                     <Tag tags={props.tags}/>
-                    {/* {props.tags.map((tag, i) => renderTag(tag, i))} */}
                 </div>
             </Card.Body>
         </Card>

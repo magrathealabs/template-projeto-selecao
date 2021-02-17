@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Model, Schema } from 'mongoose';
-import { MongoError } from 'mongodb';
+import { Model } from 'mongoose';
 import { User, UserDocument } from './schemas/users.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -8,7 +7,6 @@ import { getAccessToken, getUserData } from './utils/login';
 import { getStarredRepos } from './utils/search';
 import { randomBytes } from 'crypto';
 import { AxiosResponse } from 'axios';
-import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -17,6 +15,9 @@ export class UsersService {
 
   validateUser(user: UserDocument, sessionId: string): boolean {
     if (user) {
+      if (sessionId) {
+        sessionId = sessionId.split(" ")[1];
+      }
       if (user?.sessionId == sessionId || !user?.isPrivate) {
         return true;
       }
@@ -65,8 +66,9 @@ export class UsersService {
   async findStarred(name: string, sessionId: string) {
     const user = await this.userModel.findOne({ name: name }).select('details sessionId name');
     const gitStarred = await getStarredRepos(name);
+    const isValidated = this.validateUser(user, sessionId);
     
-    if (this.validateUser(user, sessionId)) {
+    if (isValidated) {
       const userDetails = JSON.parse(user.details);
       let hasUpdated = false;
       for (let repo of gitStarred) {

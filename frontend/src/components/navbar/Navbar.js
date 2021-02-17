@@ -38,7 +38,8 @@ export default (props) => {
     function handleSearch(e) {
         e.preventDefault();
         api.get('/users/starred?user=' + search, useAuth).then(res => {
-            console.log(res);
+            // console.log(res.data);
+            props.updater(res.data);
         });
     }
 

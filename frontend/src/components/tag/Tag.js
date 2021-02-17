@@ -11,7 +11,7 @@ export default props => {
                 className="Tag"
                 key={i}
                 pill
-                variant={tag.variant}
+                variant={tag.variant || "light"}
                 >
                 {tag.text}
                 </Badge>
