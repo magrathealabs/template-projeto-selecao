@@ -100,9 +100,11 @@ function App(props) {
         ]
     );
 
+    // const [repos, setRepos] = useState([])
+
     return (
         <div className="App">
-            <Navbar login={props.token} />
+            <Navbar updater={setRepos}/>
             <div className="Folder-folder">
                 <CardDeck repos={repos}/>
             </div>
