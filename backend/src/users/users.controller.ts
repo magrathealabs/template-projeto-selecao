@@ -1,4 +1,4 @@
-import { Controller, Get, Query, HttpException, HttpStatus, Res } from '@nestjs/common';
+import { Controller, Get, Query, HttpException, HttpStatus, Res, Post } from '@nestjs/common';
 import { Response } from 'express';
 import { UsersService } from './users.service';
 
@@ -13,6 +13,11 @@ export class UsersController {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({'Error': 'Internal Error'});
     }
     return res.status(HttpStatus.OK).json(out);
+  }
+
+  @Get('/starred')
+  async findStarred(@Query('user') user) {
+    return this.usersService.findStarred(user);
   }
 
 }

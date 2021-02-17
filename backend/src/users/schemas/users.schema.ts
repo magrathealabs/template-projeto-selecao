@@ -1,13 +1,15 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
+import { Document, Schema as mSchema } from 'mongoose';
+import { getStarredRepos } from '../utils/search';
+// import  from 'mongoose';
 
 export type UserDocument = User & Document;
 
-@Schema()
+@Schema({minimize: false})
 export class User {
     @Prop()
     _id: Number;
-    
+
     @Prop()
     name: string;
 
@@ -18,13 +20,8 @@ export class User {
     _token: string;
 
     @Prop()
-    starred?: starred[];
+    details: string;
+    
 }
-
-interface starred {
-    url: string;
-    tags: string[];
-}
-// declare var Starred: starred;
 
 export const UserSchema = SchemaFactory.createForClass(User);
