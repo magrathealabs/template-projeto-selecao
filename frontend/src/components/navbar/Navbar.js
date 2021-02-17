@@ -1,5 +1,5 @@
 import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from './github';
 import { useAuth } from '../../context/authContext';
 import api from '../../services/api';
@@ -8,6 +8,8 @@ export default (props) => {
     const clientId = '89edf55f75ba76e63567';
 
     const { signIn, signed, signOut, user } = useAuth();
+
+    const [search, setSearch] = useState("");
 
     // Maior gambis da vida <3
     if (window.location.href.includes("?code=")) {
@@ -33,14 +35,11 @@ export default (props) => {
         return signed;
     }
 
-    function handleSearch() {
-        api.post('/users/repos').then(res => {
-            if (res.status === 200) {
-                for(let data of res.data) {
-                    
-                }
-            }
-        })
+    function handleSearch(e) {
+        e.preventDefault();
+        api.get('/users/starred?user=' + search, useAuth).then(res => {
+            console.log(res);
+        });
     }
 
     return (
@@ -55,11 +54,12 @@ export default (props) => {
                     <InputGroup.Text id="basic-addon1">/</InputGroup.Text>
                 </InputGroup.Prepend>
                 <FormControl
+                    onChange={e => setSearch(e.target.value)}
                     placeholder="Username"
                     aria-label="Username"
                     aria-describedby="basic-addon1"
                 />
-                <Button type="search" onClick={handleSearch} style={{ "borderRadius": "0px 5px 5px 0px"}}>Search Repos</Button>
+                <Button type="search" onClick={e => handleSearch(e)} style={{ "borderRadius": "0px 5px 5px 0px"}}>Search Repos</Button>
                 </InputGroup>
             </Form>
             <Form inline>

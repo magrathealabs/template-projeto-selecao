@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 import LoginWithGithub from '../services/login';
+import api from '../services/api';
 
 const AuthContext = createContext({ user: {}, signed: false, signIn: {}, signOut: {}, checkLocalStorage: {} });
 
@@ -16,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 			let sessionId = res.data['sessionId'];
 			if (sessionId /* && token */) {
 				console.log("Successful login");
-				// api.defaults.headers.authorization = `Bearer ${token}`;
+				api.defaults.headers.authorization = `Bearer ${sessionId}`;
 				setUser(sessionId);
 				localStorage.setItem('user', sessionId);
 			} else return false;
@@ -28,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   const signOut = () => {
     setUser({}); 
     localStorage.clear();
-    // api.defaults.headers.authorization = '';
+    api.defaults.headers.authorization = '';
   };
 
   const checkLocalStorage = () => {
