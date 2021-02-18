@@ -7,11 +7,12 @@ describe('UsersService', () => {
   let service: UsersService;
 
   beforeEach(async () => {
+
     class mockUserModel {
       constructor() {}
 
       public static data;
-      
+
       static save() {
         return this.data;
       }
@@ -36,7 +37,5 @@ describe('UsersService', () => {
   });
 
   it('should grrr', () => {
-    const user = 
-    service.validateUser()
   });
 });
