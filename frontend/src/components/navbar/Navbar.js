@@ -51,7 +51,7 @@ export default (props) => {
     }
 
     function handlePrivacy() {
-        
+
         api.post('/users/tag/privacy')
             .then(res => {
                 if (res.status == 200 || res.status == 201) {
