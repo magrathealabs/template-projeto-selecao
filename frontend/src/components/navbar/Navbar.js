@@ -1,11 +1,12 @@
 import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from './github';
 import { useAuth } from '../../context/authContext';
 import api from '../../services/api';
 import Switch from 'react-switch';
 
 export default (props) => {
+    // deveria ser variavel de ambiente
     const clientId = '89edf55f75ba76e63567';
 
     const { signIn, signed, signOut, user } = useAuth();
@@ -13,6 +14,20 @@ export default (props) => {
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState("");
     const [isPrivate, setIsPrivate] = useState(true);
+
+    useEffect(() => {
+        if (signed) {
+            api.get('/users/tag/privacy').then(res => setIsPrivate(res.data));
+            handleSearch({
+                params: {
+                    user,
+                    filter
+                }
+            });
+
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [signed]);
 
     // Maior gambis da vida <3
     if (window.location.href.includes("?code=")) {
@@ -33,9 +48,8 @@ export default (props) => {
         }
     }
 
-    function handleSearch(e) {
-        e.preventDefault();
-        const data = {
+    function handleSearch(data = null) {
+        data = data || {
             params: {
                 user: search,
                 filter: filter
@@ -54,7 +68,7 @@ export default (props) => {
 
         api.post('/users/tag/privacy')
             .then(res => {
-                if (res.status == 200 || res.status == 201) {
+                if (res.status === 200 || res.status === 201) {
                     setIsPrivate(res.data);
                 }
             })
@@ -87,7 +101,7 @@ export default (props) => {
                             aria-label="Username"
                             aria-describedby="basic-addon1"
                         />
-                        <Button type="search" onClick={e => handleSearch(e)} style={{ "borderRadius": "0px 5px 5px 0px" }}>Search repos!</Button>
+                        <Button type="search" onClick={e => { e.preventDefault(); handleSearch() }} style={{ "borderRadius": "0px 5px 5px 0px" }}>Search repos!</Button>
                     </InputGroup>
                 </Form>
                 <Form inline>

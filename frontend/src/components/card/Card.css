@@ -1,12 +1,12 @@
 .Flex-card {
     flex: 1;
     flex-wrap: wrap;
-    background: #ddf !important; 
+    background: rgb(255, 255, 255) !important; 
     min-width: 250px !important;
     max-width: 300px !important;
     margin-bottom: 20px !important;   
     display: flex;
-} 
+}
 
 .Flex-card:hover .NewTag {
     visibility: visible;

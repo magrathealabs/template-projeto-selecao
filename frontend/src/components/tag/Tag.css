@@ -2,6 +2,11 @@
     margin-right: 5px;
 }
 
+.badge-input {
+    background-color: rgb(124, 211, 92);
+    color: rgb(124, 211, 92);
+}
+
 .NewTag {
     margin-top: 10px;
     visibility: hidden;

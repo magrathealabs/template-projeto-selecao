@@ -52,7 +52,7 @@ export default props => {
                 className="Tag"
                 key={i}
                 pill
-                variant={tag.variant || "light"}
+                variant={tag.variant || "dark"}
                 >
                 {tag.text}
                 </Badge>
@@ -62,7 +62,7 @@ export default props => {
     </div>
     {props.user === user && 
         <div>
-            <Badge className="NewTag" key="new" pill variant="success">
+            <Badge className="NewTag" key="new" pill variant="input">
                 <input 
                 type="text" 
                 placeholder="New Tag" 

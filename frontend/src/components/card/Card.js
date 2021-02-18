@@ -7,7 +7,7 @@ export default (props) => {
 
     return (
     <>
-        <Card className="Flex-card" >
+        <Card className="Flex-card"  >
             <Card.Body onClick={props.url ? () => window.open(props.url, "_blank") : () => {}} >
                 <Card.Title>{props.repository}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{props.author}</Card.Subtitle>

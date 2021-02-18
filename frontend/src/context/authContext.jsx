@@ -28,8 +28,6 @@ export const AuthProvider = ({ children }) => {
         return res.data['isPrivate'];
       } else return false;
     } else return false;
-
-    return true;
   }
 
   const signOut = () => {
@@ -40,13 +38,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const checkLocalStorage = () => {
-    console.log('checkLocalStorage');
+
     const checkUser = localStorage.getItem('user');
     const checkSession = localStorage.getItem('sessionId');
 
     if (!checkUser) setUser('');
     if (!checkSession) return setSessionId('');
-    console.log('check', checkUser, checkSession);
+    
     setUser(checkUser);
     setSessionId(checkSession);
 
