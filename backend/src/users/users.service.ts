@@ -25,7 +25,7 @@ export class UsersService {
 
   isPublic(user: UserDocument): boolean {
     if (user) {
-      return !user.isPrivate;
+      return user.isPrivate !== false;
     }
     return false;
   }
@@ -40,15 +40,15 @@ export class UsersService {
 
     const accessToken = await getAccessToken(code)
       .then((res: AxiosResponse<any>): string => res.data['access_token'])
-      .catch((err: Error): boolean => { console.log('Failed to retrieve user token', err.message); return false; });
+      .catch((err: Error) => { throw new Error('Failed to retrieve access token') });
 
-    if (!accessToken) return null;
+    if (!accessToken) throw new Error('Failed to retrieve access token');
 
     const userData = await getUserData(accessToken.toString())
       .then((res: AxiosResponse<any>): any => { return { id: res.data.id, name: res.data.login } })
-      .catch((err: Error): any => { console.log('Failed to retrieve user data', err.message); return null });
+      .catch((err: Error) => { throw new Error('Failed to retrive user data') });
 
-    if (userData == null) return null;
+    if (!userData) throw new Error('Failed to retrive user data');
 
     const user = await this.userModel.findOne({ _id: userData.id }).exec();
 
@@ -71,7 +71,7 @@ export class UsersService {
   }
 
   async findStarred(name: string, filter: string, sessionId: string): Promise<userStarred[]> {
-    const user = await this.userModel.findOne({ name: name }).select('details sessionId name');
+    const user = await this.userModel.findOne({ name: name }).select('details sessionId name isPrivate');
     let gitStarred = await getStarredRepos(name);
     const isValidated = this.validateUser(user, sessionId);
 
