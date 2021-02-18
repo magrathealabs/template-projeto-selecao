@@ -34,7 +34,6 @@ export default (props) => {
         localStorage.setItem('code', window.location.href.split("?code=")[1]);
         window.location.href = '/';
     } else if (localStorage.getItem('code')) {
-        console.log("Loggin in");
         const code = localStorage.getItem('code');
         localStorage.removeItem('code');
         signIn(code);
