@@ -25,7 +25,7 @@ export default props => {
                 repository={"Oops"}
                 author={"Not found"}
                 readme={"This user has not starred any repositories :/"}
-                tags={[{text: 'No'}, {text: 'Stars'}, {text: ':('}, {text:'*'}]}
+                tags={[{text: 'No'}, {text: 'Stars'}, {text:'*'}, {text: ':('}]}
             />)} 
         </CardDeck>
     )

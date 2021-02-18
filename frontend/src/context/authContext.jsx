@@ -7,31 +7,34 @@ const AuthContext = createContext({ user: '', sessionId: '', signed: false, sign
 
 export const AuthProvider = ({ children }) => {
 
-	const [user, setUser] = useState('');
+  const [user, setUser] = useState('');
   const [sessionId, setSessionId] = useState('');
 
-	const signIn = async (code) => {
-		const res = await LoginWithGithub(code);
-		if (res.status === 200) {
-      console.log(res.data);
-			let name = res.data['name'];
-			let sessionId = res.data['sessionId'];
-			if (sessionId && name) {
-				console.log("Successful login");
-				api.defaults.headers.authorization = `Bearer ${sessionId}`;
-				setUser(name);
+  const signIn = async (code) => {
+    const res = await LoginWithGithub(code);
+
+    if (res.status === 200) {
+      let name = res.data['name'];
+      let sessionId = res.data['sessionId'];
+
+      if (sessionId && name) {
+        api.defaults.headers.authorization = `Bearer ${sessionId}`;
+        setUser(name);
         setSessionId(sessionId);
-				localStorage.setItem('user', name);
+
+        localStorage.setItem('user', name);
         localStorage.setItem('sessionId', sessionId);
-			} else return false;
-		} else return false;
-			
-		return true;
-	}
+        
+        return res.data['isPrivate'];
+      } else return false;
+    } else return false;
+
+    return true;
+  }
 
   const signOut = () => {
     setUser('');
-    setSessionId(''); 
+    setSessionId('');
     localStorage.clear();
     api.defaults.headers.authorization = '';
   };
@@ -48,14 +51,14 @@ export const AuthProvider = ({ children }) => {
     setSessionId(checkSession);
 
     api.defaults.headers.authorization = `Bearer ${checkSession}`;
-    
+
     return Boolean(checkSession);
   };
 
   useEffect(() => {
     checkLocalStorage();
   }, []);
-  
+
   return (
     <AuthContext.Provider value={{ user, sessionId, signed: (user !== '' && sessionId !== ''), signIn, signOut, checkLocalStorage }}>
       {children}

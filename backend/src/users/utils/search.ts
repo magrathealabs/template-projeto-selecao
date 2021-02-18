@@ -6,7 +6,10 @@ export interface userStarred {
     name: string;
     description: string;
     url: string;
-    tags: string[];
+    tags: [{
+        variant: string,
+        text: string
+    }]
 };
 
 export async function getStarredRepos(name: string): Promise<userStarred[]> {

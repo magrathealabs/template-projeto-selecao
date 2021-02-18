@@ -6,7 +6,7 @@ import api from '../../services/api';
 
 export default props => {
 
-    const { signIn, signed, signOut, user, sessionId } = useAuth();
+    const { signIn, signed, user } = useAuth();
     const [newTag, setNewTag] = useState('');
     const [showError, setShowError] = useState(false);
 
@@ -20,7 +20,11 @@ export default props => {
     const handleSubmit = async (event) => {
         if (!signed) await signIn();
         
-        if (event == 'Enter') {
+        if (event === 'Enter') {
+            if (props.tags.find(f => f.text === newTag)) {
+                setShowError(true);
+                setTimeout(() => setShowError(false), 2000);
+            }
             const payload = {
                 name: user,
                 key: props.cardKey,
@@ -34,7 +38,7 @@ export default props => {
             })
             .catch((e) => {
                 setShowError(true);
-                setTimeout(() => setShowError(false), 5000);
+                setTimeout(() => setShowError(false), 2000);
             });
         }
     }
@@ -56,7 +60,7 @@ export default props => {
         })
     }
     </div>
-    {props.user != user ? <div></div> : 
+    {props.user === user && 
         <div>
             <Badge className="NewTag" key="new" pill variant="success">
                 <input 
@@ -70,19 +74,14 @@ export default props => {
             </Badge>
         </div>
     }
-    <div style={{
-        position: 'absolute',
-        right: 0,
-        bottom: 0
-    }}>
         <Toast show={showError} animation={false}>
             <Toast.Header>
             <strong className="mr-auto">Bootstrap</strong>
-            <small>11 mins ago</small>
+            <small>OMG!!</small>
             </Toast.Header>
-            <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+            <Toast.Body>Woohoo! We don't wanna repeat ourselves, do we?</Toast.Body>
         </Toast>
-    </div>
+
     </> 
     )
 }

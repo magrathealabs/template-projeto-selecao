@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Tag from '../tag/Tag'
 import './Card.css';
 
 export default (props) => {
-
-    const [hidden, setHidden] = useState(true);
 
     return (
     <>
@@ -18,7 +16,7 @@ export default (props) => {
                 </Card.Text>
             </Card.Body>
             <div className="tags">
-                <Tag tags={props.tags} user={props.user} cardKey={props.author + '/' + props.id} hidden={hidden} />
+                <Tag tags={props.tags} user={props.user} cardKey={props.author + '/' + props.id} />
             </div>
         </Card>
     </>
