@@ -9,7 +9,7 @@ let configService = new ConfigService();
 
 @Module({
   imports: [UsersModule,
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.development', '.env.production'] }),
     MongooseModule.forRoot(configService.get('DB_URL')),
     ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'web')})
   ]

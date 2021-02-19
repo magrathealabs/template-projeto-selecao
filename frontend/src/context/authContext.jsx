@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 import LoginWithGithub from '../services/login';
-import api from '../services/api';
+import { api } from '../services/api';
 
 const AuthContext = createContext({ user: '', sessionId: '', signed: false, signIn: {}, signOut: {}, checkLocalStorage: {} });
 

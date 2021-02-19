@@ -15,7 +15,7 @@ COPY /frontend/*.json ./
 COPY /frontend/*.lock ./
 RUN yarn
 
-COPY .env .
+COPY .env.production .
 COPY /frontend .
 RUN yarn build
 

@@ -2,8 +2,7 @@ import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Image from './github';
 import { useAuth } from '../../context/authContext';
-import { config } from 'dotenv';
-import api from '../../services/api';
+import { api, redirect_uri, client_id, port } from '../../services/api';
 import Switch from 'react-switch';
 
 export default (props) => {
@@ -23,6 +22,7 @@ export default (props) => {
                     filter
                 }
             });
+            setSearch(user);
 
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,11 +40,7 @@ export default (props) => {
 
     function handleLogin() {
         if (!signed) {
-            const client_id = process.env.REACT_APP_CLIENT_ID;
-            const redirect_uri = process.env.REACT_APP_HOME_URL || "gittag.herokuapp.com";
-            const port = process.env.REACT_APP_PORT !== undefined ? `:${process.env.REACT_APP_PORT}` : "";
-            
-            window.location.href = `https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=http://${redirect_uri}${port}/`;
+            window.location.href = `https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=https://${redirect_uri}${port}/`;
         }
         else {
             signOut();

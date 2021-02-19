@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Badge, Toast } from 'react-bootstrap';
 import './Tag.css';
 import { useAuth } from '../../context/authContext';
-import api from '../../services/api';
+import { api } from '../../services/api';
 
 export default props => {
 
@@ -60,6 +60,7 @@ export default props => {
         })
     }
     </div>
+    {console.log(props.user, user)}
     {props.user === user && 
         <div>
             <Badge className="NewTag" key="new" pill variant="input">
