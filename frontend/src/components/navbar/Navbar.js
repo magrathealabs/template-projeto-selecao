@@ -40,7 +40,7 @@ export default (props) => {
 
     function handleLogin() {
         if (!signed)
-            window.location.href = `https://github.com/login/oauth/authorize?scope=user&client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=http://${process.env.REACT_APP_HOME_URL}:${process.env.REACT_APP_PORT}/`;
+            window.location.href = `https://github.com/login/oauth/authorize?scope=user&client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=http://${process.env.REACT_APP_HOME_URL}:${process.env.PORT}/`;
         else {
             signOut();
         }

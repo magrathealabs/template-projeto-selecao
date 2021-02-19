@@ -31,6 +31,6 @@ RUN yarn
 COPY --from=back /back/dist ./dist
 COPY --from=front /front/build ./web
 
-EXPOSE 8080
+EXPOSE 80
 
 CMD ["node", "dist/main"]
