@@ -1,8 +1,6 @@
 FROM node:alpine as back
 WORKDIR /back
 
-RUN echo ${REACT_APP_HOME_URL}
-
 COPY /backend/*.json ./
 COPY /backend/*.lock ./
 RUN yarn
@@ -17,6 +15,7 @@ COPY /frontend/*.json ./
 COPY /frontend/*.lock ./
 RUN yarn
 
+COPY .env .
 COPY /frontend .
 RUN yarn build
 
