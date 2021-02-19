@@ -31,6 +31,6 @@ RUN yarn
 COPY --from=back /back/dist ./dist
 COPY --from=front /front/build ./web
 
-EXPOSE 80
+EXPOSE $PORT
 
 CMD ["node", "dist/main"]
