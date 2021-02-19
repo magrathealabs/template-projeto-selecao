@@ -5,7 +5,6 @@ COPY /backend/*.json ./
 COPY /backend/*.lock ./
 RUN yarn
 
-COPY .env .
 COPY /backend/src .
 RUN yarn build
 
@@ -16,14 +15,12 @@ COPY /frontend/*.json ./
 COPY /frontend/*.lock ./
 RUN yarn
 
-COPY .env .
 COPY /frontend .
 RUN yarn build
 
 FROM node:alpine
 WORKDIR /app
 
-COPY .env .
 COPY /backend/*.json ./
 COPY /backend/*.lock ./
 RUN yarn
