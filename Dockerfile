@@ -1,26 +1,36 @@
-# Build js
-FROM node:alpine AS builder
+FROM node:alpine as back
+WORKDIR /back
 
-ADD . /app
-ADD .env /app/backend
-ADD .env /app/frontend
-
-WORKDIR /app/frontend
+COPY /backend/*.json .
+COPY /backend/*.lock .
 RUN yarn
+
+COPY .env .
+COPY /backend/src .
 RUN yarn build
 
-WORKDIR /app/backend
-RUN yarn 
+FROM node:alpine as front
+WORKDIR /front
+
+COPY /frontend/*.json .
+COPY /frontend/*.lock .
+RUN yarn
+
+COPY .env .
+COPY /frontend .
 RUN yarn build
 
-# container
-FROM alpine:latest
+FROM node:alpine
+WORKDIR /app
 
-RUN apk --no-cache add ca-certificates
+COPY .env .
+COPY /backend/*.json .
+COPY /backend/*.lock .
+RUN yarn
 
-COPY --from=builder /app/backend/dist ./
-COPY --from=builder /app/frontend/build ./web
+COPY --from=back /back/dist ./dist
+COPY --from=front /front/build ./web
 
 EXPOSE 8080
 
-CMD ["nest", "start"]
+CMD ["node", "dist/main"]

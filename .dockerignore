@@ -1,0 +1,7 @@
+node_modules
+test
+*.md
+.prettierrc
+.eslintrc.js
+build
+dist
