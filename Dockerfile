@@ -1,6 +1,8 @@
 FROM node:alpine as back
 WORKDIR /back
 
+RUN ["echo", "PORT ", "$PORT"]
+
 COPY /backend/*.json ./
 COPY /backend/*.lock ./
 RUN yarn
