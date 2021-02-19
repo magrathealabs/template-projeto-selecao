@@ -1,7 +1,7 @@
 FROM node:alpine as back
 WORKDIR /back
 
-RUN echo ${PORT}
+RUN echo ${REACT_APP_HOME_URL}
 
 COPY /backend/*.json ./
 COPY /backend/*.lock ./
