@@ -1,7 +1,7 @@
 FROM node:alpine as back
 WORKDIR /back
 
-RUN ["echo", "PORT ", "$PORT"]
+RUN echo ${PORT}
 
 COPY /backend/*.json ./
 COPY /backend/*.lock ./
