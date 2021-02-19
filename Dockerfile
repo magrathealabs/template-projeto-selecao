@@ -21,6 +21,6 @@ RUN apk --no-cache add ca-certificates
 COPY --from=builder /app/backend/dist ./
 COPY --from=builder /app/frontend/build ./web
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["nest", "start"]
