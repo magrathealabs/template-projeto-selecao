@@ -1,8 +1,8 @@
 FROM node:alpine as back
 WORKDIR /back
 
-COPY /backend/*.json .
-COPY /backend/*.lock .
+COPY /backend/*.json ./
+COPY /backend/*.lock ./
 RUN yarn
 
 COPY .env .
