@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router } from '@reach/router';
 import './index.css';
 import App from './App';
-import Login from './Login';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AuthProvider } from './context/authContext';
@@ -11,13 +9,7 @@ import { AuthProvider } from './context/authContext';
 
 ReactDOM.render(
     <AuthProvider>
-        <React.StrictMode>
-            <Router>
-                <App path="/" />
-                <App path="/home" />
-                <Login path="/login" />
-            </Router>
-        </React.StrictMode>
+        <App />
     </AuthProvider>,
     
     document.getElementById('root')

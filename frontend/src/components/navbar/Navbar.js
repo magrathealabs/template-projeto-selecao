@@ -2,13 +2,12 @@ import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Image from './github';
 import { useAuth } from '../../context/authContext';
+import { config } from 'dotenv';
 import api from '../../services/api';
 import Switch from 'react-switch';
 
 export default (props) => {
-    // deveria ser variavel de ambiente
-    const clientId = '89edf55f75ba76e63567';
-
+    
     const { signIn, signed, signOut, user } = useAuth();
 
     const [search, setSearch] = useState("");
@@ -41,7 +40,7 @@ export default (props) => {
 
     function handleLogin() {
         if (!signed)
-            window.location.href = `https://github.com/login/oauth/authorize?scope=user&client_id=${clientId}&redirect_uri=http://127.0.0.1:3000/`;
+            window.location.href = `https://github.com/login/oauth/authorize?scope=user&client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=http://${process.env.REACT_APP_HOME_URL}:${process.env.REACT_APP_PORT}/`;
         else {
             signOut();
         }

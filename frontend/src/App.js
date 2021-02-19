@@ -3,7 +3,7 @@ import Navbar from './components/navbar/Navbar';
 import CardDeck from './components/deck/Deck';
 import './App.css';
 
-function App(props) {
+function App() {
 
     const [repos, setRepos] = useState({cards: [], user: undefined});
 
