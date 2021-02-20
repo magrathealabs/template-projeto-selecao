@@ -1,6 +1,6 @@
 import { api } from './api';
 
-const LoginWithGithub = (code) => {    
+const LoginWithGithub = (code) => {
     return api.get(`users/login?code=${code}`);
 }
 

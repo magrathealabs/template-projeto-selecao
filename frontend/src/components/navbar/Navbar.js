@@ -2,31 +2,11 @@ import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Image from './github';
 import { useAuth } from '../../context/authContext';
-import { api, redirect_uri, client_id, port } from '../../services/api';
+import { api, redirect_uri, client_id } from '../../services/api';
 import Switch from 'react-switch';
 
 export default (props) => {
-    
     const { signIn, signed, signOut, user } = useAuth();
-
-    const [search, setSearch] = useState("");
-    const [filter, setFilter] = useState("");
-    const [isPrivate, setIsPrivate] = useState(true);
-
-    useEffect(() => {
-        if (signed) {
-            api.get('/users/tag/privacy').then(res => setIsPrivate(res.data));
-            handleSearch({
-                params: {
-                    user,
-                    filter
-                }
-            });
-            setSearch(user);
-
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [signed]);
 
     // Maior gambis da vida <3
     if (window.location.href.includes("?code=")) {
@@ -38,26 +18,45 @@ export default (props) => {
         signIn(code);
     }
 
+    const [search, setSearch] = useState("");
+    const [filter, setFilter] = useState("");
+    const [isPrivate, setIsPrivate] = useState(true);
+    
+    useEffect(() => {
+        if (signed) {
+            api.get('/users/tag/privacy').then(res => setIsPrivate(res.data));
+            handleSearch({
+                params: {
+                    user,
+                    filter
+                }
+            });
+            setSearch(user);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [signed]);
+
     function handleLogin() {
         if (!signed) {
-            window.location.href = `https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=https://${redirect_uri}${port}/`;
+            window.location.href = `https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=https://${redirect_uri}/`;
         }
         else {
             signOut();
         }
     }
 
-    function handleSearch(data = null) {
-        data = data || {
+    function handleSearch(payload = null) {
+        payload = payload || {
             params: {
                 user: search,
                 filter: filter
             }
         }
-        api.get('/users/starred', data).then(res => {
+
+        api.get('/users/starred', payload).then(res => {
             let data = {
                 cards: res.data,
-                user: search
+                user: payload.params.user
             };
             props.setRepos(data);
         });
@@ -90,6 +89,7 @@ export default (props) => {
                             placeholder="Username"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
+                            value={search}
                         />
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">Filter?</InputGroup.Text>

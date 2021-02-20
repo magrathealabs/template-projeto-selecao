@@ -21,16 +21,18 @@ export default props => {
         if (!signed) await signIn();
         
         if (event === 'Enter') {
-            if (props.tags.find(f => f.text === newTag)) {
+            // Prevent from calling Backend
+            if (props.tags.find(f => f.text === newTag) !== undefined) {
                 setShowError(true);
-                setTimeout(() => setShowError(false), 2000);
+                setTimeout(() => setShowError(false), 5000);
+                return;
             }
+
             const payload = {
                 name: user,
                 key: props.cardKey,
                 tag: newTag
             };
-
             api.post('/users/tag/add', payload)
             .then((res) => {
                 props.tags.push({variant: '', text: newTag});
@@ -38,7 +40,7 @@ export default props => {
             })
             .catch((e) => {
                 setShowError(true);
-                setTimeout(() => setShowError(false), 2000);
+                setTimeout(() => setShowError(false), 5000);
             });
         }
     }
@@ -60,7 +62,6 @@ export default props => {
         })
     }
     </div>
-    {console.log(props.user, user)}
     {props.user === user && 
         <div>
             <Badge className="NewTag" key="new" pill variant="input">
@@ -77,7 +78,7 @@ export default props => {
     }
         <Toast show={showError} animation={false}>
             <Toast.Header>
-            <strong className="mr-auto">Bootstrap</strong>
+            <strong className="mr-auto">Error :O</strong>
             <small>OMG!!</small>
             </Toast.Header>
             <Toast.Body>Woohoo! We don't wanna repeat ourselves, do we?</Toast.Body>

@@ -132,9 +132,7 @@ export class UsersService {
 
   async getPrivacy(sessionId: string): Promise<boolean> {
     const user = await this.userModel.findOne({ sessionId: sessionId.split(' ')[1] }, 'isPrivate').exec();
-    console.log('user', user);
     if (user) {
-      console.log('returning', user.isPrivate);
       return user.isPrivate;
     }
     throw new Error('User not found');
