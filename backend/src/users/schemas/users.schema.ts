@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
 import { Document, Schema as mSchema } from 'mongoose';
-import { getStarredRepos } from '../utils/search';
 // import  from 'mongoose';
 
 export type UserDocument = User & Document;

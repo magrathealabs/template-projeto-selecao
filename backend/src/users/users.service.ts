@@ -23,11 +23,11 @@ export class UsersService {
     return false;
   }
 
-  isPublic(user: UserDocument): boolean {
+  isPrivate(user: UserDocument): boolean {
     if (user) {
-      return user.isPrivate !== false;
+      return user.isPrivate;
     }
-    return false;
+    throw new Error('User not found');
   }
 
   async create(createUserDto: CreateUserDto): Promise<User> {
@@ -74,8 +74,8 @@ export class UsersService {
     const user = await this.userModel.findOne({ name: name }).select('details sessionId name isPrivate');
     let gitStarred = await getStarredRepos(name);
     const isValidated = this.validateUser(user, sessionId);
-
-    if (isValidated || this.isPublic(user)) {
+    console.log(!this.isPrivate(user));
+    if (isValidated || !this.isPrivate(user)) {
       const userDetails = JSON.parse(user.details);
       let hasUpdated = false;
 
@@ -131,11 +131,9 @@ export class UsersService {
   }
 
   async getPrivacy(sessionId: string): Promise<boolean> {
+    console.log(sessionId)
     const user = await this.userModel.findOne({ sessionId: sessionId.split(' ')[1] }, 'isPrivate').exec();
-    if (user) {
-      return user.isPrivate;
-    }
-    throw new Error('User not found');
+    return this.isPrivate(user);
   }
 
   async switchPrivacy(sessionId: string): Promise<boolean> {
