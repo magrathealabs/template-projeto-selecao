@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { User, UserDocument } from './schemas/users.schema';
+import { User, UserDocument, UserStarred } from './schemas/users.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { getAccessToken, getUserData } from './utils/login';
-import { getStarredRepos, userStarred } from './utils/search';
+import { getStarredRepos, IGetStarredRepos, filterAndSort } from './utils/search';
 import { randomBytes } from 'crypto';
 import { AxiosResponse } from 'axios';
 
@@ -70,11 +70,26 @@ export class UsersService {
     return null;
   }
 
-  async findStarred(name: string, filter: string, sessionId: string): Promise<userStarred[]> {
-    const user = await this.userModel.findOne({ name: name }).select('details sessionId name isPrivate');
-    let gitStarred = await getStarredRepos(name);
+  async findStarred(name: string, filter: string, sessionId: string): Promise<UserStarred[]> {
+    const user = await this.userModel.findOne({ name: name });
+    const updateRepos: IGetStarredRepos = await getStarredRepos(name, user.etag);
+
+    let gitStarred = updateRepos.repos;
+
+    if (gitStarred !== undefined) {
+      user.updateOne({
+        $set: {
+          repos: gitStarred,
+          etag: updateRepos.etag
+        }
+      }).exec();
+      user.save();
+    } else {
+      gitStarred = user.repos;
+    }
+
     const isValidated = this.validateUser(user, sessionId);
-    console.log(!this.isPrivate(user));
+
     if (isValidated || !this.isPrivate(user)) {
       const userDetails = JSON.parse(user.details);
       let hasUpdated = false;
@@ -90,17 +105,7 @@ export class UsersService {
       }
 
       if (filter) {
-        gitStarred = gitStarred
-          .filter(repo =>
-            repo.tags.filter(tag =>
-              tag?.text?.startsWith(filter)
-            ).length
-          )
-          .sort((r1, r2) => {
-            const tag1 = r1.tags.find(t => t?.text.startsWith(filter))?.text || "";
-            const tag2 = r2.tags.find(t => t?.text.startsWith(filter))?.text || "";
-            return tag1.length - tag2.length;
-          });
+        gitStarred = filterAndSort(gitStarred, filter);
       }
 
       if (hasUpdated) {
