@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
 
-@Schema({minimize: false})
+@Schema({ minimize: false })
 export class User {
     @Prop()
     _id: Number;
@@ -17,24 +17,21 @@ export class User {
     @Prop()
     _token: string;
 
-    @Prop({default: []})
-    repos: [UserStarred]
-    
-    @Prop()
-    details: string;
+    @Prop({ default: [] })
+    repos: [UserStarred];
 
-    @Prop()
-    etag: string
+    @Prop({ default: '' })
+    etag: string;
 
-    @Prop({type: Boolean, default: true})
-    isPrivate: boolean
-    
+    @Prop({ type: Boolean, default: true })
+    isPrivate: boolean;
+
 }
 
-@Schema({minimize: false})
+@Schema({ minimize: false })
 export class UserStarred {
     @Prop()
-    id: string;
+    rid: string;
 
     @Prop()
     owner: string;
@@ -48,11 +45,11 @@ export class UserStarred {
     @Prop()
     url: string;
 
-    @Prop()
-    tags: [Tags]
+    @Prop({ default: [{ variant: '', text: '' }] })
+    tags: [Tags];
 }
 
-@Schema()
+@Schema({ minimize: false })
 export class Tags {
     @Prop()
     variant: string;

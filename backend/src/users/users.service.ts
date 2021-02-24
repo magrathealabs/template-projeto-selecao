@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { User, UserDocument, UserStarred } from './schemas/users.schema';
+import { Tags, User, UserDocument, UserStarred } from './schemas/users.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { getAccessToken, getUserData } from './utils/login';
+import { getAccessToken, getUserData, registerAnonymous } from './utils/login';
 import { getStarredRepos, IGetStarredRepos, filterAndSort } from './utils/search';
-import { randomBytes } from 'crypto';
+import { randomBytes, timingSafeEqual } from 'crypto';
 import { AxiosResponse } from 'axios';
 
 @Injectable()
@@ -71,48 +71,42 @@ export class UsersService {
   }
 
   async findStarred(name: string, filter: string, sessionId: string): Promise<UserStarred[]> {
-    const user = await this.userModel.findOne({ name: name });
+    let user = await this.userModel.findOne({ name: name });
+    if (!user) {
+      const newUserData = await registerAnonymous(name);
+      await this.create(new CreateUserDto(newUserData._id, newUserData.name, randomBytes(16).toString('base64'), ''));
+      user = await this.userModel.findOne({ name: name });
+    }
+
     const updateRepos: IGetStarredRepos = await getStarredRepos(name, user.etag);
 
-    let gitStarred = updateRepos.repos;
+    const gitUpdate = updateRepos.repos;
 
-    if (gitStarred !== undefined) {
-      user.updateOne({
-        $set: {
-          repos: gitStarred,
-          etag: updateRepos.etag
-        }
+    if (gitUpdate !== undefined) {
+      await user.updateOne({
+        $addToSet: {
+          repos: { $each: gitUpdate },  // This is good as long as they don't have a tag field
+        },
+        $set: { etag: updateRepos.etag }
       }).exec();
-      user.save();
-    } else {
-      gitStarred = user.repos;
     }
+
+    let gitStarred: UserStarred[] = (await this.userModel.findOne({ _id: user._id }, 'repos')).repos;
 
     const isValidated = this.validateUser(user, sessionId);
 
     if (isValidated || !this.isPrivate(user)) {
-      const userDetails = JSON.parse(user.details);
-      let hasUpdated = false;
-
-      for (let repo of gitStarred) {
-
-        const repoKey = repo.owner + '/' + repo.id;
-        if (!(repoKey in userDetails)) {
-          userDetails[repoKey] = [{ variant: '', text: '' }];
-          hasUpdated = true;
-        }
-        repo.tags = userDetails[repoKey];
-      }
-
       if (filter) {
         gitStarred = filterAndSort(gitStarred, filter);
       }
-
-      if (hasUpdated) {
-        user.updateOne({ $set: { details: JSON.stringify(userDetails) } }).exec();
-      }
+    } else {
+      gitStarred = gitStarred.map(repo => {
+        return {
+          ...repo,
+          tags: [{ variant: '', text: '' }] as [Tags]
+        }
+      });
     }
-
     return gitStarred;
   }
 
@@ -122,17 +116,20 @@ export class UsersService {
       throw new Error('You are not authorized to update');
     }
 
-    const userDetails = JSON.parse(user.details);
-    if (!(key in userDetails)) {
-      userDetails[key] = [{ variant: '', text: tag }];
-    } else {
-      if (userDetails[key].find(f => f.text === tag)) {
-        throw new Error('Can\'t add ' + tag);
-      }
-      userDetails[key].push({ variant: '', text: tag });
+    const repoIdx = user.repos.findIndex(repo => `${repo.owner}/${repo.rid}` === key);
+
+    if (repoIdx === -1) {
+      throw new Error('Trying to add tag to inexistent repository');
     }
 
-    return user.updateOne({ $set: { details: JSON.stringify(userDetails) } }).exec()
+    if (user.repos[repoIdx].tags !== undefined) {
+      user.repos[repoIdx].tags.push({ variant: '', text: tag } as Tags)
+    } else {
+      user.repos[repoIdx].tags = [{ variant: '', text: tag }];
+    }
+
+    user.markModified("repos");
+    return await user.save();
   }
 
   async getPrivacy(sessionId: string): Promise<boolean> {

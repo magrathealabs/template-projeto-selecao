@@ -9,41 +9,31 @@ export interface IGetStarredRepos {
 }
 
 export async function getStarredRepos(name: string, etag: string): Promise<IGetStarredRepos> {
-
-    const results = await axios({
+    return await axios({
         url: `https://api.github.com/users/${name}/starred?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}`,
         headers: {
             'Accept': 'application/vnd.github.v3+json',
-            'If-None-Match': `"${etag}"`
+            'If-None-Match': `${etag}`
         }
-    });
-
-    if (results.status === HttpStatus.OK) {
-
-        const repos = results.data.map(({ id, owner, name, description }) => {
+    }).then(res => {
+        const repos = res.data.map(({ id, owner, name, description }) => {
             return {
-                id,
+                rid: id,
                 owner: owner.login,
                 name,
                 description,
                 url: `https://github.com/${owner.login}/${name}`
             }
         });
-
         return {
             repos,
-            etag: results.headers['etag']
-        };
-    }
-
-    if (results.status === HttpStatus.NOT_MODIFIED) {
-        return {
-            repos: undefined,
-            etag: undefined
-        }
-    }
-
-    throw new Error(`Failed to retrieve github data for user ${name}`);
+            etag: res.headers['etag']
+        } as IGetStarredRepos;
+    }).catch(res => {
+        if (res.response.status === HttpStatus.NOT_MODIFIED)
+            return { repos: undefined, etag: undefined }
+        throw new Error('Could not retrieve info from github');
+    })
 
 }
 
