@@ -113,7 +113,7 @@ export class UsersService {
   async addTag(name: string, key: string, tag: string, sessionId: string): Promise<any> {
     const user = await this.userModel.findOne({ name: name }).exec();
     if (!this.validateUser(user, sessionId)) {
-      throw new Error('You are not authorized to update');
+      throw new Error('You are not authorized to add');
     }
 
     const repoIdx = user.repos.findIndex(repo => `${repo.owner}/${repo.rid}` === key);
@@ -127,6 +127,48 @@ export class UsersService {
     } else {
       user.repos[repoIdx].tags = [{ variant: '', text: tag }];
     }
+
+    user.markModified("repos");
+    return await user.save();
+  }
+
+  async editTag(name: string, key: string, oldTag: string, newTag: string, sessionId: string): Promise<any> {
+    const user = await this.userModel.findOne({ name: name }).exec();
+    if (!this.validateUser(user, sessionId)) {
+      throw new Error('You are not authorized to edit');
+    }
+
+    const repoIdx = user.repos.findIndex(repo => `${repo.owner}/${repo.rid}` === key);
+
+    if (repoIdx === -1) {
+      throw new Error('Trying to edit tag to inexistent repository');
+    }
+
+    const tagIdx = user.repos[repoIdx].tags.findIndex(f => f.text === oldTag);
+
+    if (tagIdx === -1) {
+      throw new Error('Trying to edit inexistent tag');
+    }
+    
+    user.repos[repoIdx].tags[tagIdx].text = newTag;
+
+    user.markModified("repos");
+    return await user.save();
+  }
+
+  async deleteTag(name: string, key: string, oldTag: string, sessionId: string): Promise<any> {
+    const user = await this.userModel.findOne({ name: name }).exec();
+    if (!this.validateUser(user, sessionId)) {
+      throw new Error('You are not authorized to delete');
+    }
+
+    const repoIdx = user.repos.findIndex(repo => `${repo.owner}/${repo.rid}` === key);
+
+    if (repoIdx === -1) {
+      throw new Error('Trying to delete tag to inexistent repository');
+    }
+
+    user.repos[repoIdx].tags = user.repos[repoIdx].tags.filter(tag => tag.text !== oldTag) as [Tags];
 
     user.markModified("repos");
     return await user.save();

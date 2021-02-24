@@ -1,6 +1,8 @@
 import { Controller, Get, Query, Headers, Post, Body } from '@nestjs/common';
 import { AddTagDto } from './dto/add-tag.dto';
+import { EditTagDto } from './dto/edit-tag.dto';
 import { UsersService } from './users.service';
+import { DeleteTagDto } from './dto/delete-tag.dto';
 
 @Controller('users')
 export class UsersController {
@@ -23,6 +25,17 @@ export class UsersController {
     return this.usersService.addTag(name, key, tag, sessionId)
   }
 
+  @Post('/tag/edit')
+  async editTag(@Headers('Authorization') sessionId: string = "", @Body() data: EditTagDto) {
+    const { name, key, oldTag, newTag } = data;
+    return this.usersService.editTag(name, key, oldTag, newTag, sessionId);
+  }
+
+  @Post('/tag/delete')
+  async deleteTag(@Headers('Authorization') sessionId: string = "", @Body() data: DeleteTagDto) {
+    const { name, key, oldTag } = data;
+    return this.usersService.deleteTag(name, key, oldTag, sessionId);
+  }
   @Post('/tag/privacy')
   async switchPrivacy(@Headers('Authorization') sessionId: string = "") {
     return await this.usersService.switchPrivacy(sessionId);
