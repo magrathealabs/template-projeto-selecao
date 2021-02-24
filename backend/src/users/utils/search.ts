@@ -40,7 +40,7 @@ export async function getStarredRepos(name: string, etag: string): Promise<IGetS
 export function filterAndSort(repos: UserStarred[], filter: string) {
     return repos
         .filter(repo =>
-            repo.tags.filter(tag =>
+            repo.tags?.filter(tag =>
                 tag?.text?.startsWith(filter)
             ).length
         )
