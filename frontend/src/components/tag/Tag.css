@@ -2,6 +2,10 @@
     margin-right: 5px;
 }
 
+.Tag:hover {
+    box-shadow: 0 0 5px #000000;
+}
+
 .badge-input {
     background-color: rgb(124, 211, 92);
     color: rgb(124, 211, 92);
@@ -13,11 +17,26 @@
     display: block;
 }
 
+.NewTag:hover {
+    box-shadow: inset 0 0 5px #000000;
+}
+
 input {
     background-color: transparent;
     outline: transparent;
     border: unset;
     text-align: center;
+    color: whitesmoke;
+    font-weight: 500;
+}
+
+input[disabled] {
+    color: whitesmoke;
+    font-weight: 250;
+}
+
+input::selection {
+    background: whitesmoke;
 }
 
 ::placeholder {

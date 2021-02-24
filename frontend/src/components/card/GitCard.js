@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Tag from '../tag/Tag'
-import './Card.css';
+import './GitCard.css';
 
 export default (props) => {
 
@@ -15,8 +15,8 @@ export default (props) => {
                     {props.readme}
                 </Card.Text>
             </Card.Body>
-            <div className="tags">
-                <Tag tags={props.tags} user={props.user} cardKey={props.author + '/' + props.id} />
+            <div className="tags mb-2">
+                <Tag tags={props.tags} user={props.user} cardKey={props.author + '/' + props.id}/>
             </div>
         </Card>
     </>

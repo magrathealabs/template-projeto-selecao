@@ -2,7 +2,7 @@ import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import Image from './github';
 import { useAuth } from '../../context/authContext';
-import { api, redirect_uri, client_id } from '../../services/api';
+import { api, redirect_uri, client_id, ssl } from '../../services/api';
 import Switch from 'react-switch';
 
 export default (props) => {
@@ -38,7 +38,7 @@ export default (props) => {
 
     function handleLogin() {
         if (!signed) {
-            window.location.href = `https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=https://${redirect_uri}/`;
+            window.location.href = `https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=http${ssl}://${redirect_uri}`;
         }
         else {
             signOut();
@@ -58,6 +58,7 @@ export default (props) => {
                 cards: res.data,
                 user: payload.params.user
             };
+            console.log(data);
             props.setRepos(data);
         });
     }
