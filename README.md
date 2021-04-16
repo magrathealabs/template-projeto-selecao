@@ -1,45 +1,80 @@
-# PROJETO DE SELEÇÃO
+# About
 
-Ao conhecer uma pessoa que está aplicando para a Magrathea gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+    For the challenge proposed by Magrathea an application was developed that saves the starred repositories of a github user and on top of the repositories the user can create tags, additional in the repositories and later can filter them by the added tags.
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+# BACKEND
 
-## O QUE VAMOS AVALIAR
+https://github.com/Hawangledt/tag-generate-for-github
+## It's uses the following technologies:
 
-Queremos avaliar sua capacidade de fornecer um produto simples com documentação suficiente para outros desenvolvedores contribuírem ativamente para o projeto posteriormente. Na entrevista vamos prestar atenção nos seguintes itens:
+    FastAPI (Python)
+    SQLAlchemy
+    Postgress
+    Uvicorn
+    Swagger
+    Auth0
 
-* Comunicação na revisão do código presencial;
-* Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
+## Setup Environment Variables
 
-Ao revisar seu código vamos prestar atenção nos seguintes itens:
+You need to define the following environment variables:
 
-* Organização do código;
-* Código bem escrito, limpo e coeso;
-* Arquitetura e princípios de desenvolvimento;
-* Documentação (README.md) com instruções claras para reproduzir o projeto;
-* Uso adequado de versionamento do código em git;
-* Uso de testes automatizados;
-* Deploy da aplicação: recomendamos Heroku por ter plano free;
-* O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-* Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado.
+    AUTH0_DOMAIN: Auth0 Domain (Ex.:"https://example.us.auth0.com/")
+    API_AUDIENCE: Auth0 Api Audience (Ex.: "https://example-auth0-api.com/")
+    ALGORITHMS: Auth0 Algorithms url (Ex.: ['RS256']")  
+    DATABASE_URL: Postgres url (Ex.: "postgres://user:password@localhost:5432/tag_generate")
+## How to run the code
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é você programar de graça para nós, nem te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+Go the backend directory, create a virtual environmnet and activate it.
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Se quiser uma revisão no seu código em um Pull Request no Github, pode nos chamar. Estamos disponíveis para te ajudar a finalizar esse processo.
-Ah, por último. Você acha que consegue nos responder em quanto tempo? Duas semanas é ok para você?
+    Run pip install -r requirements.txt
 
-## IDEIAS DE PROJETOS
+    Go the app directory
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+    and then run:
 
-* [Cliente para o GitHub](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/GITHUB.md);
-* [Cliente para o Twitter](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/TWITTER.md);
-* [Cliente para o Meetup](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/MEETUP.md).
+    uvicorn main:app --reload
 
-Tem alguma outra ideia? Tem algum projeto que já está pronto e gostaria de apresentar? Fale com a gente :)
+## How to run the tests
 
-## COMO COMPARTILHAR O PROJETO CONOSCO
+Go the backend directory, activate virtual environmnet.
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+    Go the app directory
+
+    and then run:
+
+    python -m pytest
+
+# FRONTEND
+
+https://github.com/Hawangledt/tag-generate-for-github-front
+## It's uses the following technologies:
+
+    ReactJS (Javascript)
+    React-toastify
+    Styled-components
+    Axios
+    React-router-dom
+    Auth0
+    Material-UI
+
+## Setup Environment Variables
+
+You need to define the following environment variables:
+
+    REACT_APP_API: http://127.0.0.1:8000/
+    AUTH0_DOMAIN: Auth0 Domain (Ex.:"https://example.us.auth0.com/")
+    AUTH0_CLIENT_ID: Auth0 clientID (Ex.: "dfsdfexemplo3erwe")
+    AUTH0_AUDIENCE: Auth0 Api Audience (Ex.: "https://example-auth0-api.com/")
+
+## How to run the code
+
+Go the frontend directory, type yarn in terminal to install dependencies
+
+    and then run:
+
+    yarn start
+
+
+## To see the version of Deploy, access the url:
+
+https://romantic-euclid-b0c87d.netlify.app/
