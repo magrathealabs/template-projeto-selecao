@@ -1,45 +1,96 @@
-# PROJETO DE SELEÇÃO
+<ul>
 
-Ao conhecer uma pessoa que está aplicando para a Magrathea gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+  <h1>PDF Manager</h1>
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
 
-## O QUE VAMOS AVALIAR
+  <li>
+    <h2>Sobre este projeto</h2>
+  
+  Esta aplicação se encontra em desenvolvimento e tem o objetivo de englobar módulos que realizam o gerenciamento de arquivos .pdf .<br>
+  No momento está implementado o módulo para o upload de arquivos e inserção de marca d'água nas páginas de documentos .pdf.<br>
+  Este módulo foi desenvolvido com propósito de aprendizado e como etapa de aplicação para [Magrathea Labs](https://magrathealabs.com/pt-br/) :rocket:
+  </li>
+  
+  <br>
+  
+  <li>
+  <h3> Tecnologias </h3>
 
-Queremos avaliar sua capacidade de fornecer um produto simples com documentação suficiente para outros desenvolvedores contribuírem ativamente para o projeto posteriormente. Na entrevista vamos prestar atenção nos seguintes itens:
+  Este projeto está sendo desenvolvido com as seguintes tecnologias:
 
-* Comunicação na revisão do código presencial;
-* Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
+  <ul>
+  <li><a href="https://www.python.org/">Python</a></li>
+  <li><a href="https://flask.palletsprojects.com/en/1.1.x/">Flask</a></li>
+  <li><a href="https://www.postgresql.org/">Postgresql</a></li>
+  </ul>
+  </li>
+  
+  <br>
+  
+  <li>
+   <h3> Principais libs utilizadas: </h3>
+   <ul>
+      <li><a href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/">Flask-SQLAlchemy </a></li>
+      <li><a href="https://marshmallow.readthedocs.io/en/stable/"> marshmallow</a></li>
+      <li><a href="https://pypi.org/project/PyPDF2/"> PyPDF2</a></li>
 
-Ao revisar seu código vamos prestar atenção nos seguintes itens:
+  </ul>
+  </li>
+  
+  <br>
+  
+  <li>
+    <h2>Setup</h2> 
+    <ol>
+      <li> Primeiro, verifique se você possui <b>Python</b> instalado;</li><br>
+      <li> Verifique se possui <b>pip</b> instalado de forma apropriada;</li><br>
+      <li> 
+        Instale os requerimentos necessários, no diretório "/src" rode o seguinte comando:<br><br>
+        * Você pode utilizar um ambiente virtual como virtualenv ou pipenv, se for de tua escolha.
+                
+        $ pip install -r requirements.txt
+   </li>
+      <li> Apesar de ter sido utilizado Postgres para o desenvolvimento, gere o banco de dados de sua escolha.</li><br>
+      <li> Crie um arquivo .env, conforme o diretório do arquivo .env.example.</li><br>
+      <li> Defina as configurações de acordo com seu banco de dados.</li><br>
+  </ol>
+  </li>
+  
+  <li>
+    <h2>Como rodar</h2> 
+    <ol>
+      <li> 
+        Para rodar a aplicação, no diretório "src", execute o seguinte comando:<br><br>
+                
+        $ python run.py
+   </li>
+   <br>
+   <li> Uma vez que a aplicação esteja rodando é possível acessar o template renderizado em http://localhost:5000/.</li><br>
+   <li> Carregue o arquivo .pdf desejado e clique em OK.<br>
+    * O arquivo não deve ser criptografado e/ou bloqueado. </li><br>
+   <li> Pronto. Será gerado um respectivo arquivo .pdf com a marca d'água.</li><br>
+   <li> É possível testar os endpoints desta aplicação utilizando softwares como: Insomnia ou Postman.</li><br>
 
-* Organização do código;
-* Código bem escrito, limpo e coeso;
-* Arquitetura e princípios de desenvolvimento;
-* Documentação (README.md) com instruções claras para reproduzir o projeto;
-* Uso adequado de versionamento do código em git;
-* Uso de testes automatizados;
-* Deploy da aplicação: recomendamos Heroku por ter plano free;
-* O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-* Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado.
+  </ol>
+  </li>
+  
+  <li>
+    <h2>Próximas features:</h2> 
+    <ol>
+      <li> Gerar migrations do banco de dados </li><br>
+      <li> Implementar o upload do arquivo de marca d'água escolhido pelo usuário </li><br>
+      <li> Realizar o download do arquivo manipulado para o filesystem do usuário </li><br>
+      <li> Testes unitários e de integração </li><br>
+      <li> Garbage collector dos arquivos </li><br>
+      <li> Desenvolvimento de interface avançada </li><br>
+      <li> Outras ações comuns para arquivos .pdf, como: girar páginas, unir páginas, entre outros </li><br>
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é você programar de graça para nós, nem te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+  </ol>
+  </li>
+   
+  <br>
+  
+</ul>
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Se quiser uma revisão no seu código em um Pull Request no Github, pode nos chamar. Estamos disponíveis para te ajudar a finalizar esse processo.
-Ah, por último. Você acha que consegue nos responder em quanto tempo? Duas semanas é ok para você?
+<h3>Fique à vontade para contribuir com esse projeto e apresentar novas possibilidades! :octocat:</h3>
 
-## IDEIAS DE PROJETOS
-
-A seguir seguem algumas ideias de projetos que você pode implementar:
-
-* [Cliente para o GitHub](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/GITHUB.md);
-* [Cliente para o Twitter](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/TWITTER.md);
-* [Cliente para o Meetup](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/MEETUP.md).
-
-Tem alguma outra ideia? Tem algum projeto que já está pronto e gostaria de apresentar? Fale com a gente :)
-
-## COMO COMPARTILHAR O PROJETO CONOSCO
-
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
