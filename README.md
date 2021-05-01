@@ -75,12 +75,13 @@
   </li>
   
   <li>
-    <h2>Próximas features</h2> 
+    <h2>Próximas features:</h2> 
     <ol>
       <li> Gerar migrations do banco de dados </li><br>
-      <li> Implementar o processo de marca d'água conforme a página indicada </li><br>
+      <li> Implementar o upload do arquivo de marca d'água escolhido pelo usuário </li><br>
+      <li> Realizar o download do arquivo manipulado para o filesystem do usuário </li><br>
       <li> Testes unitários e de integração </li><br>
-      <li> Garbage collector </li><br>
+      <li> Garbage collector dos arquivos </li><br>
       <li> Desenvolvimento de interface avançada </li><br>
       <li> Outras ações comuns para arquivos .pdf, como: girar páginas, unir páginas, entre outros </li><br>
 
