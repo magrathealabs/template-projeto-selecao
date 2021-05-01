@@ -1,0 +1,6 @@
+{
+    "file_name_exists": "File watermarked successfully. Note that a uploaded file with that name already exists.",
+    "file_not_found": "File not found.",
+    "file_uploaded": "File uploaded and watermarked successfully. You can find it at '/uploads/watermarked_files/'.",
+    "file_deleted": "File deleted."
+}
