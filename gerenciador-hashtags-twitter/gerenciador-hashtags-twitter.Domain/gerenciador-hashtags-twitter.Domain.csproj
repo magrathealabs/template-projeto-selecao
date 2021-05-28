@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>gerenciador_hashtags_twitter.Domain</RootNamespace>
+  </PropertyGroup>
+
+</Project>

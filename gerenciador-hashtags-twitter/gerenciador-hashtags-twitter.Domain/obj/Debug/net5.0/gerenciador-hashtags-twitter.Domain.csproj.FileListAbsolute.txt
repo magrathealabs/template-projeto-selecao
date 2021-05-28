@@ -1,0 +1,12 @@
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\bin\Debug\net5.0\gerenciador-hashtags-twitter.Domain.deps.json
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\bin\Debug\net5.0\gerenciador-hashtags-twitter.Domain.dll
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\bin\Debug\net5.0\ref\gerenciador-hashtags-twitter.Domain.dll
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\bin\Debug\net5.0\gerenciador-hashtags-twitter.Domain.pdb
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.AssemblyInfoInputs.cache
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.AssemblyInfo.cs
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.csproj.CoreCompileInputs.cache
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.dll
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\ref\gerenciador-hashtags-twitter.Domain.dll
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.pdb
+C:\Users\laris\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.csprojAssemblyReference.cache

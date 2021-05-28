@@ -5,6 +5,18 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gerenciador-hashtags-twitter", "gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.csproj", "{6C7B0685-3D0C-4ACA-A7AD-A88170D197B0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Docs", "0 - Docs", "{390D2B63-DA5C-4B84-BDA5-FEBB7A0622F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{7DD2DBE4-3A30-4893-A324-D80945BFA59B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{B8B8A9C2-EF1F-4375-9B24-907C595E32BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{6B2120D5-D720-4AAD-B331-1C471D17B9E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{F981C463-3B53-4A19-A6D5-C4C1C051D307}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gerenciador-hashtags-twitter.Domain", "gerenciador-hashtags-twitter.Domain\gerenciador-hashtags-twitter.Domain.csproj", "{922D918F-1217-4CF0-A6A2-B4BC1BECAD25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +27,17 @@ Global
 		{6C7B0685-3D0C-4ACA-A7AD-A88170D197B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C7B0685-3D0C-4ACA-A7AD-A88170D197B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C7B0685-3D0C-4ACA-A7AD-A88170D197B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{922D918F-1217-4CF0-A6A2-B4BC1BECAD25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{922D918F-1217-4CF0-A6A2-B4BC1BECAD25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{922D918F-1217-4CF0-A6A2-B4BC1BECAD25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{922D918F-1217-4CF0-A6A2-B4BC1BECAD25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6C7B0685-3D0C-4ACA-A7AD-A88170D197B0} = {7DD2DBE4-3A30-4893-A324-D80945BFA59B}
+		{922D918F-1217-4CF0-A6A2-B4BC1BECAD25} = {6B2120D5-D720-4AAD-B331-1C471D17B9E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49786BB1-7047-40B0-B1A4-316546889F25}
