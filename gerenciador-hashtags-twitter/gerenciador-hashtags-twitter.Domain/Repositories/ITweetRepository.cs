@@ -7,6 +7,6 @@ namespace gerenciador_hashtags_twitter.Domain.Repositories
     public interface ITweetRepository
     {
         Task Add(IEnumerable<ITweet> tweets);
-        Task<IEnumerable<ITweet>> Get(IHashtag hashtag);
+        Task<IReadOnlyCollection<ITweet>> Get(IHashtag hashtag);
     }
 }

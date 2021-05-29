@@ -9,6 +9,6 @@ namespace gerenciador_hashtags_twitter.Domain.Repositories
     {
         Task Add(IHashtag hashtag);
         Task Remove(IHashtag hashtag);
-        Task<IEnumerable<IHashtag>> Get(IUser user);
+        Task<IReadOnlyCollection<IHashtag>> Get(IUser user);
     }
 }

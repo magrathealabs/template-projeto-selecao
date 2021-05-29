@@ -4,6 +4,6 @@ namespace gerenciador_hashtags_twitter.Domain.Factories
 {
     public interface IUserFactory
     {
-        IUser CreateUser(string username);
+        IUser Create(string username);
     }
 }

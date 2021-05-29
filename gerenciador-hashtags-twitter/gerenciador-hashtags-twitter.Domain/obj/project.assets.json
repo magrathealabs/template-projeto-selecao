@@ -8,25 +8,25 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\laris\\.nuget\\packages\\": {},
+    "C:\\Users\\larissa.martins\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\laris\\source\\repos\\template-projeto-selecao\\gerenciador-hashtags-twitter\\gerenciador-hashtags-twitter.Domain\\gerenciador-hashtags-twitter.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\larissa.martins\\source\\repos\\template-projeto-selecao\\gerenciador-hashtags-twitter\\gerenciador-hashtags-twitter.Domain\\gerenciador-hashtags-twitter.Domain.csproj",
       "projectName": "gerenciador-hashtags-twitter.Domain",
-      "projectPath": "C:\\Users\\laris\\source\\repos\\template-projeto-selecao\\gerenciador-hashtags-twitter\\gerenciador-hashtags-twitter.Domain\\gerenciador-hashtags-twitter.Domain.csproj",
-      "packagesPath": "C:\\Users\\laris\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\laris\\source\\repos\\template-projeto-selecao\\gerenciador-hashtags-twitter\\gerenciador-hashtags-twitter.Domain\\obj\\",
+      "projectPath": "C:\\Users\\larissa.martins\\source\\repos\\template-projeto-selecao\\gerenciador-hashtags-twitter\\gerenciador-hashtags-twitter.Domain\\gerenciador-hashtags-twitter.Domain.csproj",
+      "packagesPath": "C:\\Users\\larissa.martins\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\larissa.martins\\source\\repos\\template-projeto-selecao\\gerenciador-hashtags-twitter\\gerenciador-hashtags-twitter.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\laris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\larissa.martins\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -35,8 +35,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.telerik.com/nuget": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
