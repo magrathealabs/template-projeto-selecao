@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\gerenciador-hashtags-twitter.Application\gerenciador-hashtags-twitter.Application.csproj" />
+    <ProjectReference Include="..\gerenciador-hashtags-twitter.Data.InMemoryDb\gerenciador-hashtags-twitter.Data.InMemoryDb.csproj" />
   </ItemGroup>
 
 </Project>

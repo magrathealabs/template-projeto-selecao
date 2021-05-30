@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\gerenciador-hashtags-twitter.Domain\gerenciador-hashtags-twitter.Domain.csproj" />
   </ItemGroup>
 

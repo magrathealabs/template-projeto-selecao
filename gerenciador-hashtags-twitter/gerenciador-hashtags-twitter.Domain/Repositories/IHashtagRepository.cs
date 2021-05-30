@@ -1,5 +1,4 @@
 ﻿using gerenciador_hashtags_twitter.Domain.Models.Contracts;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
