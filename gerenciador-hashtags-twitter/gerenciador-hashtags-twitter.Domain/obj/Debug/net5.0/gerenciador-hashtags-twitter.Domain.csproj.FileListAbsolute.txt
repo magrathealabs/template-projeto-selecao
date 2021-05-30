@@ -23,4 +23,3 @@ C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hasht
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.pdb
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador_hashtags_twitter.Domain.Properties.Resources.resources
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.csproj.GenerateResource.cache
-C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.csprojAssemblyReference.cache
