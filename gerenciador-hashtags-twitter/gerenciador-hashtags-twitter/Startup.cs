@@ -1,4 +1,5 @@
 using gerenciador_hashtags_twitter.DependencyInjections;
+using gerenciador_hashtags_twitter.Securities.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -21,6 +22,9 @@ namespace gerenciador_hashtags_twitter
         {
             services.AddControllers();
             services.AddApiVersioning();
+            services.AddHasher();
+            services.AddInMemoryDb();
+            services.AddServices();
             services.AddVersionedApiExplorer(p =>
             {
                 p.GroupNameFormat = "'v'V";
