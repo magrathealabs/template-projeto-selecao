@@ -61,3 +61,8 @@ gerenciador-hashtags-twitter/gerenciador-hashtags-twitter/obj
 /gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Application.Tests/bin/Debug/net5.0/xunit.runner.reporters.netcoreapp10.dll
 /gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Application.Tests/bin/Debug/net5.0/xunit.execution.dotnet.dll
 *.dll
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Securities.Application/bin/Debug/netcoreapp3.1
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Securities.Application/obj/Debug/netcoreapp3.1
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Securities.Application/obj
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Securities.Application.Tests/bin/Debug/net5.0
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Securities.Application.Tests/obj

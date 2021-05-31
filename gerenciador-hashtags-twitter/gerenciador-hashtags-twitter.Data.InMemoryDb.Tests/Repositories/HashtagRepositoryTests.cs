@@ -1,29 +1,30 @@
-﻿using gerenciador_hashtags_twitter.Data.InMemoryDb.Extensions.InMemoryDbContextExtensions;
-using gerenciador_hashtags_twitter.Data.InMemoryDb.Models;
+﻿using gerenciador_hashtags_twitter.Data.InMemoryDb.Models;
 using gerenciador_hashtags_twitter.Data.InMemoryDb.Repositories;
-using gerenciador_hashtags_twitter.Domain.Models.Contracts;
-using System;
-using System.Collections.Generic;
+using gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Fixtures;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Repositories
 {
     public sealed class HashtagRepositoryTests
     {
+        private readonly Fixture _fixture;
+
+        public HashtagRepositoryTests()
+        {
+            _fixture = new Fixture();   
+        }
+
         [Fact]
         public async void AddSuccess()
         {
-            var dbContext = GetDbContext();
-            var user = dbContext.Users.FirstOrDefault();
+            var user = _fixture.DbContext.Users.FirstOrDefault();
             var newHashtag = new Hashtag("dev", user.Id);
-            var repository = new HashtagRepository(dbContext);
+            var repository = new HashtagRepository(_fixture.DbContext);
 
             await repository.Add(newHashtag);
 
-            var existsInDbCollection = dbContext.Hashtags.Contains(newHashtag);
+            var existsInDbCollection = _fixture.DbContext.Hashtags.Contains(newHashtag);
             Assert.True(existsInDbCollection);
 
         }
@@ -31,41 +32,30 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Repositories
         [Fact]
         public async void RemoveSuccess()
         {
-            var dbContext = GetDbContext();
-            var hashtagToDelete = dbContext.Hashtags.FirstOrDefault();
-            var repository = new HashtagRepository(dbContext);
+            var hashtagToDelete = _fixture.DbContext.Hashtags.FirstOrDefault();
+            var repository = new HashtagRepository(_fixture.DbContext);
 
             await repository.Remove(hashtagToDelete);
 
-            var existsInDbCollection = dbContext.Hashtags.Contains(hashtagToDelete);
+            var existsInDbCollection = _fixture.DbContext.Hashtags.Contains(hashtagToDelete);
             Assert.False(existsInDbCollection);
         }
 
         [Fact]
         public async void GetSuccess()
         {
-            var dbContext = GetDbContext();
-            var user = dbContext.Users
+            var user = _fixture.DbContext.Users
                                   .Where(c =>
                                   c.Username == "John08")
                                   .FirstOrDefault();
-            var repository = new HashtagRepository(dbContext);
+            var repository = new HashtagRepository(_fixture.DbContext);
 
             var hashtags = await repository.Get(user);
 
-            var contaisDevelopment = dbContext.Hashtags.Any(h => h.Content.Equals("#Development"));
+            var contaisDevelopment = _fixture.DbContext.Hashtags.Any(h => h.Content.Equals("#Development"));
             Assert.NotNull(hashtags);
             Assert.NotEmpty(hashtags);
             Assert.True(contaisDevelopment);
-        }
-
-        private InMemoryDbContext GetDbContext()
-        {
-            var dbContext = new InMemoryDbContext();
-            dbContext.SeedUsers();
-            dbContext.SeedHashtag();
-
-            return dbContext;
         }
     }
 }

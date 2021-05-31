@@ -14,7 +14,7 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Services
         public UserServiceTests()
         {
             _fixture = new Fixture();
-            _userService = new UserService(_fixture.UserFactory, _fixture.UserRepository);
+            _userService = new UserService(_fixture.Hasher, _fixture.UserFactory, _fixture.UserRepository);
         }
 
         #region Create User

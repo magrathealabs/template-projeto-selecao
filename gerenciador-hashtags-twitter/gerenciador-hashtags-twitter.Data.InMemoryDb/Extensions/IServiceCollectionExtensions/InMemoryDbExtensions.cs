@@ -3,6 +3,7 @@ using gerenciador_hashtags_twitter.Data.InMemoryDb.Factories;
 using gerenciador_hashtags_twitter.Data.InMemoryDb.Repositories;
 using gerenciador_hashtags_twitter.Domain.Factories;
 using gerenciador_hashtags_twitter.Domain.Repositories;
+using gerenciador_hashtags_twitter.Securities.Application;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Extensions.IServiceCollectionExtensions
@@ -14,7 +15,7 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Extensions.IServiceCollec
             services.AddSingleton(context =>
             {
                 var dbContext = new InMemoryDbContext();
-                dbContext.SeedUsers();
+                dbContext.SeedUsers(context.GetRequiredService<IHasher>());
                 dbContext.SeedHashtag();
                 dbContext.SeedTweet();
                 return dbContext;

@@ -2,7 +2,7 @@
 
 namespace gerenciador_hashtags_twitter.Application.Exceptions
 {
-    public abstract class ApplicationInvalidDataException :
+    public sealed class ApplicationInvalidDataException :
         Exception
     {
         public ApplicationInvalidDataException() :
