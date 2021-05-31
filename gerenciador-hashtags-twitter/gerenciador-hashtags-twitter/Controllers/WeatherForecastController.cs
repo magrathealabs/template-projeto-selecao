@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace gerenciador_hashtags_twitter.Controllers
 {
+    [ApiVersion("1.0")]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

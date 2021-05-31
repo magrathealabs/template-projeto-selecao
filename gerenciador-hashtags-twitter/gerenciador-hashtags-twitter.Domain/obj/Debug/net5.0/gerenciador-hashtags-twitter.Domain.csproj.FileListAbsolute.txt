@@ -14,6 +14,8 @@ C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hasht
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\bin\Debug\net5.0\gerenciador-hashtags-twitter.Domain.dll
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\bin\Debug\net5.0\ref\gerenciador-hashtags-twitter.Domain.dll
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\bin\Debug\net5.0\gerenciador-hashtags-twitter.Domain.pdb
+C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador_hashtags_twitter.Domain.Properties.Resources.resources
+C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.csproj.GenerateResource.cache
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.AssemblyInfoInputs.cache
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.AssemblyInfo.cs
@@ -21,5 +23,3 @@ C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hasht
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.dll
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\ref\gerenciador-hashtags-twitter.Domain.dll
 C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.pdb
-C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador_hashtags_twitter.Domain.Properties.Resources.resources
-C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.Domain\obj\Debug\net5.0\gerenciador-hashtags-twitter.Domain.csproj.GenerateResource.cache

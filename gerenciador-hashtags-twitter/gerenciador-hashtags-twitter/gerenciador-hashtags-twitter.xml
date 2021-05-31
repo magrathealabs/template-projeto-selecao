@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>gerenciador-hashtags-twitter.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:gerenciador_hashtags_twitter.DependencyInjections.SwaggerExtensions">
+            <summary>
+            Extensões do container <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> e do <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> para aprimorar
+            e segmentar as configurações para injeção de dependência do Swagger.
+            </summary>
+        </member>
+        <member name="P:gerenciador_hashtags_twitter.DependencyInjections.SwaggerExtensions.XmlCommentsFilePath">
+            <summary>
+            Caminho completo do XML contendo os comentários que o Swagger utilizará.
+            Esse XML estará na pasta aonde o executável da API encontra-se, e terá o mesmo nome do projeto com sufixo de XML.
+            </summary>
+        </member>
+        <member name="M:gerenciador_hashtags_twitter.DependencyInjections.SwaggerExtensions.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Extensão do ServiceCollection para adicionar o Swagger aos containers de Injeção de Depência.
+            </summary>
+        </member>
+        <member name="M:gerenciador_hashtags_twitter.DependencyInjections.SwaggerExtensions.UseVersionedSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider)">
+            <summary>
+            Prepara o Swagger e o SwaggerUI (interface do Swagger).
+            </summary>
+        </member>
+    </members>
+</doc>
