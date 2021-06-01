@@ -1,8 +1,6 @@
-﻿using gerenciador_hashtags_twitter.Data.InMemoryDb.Extensions.InMemoryDbContextExtensions;
-using gerenciador_hashtags_twitter.Data.InMemoryDb.Models;
+﻿using gerenciador_hashtags_twitter.Data.InMemoryDb.Models;
 using gerenciador_hashtags_twitter.Data.InMemoryDb.Repositories;
 using gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Fixtures;
-using System.Linq;
 using Xunit;
 
 namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Repositories
@@ -39,6 +37,17 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Repositories
 
             Assert.NotNull(user);
             Assert.Equal(user.Username, newUsername);
+        }
+
+        [Fact]
+        public async void FindByIdSuccess()
+        {
+            var repository = new UserRepository(_fixture.DbContext);
+
+            var user = await repository.Find(_fixture.Larissa.Id);
+
+            Assert.NotNull(user);
+            Assert.Equal(user.Id, _fixture.Larissa.Id);
         }
     }
 }

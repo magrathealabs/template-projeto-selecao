@@ -1,0 +1,7 @@
+{
+  "Jwt": {
+    "Key": "dfusa7f9090dfsiaisfdasfiuasjasdfa90cvzxxzcvasf998dfspd",
+    "Issuer": "HashtagsManagerIssuer",
+    "Audience": "HashtagsManagerAudience"
+  }
+}
