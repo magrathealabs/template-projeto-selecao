@@ -71,10 +71,5 @@ namespace gerenciador_hashtags_twitter.Application.Services
                 Id = user.Id
             };
         }
-
-        public Task<GetAcessTokenResponseData> GetAcessToken(GetAcessTokenRequestData requestData)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

@@ -11,6 +11,7 @@ namespace gerenciador_hashtags_twitter.DependencyInjections
             services.AddScoped<IHashtagService, HashtagService>();
             services.AddScoped<ITweetService, TweetService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IJWTService, JWTService>();
         }
     }
 }

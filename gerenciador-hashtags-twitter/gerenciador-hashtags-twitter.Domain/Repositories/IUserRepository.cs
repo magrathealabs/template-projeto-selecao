@@ -7,6 +7,7 @@ namespace gerenciador_hashtags_twitter.Domain.Repositories
     public interface IUserRepository
     {
         Task Add(IUser user);
-        Task<IUser> Find(string username); 
+        Task<IUser> Find(string username);
+        Task<IUser> Find(Guid id);
     }
 }

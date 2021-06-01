@@ -4,6 +4,12 @@
         <name>gerenciador-hashtags-twitter.WebAPI</name>
     </assembly>
     <members>
+        <member name="M:gerenciador_hashtags_twitter.Controllers.AuthenticationController.GetAcessToken(gerenciador_hashtags_twitter.Application.DTOs.Request.GetAcessTokenRequestData)">
+            <summary>
+            Create a new token acess.
+            </summary>
+            <param name="requestData"></param>
+        </member>
         <member name="M:gerenciador_hashtags_twitter.Controllers.UserController.Create(gerenciador_hashtags_twitter.Application.DTOs.Request.CreateUserRequestData)">
             <summary>
             Create a new user.
