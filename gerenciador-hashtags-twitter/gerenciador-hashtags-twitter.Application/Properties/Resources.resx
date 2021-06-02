@@ -120,4 +120,7 @@
   <data name="AlreadyExistsUsersWithThisUsername" xml:space="preserve">
     <value>Already exists an user with this username.</value>
   </data>
+  <data name="ExistsHashtagWithThisName" xml:space="preserve">
+    <value>Already exists a hashtag with this name.</value>
+  </data>
 </root>

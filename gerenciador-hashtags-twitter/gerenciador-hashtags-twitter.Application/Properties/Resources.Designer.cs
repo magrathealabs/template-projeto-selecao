@@ -68,5 +68,14 @@ namespace gerenciador_hashtags_twitter.Application.Properties {
                 return ResourceManager.GetString("AlreadyExistsUsersWithThisUsername", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Already exists a hashtag with this name..
+        /// </summary>
+        internal static string ExistsHashtagWithThisName {
+            get {
+                return ResourceManager.GetString("ExistsHashtagWithThisName", resourceCulture);
+            }
+        }
     }
 }

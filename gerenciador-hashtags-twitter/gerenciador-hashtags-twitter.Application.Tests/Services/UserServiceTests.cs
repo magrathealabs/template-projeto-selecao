@@ -2,6 +2,7 @@
 using gerenciador_hashtags_twitter.Application.Exceptions;
 using gerenciador_hashtags_twitter.Application.Services;
 using gerenciador_hashtags_twitter.Application.Tests.Fixtures;
+using System;
 using Xunit;
 
 namespace gerenciador_hashtags_twitter.Application.Tests.Services
@@ -29,7 +30,9 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Services
 
             var createdUser = await _userService.Create(requestData);
 
+            var createdWithValidId = !Guid.Empty.Equals(createdUser.Id);
             Assert.Equal(requestData.Username, createdUser.Username);
+            Assert.True(createdWithValidId);
         }
 
         [Fact]

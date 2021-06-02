@@ -1,6 +1,7 @@
 ﻿using gerenciador_hashtags_twitter.Application.Constants;
 using gerenciador_hashtags_twitter.Application.Exceptions;
 using gerenciador_hashtags_twitter.Application.Interfaces;
+using gerenciador_hashtags_twitter.Domain.Models.Contracts;
 using gerenciador_hashtags_twitter.Domain.Repositories;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -49,7 +50,7 @@ namespace gerenciador_hashtags_twitter.Application.Services
             return claim.Value;
         }
 
-        Guid ISecurityService.GetAuthenticatedUserId()
+        public IUser GetAuthenticatedUser()
         {
             var userId = GetUserId();
 
@@ -65,7 +66,7 @@ namespace gerenciador_hashtags_twitter.Application.Services
             if (!sameSecurityStamp)
                 throw new ApplicationUnauthorizedException();
 
-            return userId;
+            return user;
         }
     }
 }

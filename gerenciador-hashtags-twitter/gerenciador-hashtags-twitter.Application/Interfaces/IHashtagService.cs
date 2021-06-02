@@ -8,6 +8,6 @@ namespace gerenciador_hashtags_twitter.Application.Interfaces
     {
         public Task<AddHashtagResponseData> Add(AddHashtagRequestData requestData);
         public Task Remove(RemoveHashtagRequestData requestData);
-        public Task<GetHashtagResponseData> Get(GetHashtagRequestData requestData);
+        public Task<GetHashtagResponseData> Get();
     }
 }

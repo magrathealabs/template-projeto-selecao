@@ -20,7 +20,7 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Extensions.InMemoryDbCont
                                     c.Username == "larissamartins")
                                     .FirstOrDefault();
 
-            var pets = new Hashtag("Pets", Guid.Parse("ac02ed2d-6c50-4560-ba2b-91374ea05ade"));
+            var pets = new Hashtag("Pets", userLarissa.Id);
             context.Hashtags.Add(pets);
         }
 
