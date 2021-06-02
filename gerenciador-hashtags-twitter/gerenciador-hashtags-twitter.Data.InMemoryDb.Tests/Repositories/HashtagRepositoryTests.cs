@@ -30,7 +30,7 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Repositories
         }
 
         [Fact]
-        public async void RemoveSuccess()
+        public async void AddRemove()
         {
             var hashtagToDelete = _fixture.DbContext.Hashtags.FirstOrDefault();
             var repository = new HashtagRepository(_fixture.DbContext);
@@ -42,7 +42,7 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Repositories
         }
 
         [Fact]
-        public async void GetSuccess()
+        public async void AddGet()
         {
             var user = _fixture.DbContext.Users
                                   .Where(c =>
@@ -56,6 +56,22 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Repositories
             Assert.NotNull(hashtags);
             Assert.NotEmpty(hashtags);
             Assert.True(contaisDevelopment);
+        }
+
+        [Fact]
+        public async void AddFind()
+        {
+            var hashtag = _fixture.DbContext.Hashtags
+                                  .Where(c =>
+                                  c.Content == "#Pets")
+                                  .FirstOrDefault();
+            var repository = new HashtagRepository(_fixture.DbContext);
+
+            var hashtagRepository = await repository.Find(hashtag.Id);
+
+            Assert.Equal(hashtag.Id, hashtagRepository.Id);
+            Assert.Equal(hashtag.UserId, hashtagRepository.UserId);
+            Assert.Equal(hashtag.Content, hashtagRepository.Content);
         }
     }
 }

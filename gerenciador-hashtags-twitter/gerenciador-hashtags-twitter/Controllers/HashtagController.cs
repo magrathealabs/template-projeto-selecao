@@ -1,7 +1,6 @@
 ﻿using gerenciador_hashtags_twitter.Application.DTOs.Request;
 using gerenciador_hashtags_twitter.Application.Exceptions;
 using gerenciador_hashtags_twitter.Application.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -11,35 +10,38 @@ namespace gerenciador_hashtags_twitter.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    public sealed class UserController 
-        : BaseController
+    public sealed class HashtagController :
+        BaseController
     {
-        private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly IHashtagService _hashtagService;
+        public HashtagController(IHashtagService hashtagService)
         {
-            _userService = userService;
+            _hashtagService = hashtagService;
         }
 
         /// <summary>
-        /// Create a new user.
+        /// Create a new hashtag.
         /// </summary>
         /// <param name="requestData"></param>
-        [AllowAnonymous]
         [HttpPost]
-        [Route("create")]
-        public async Task<IActionResult> Create([FromBody]CreateUserRequestData requestData)
+        [Route("add")]
+        public async Task<IActionResult> Add([FromBody]AddHashtagRequestData requestData)
         {
             try
             {
-                var createdUser = await _userService.Create(requestData);
+                var createdHashtag = await _hashtagService.Add(requestData);
 
-                ReturnSuccessResult(createdUser);
+                ReturnSuccessResult(createdHashtag);
+            }
+            catch (ApplicationUnauthorizedException)
+            {
+                ReturnUnauthorizedResult();
             }
             catch (ApplicationInvalidDataException invalidDataEx)
             {
                 ReturnBadRequestResult(invalidDataEx.Message);
             }
-            catch(ApplicationDuplicatedDataException duplicatedDataEx)
+            catch (ApplicationDuplicatedDataException duplicatedDataEx)
             {
                 ReturnConflictedEntityResult(duplicatedDataEx.Message);
             }

@@ -1,6 +1,7 @@
 ﻿using gerenciador_hashtags_twitter.Data.InMemoryDb;
 using gerenciador_hashtags_twitter.Domain.Models.Contracts;
 using gerenciador_hashtags_twitter.Domain.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,6 +34,14 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Fixtures.Repositories
         public Task Remove(IHashtag hashtag)
         {
             return Task.CompletedTask;
+        }
+
+        public Task<IHashtag> Find(Guid id)
+        {
+            var hashtag = _dbContext.Hashtags.SingleOrDefault(h =>
+                                h.Id.Equals(id));
+
+            return Task.FromResult((IHashtag)hashtag);
         }
     }
 }

@@ -6,11 +6,11 @@ namespace gerenciador_hashtags_twitter.Controllers
 {
     public abstract class BaseController : Controller
     {
-        public IActionResult ViewModel { get; private set; }
+        public IActionResult ActionResult { get; private set; }
 
         protected void ReturnSuccessResult(object returnObj)
         {
-            ViewModel = new OkObjectResult(returnObj)
+            ActionResult = new OkObjectResult(returnObj)
             {
                 StatusCode = StatusCodes.Status200OK
             };
@@ -18,12 +18,12 @@ namespace gerenciador_hashtags_twitter.Controllers
 
         protected void ReturnNoContentResult()
         {
-            ViewModel = new NoContentResult();
+            ActionResult = new NoContentResult();
         }
 
         protected void ReturnNotFoundResult(object value)
         {
-            ViewModel = new ObjectResult(value)
+            ActionResult = new ObjectResult(value)
             {
                 StatusCode = StatusCodes.Status404NotFound
             };
@@ -31,7 +31,7 @@ namespace gerenciador_hashtags_twitter.Controllers
 
         protected void ReturnCreatedResult(object returnObj)
         {
-            ViewModel = new OkObjectResult(returnObj)
+            ActionResult = new OkObjectResult(returnObj)
             {
                 StatusCode = StatusCodes.Status201Created
             };
@@ -39,43 +39,43 @@ namespace gerenciador_hashtags_twitter.Controllers
 
         protected void ReturnCancelledResult()
         {
-            ViewModel = new NoContentResult();
+            ActionResult = new NoContentResult();
         }
 
         protected void ReturnUnprocessableEntityObjectResult(string error)
         {
-            ViewModel = new UnprocessableEntityObjectResult(error);
+            ActionResult = new UnprocessableEntityObjectResult(error);
         }
 
         protected void ReturnBadRequestResult(string message)
         {
-            ViewModel = new BadRequestObjectResult(message);
+            ActionResult = new BadRequestObjectResult(message);
         }
 
         protected void ReturnConflictedEntityResult(string message)
         {
-            ViewModel = new ConflictObjectResult(message);
+            ActionResult = new ConflictObjectResult(message);
         }
 
         protected void ReturnInternalServerErrorResult(Exception ex)
         {
-            ViewModel = new StatusCodeResult(500);
+            ActionResult = new StatusCodeResult(500);
         }
 
         protected void ReturnServiceUnavaiable(Exception ex)
         {
             //Service unavaiable
-            ViewModel = new StatusCodeResult(503);
+            ActionResult = new StatusCodeResult(503);
         }
 
         protected void ReturnUnauthorizedResult()
         {
-            ViewModel = new UnauthorizedResult();
+            ActionResult = new UnauthorizedResult();
         }
 
         protected void ReturnForbidenResult()
         {
-            ViewModel = new ForbidResult();
+            ActionResult = new ForbidResult();
         }
     }
 }

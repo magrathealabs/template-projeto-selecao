@@ -40,6 +40,21 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Services
         }
 
         [Fact]
+        public async void AddInvalidData()
+        {
+            var service = new HashtagService(
+                _fixture.SecurityServiceWithLarissaAuthenticated,
+                _fixture.HashtagRepository,
+                _fixture.HashtagFactory);
+            var requestData = new AddHashtagRequestData()
+            {
+                Content = ""
+            };
+
+            await Assert.ThrowsAsync<ApplicationInvalidDataException>(() => service.Add(requestData));
+        }
+
+        [Fact]
         public async void AddDuplicatedIndex()
         {
             var service = new HashtagService(
@@ -105,7 +120,7 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Services
         public async void RemoveNotFound()
         {
             var service = new HashtagService(
-                            _fixture.SecurityServiceAnonimous,
+                            _fixture.SecurityServiceWithJohnAuthenticated,
                             _fixture.HashtagRepository,
                             _fixture.HashtagFactory);
             var requestData = new RemoveHashtagRequestData()

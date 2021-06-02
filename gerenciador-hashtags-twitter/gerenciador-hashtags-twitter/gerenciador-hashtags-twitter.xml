@@ -10,6 +10,12 @@
             </summary>
             <param name="requestData"></param>
         </member>
+        <member name="M:gerenciador_hashtags_twitter.Controllers.HashtagController.Add(gerenciador_hashtags_twitter.Application.DTOs.Request.AddHashtagRequestData)">
+            <summary>
+            Create a new hashtag.
+            </summary>
+            <param name="requestData"></param>
+        </member>
         <member name="M:gerenciador_hashtags_twitter.Controllers.UserController.Create(gerenciador_hashtags_twitter.Application.DTOs.Request.CreateUserRequestData)">
             <summary>
             Create a new user.

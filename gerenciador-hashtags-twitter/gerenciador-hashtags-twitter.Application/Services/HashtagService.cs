@@ -3,6 +3,7 @@ using gerenciador_hashtags_twitter.Application.DTOs.Response;
 using gerenciador_hashtags_twitter.Application.Exceptions;
 using gerenciador_hashtags_twitter.Application.Interfaces;
 using gerenciador_hashtags_twitter.Application.Properties;
+using gerenciador_hashtags_twitter.Domain.Exceptions;
 using gerenciador_hashtags_twitter.Domain.Factories;
 using gerenciador_hashtags_twitter.Domain.Models.Contracts;
 using gerenciador_hashtags_twitter.Domain.Repositories;
@@ -30,19 +31,26 @@ namespace gerenciador_hashtags_twitter.Application.Services
         }
         public async Task<AddHashtagResponseData> Add(AddHashtagRequestData requestData)
         {
-            var autheticatedUser = _securityService.GetAuthenticatedUser();
+            try
+            {
+                var autheticatedUser = _securityService.GetAuthenticatedUser();
 
-            var newHashtag = _hashtagFactory.Create(
-                                            requestData.Content,
-                                            autheticatedUser);
+                var newHashtag = _hashtagFactory.Create(
+                                                requestData.Content,
+                                                autheticatedUser);
 
-            await ValidateDuplicatedKeys(newHashtag, autheticatedUser)
-                    .ConfigureAwait(false);
+                await ValidateDuplicatedKeys(newHashtag, autheticatedUser)
+                        .ConfigureAwait(false);
 
-            await _hashtagRepository.Add(newHashtag)
-                                    .ConfigureAwait(false);
+                await _hashtagRepository.Add(newHashtag)
+                                        .ConfigureAwait(false);
 
-            return CreateAddHashtagResponseData(newHashtag);
+                return CreateAddHashtagResponseData(newHashtag);
+            }
+            catch (DomainEntityException ex)
+            {
+                throw new ApplicationInvalidDataException(ex.Message);
+            }
         }
 
         private AddHashtagResponseData CreateAddHashtagResponseData(IHashtag newHashtag)
@@ -97,9 +105,36 @@ namespace gerenciador_hashtags_twitter.Application.Services
             };
         }
 
-        public Task Remove(RemoveHashtagRequestData requestData)
+        public async Task Remove(RemoveHashtagRequestData requestData)
         {
-            throw new System.NotImplementedException();
+            var autheticatedUser = _securityService.GetAuthenticatedUser();
+
+            var hashtag = await FindHashtag(requestData.Id)
+                                .ConfigureAwait(false);
+
+            ValidateUserCanRemoveHashtag(hashtag, autheticatedUser);
+
+            await _hashtagRepository.Remove(hashtag)
+                                    .ConfigureAwait(false);
+        }
+
+        private async Task<IHashtag> FindHashtag(Guid id)
+        {
+           var hashtag =  await _hashtagRepository.Find(id)
+                                                  .ConfigureAwait(false);
+
+            if (hashtag is null)
+                throw new ApplicationNotFoundException(id);
+
+            return hashtag;
+        }
+
+        private void ValidateUserCanRemoveHashtag(IHashtag hashtag, IUser autheticatedUser)
+        {
+            var sameUserId = hashtag.UserId.Equals(autheticatedUser.Id);
+
+            if (!sameUserId)
+                throw new ApplicationPermissionDeniedException();
         }
     }
 }

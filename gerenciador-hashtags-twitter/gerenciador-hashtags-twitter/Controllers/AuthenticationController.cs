@@ -3,7 +3,6 @@ using gerenciador_hashtags_twitter.Application.Exceptions;
 using gerenciador_hashtags_twitter.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
 
@@ -15,13 +14,10 @@ namespace gerenciador_hashtags_twitter.Controllers
     public sealed class AuthenticationController :
         BaseController
     {
-        private readonly IConfiguration _configuration;
         private readonly IJWTService _jwtService;
         public AuthenticationController(
-            IConfiguration configuration, 
             IJWTService jwtService)
         {
-            _configuration = configuration;
             _jwtService = jwtService;
         }
 
@@ -49,7 +45,7 @@ namespace gerenciador_hashtags_twitter.Controllers
                 ReturnInternalServerErrorResult(ex);
             }
 
-            return ViewModel;
+            return ActionResult;
         }
     }
 }
