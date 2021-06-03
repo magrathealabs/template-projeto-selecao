@@ -24,6 +24,10 @@ namespace gerenciador_hashtags_twitter.Controllers
         /// Create a new user.
         /// </summary>
         /// <param name="requestData"></param>
+        /// <response code="201"></response>
+        /// <response code="400"></response>
+        /// <response code="409"></response>
+        /// <response code="500"></response>
         [AllowAnonymous]
         [HttpPost]
         [Route("create")]
@@ -33,7 +37,7 @@ namespace gerenciador_hashtags_twitter.Controllers
             {
                 var createdUser = await _userService.Create(requestData);
 
-                ReturnSuccessResult(createdUser);
+                ReturnCreatedResult(createdUser);
             }
             catch (ApplicationInvalidDataException invalidDataEx)
             {

@@ -25,6 +25,9 @@ namespace gerenciador_hashtags_twitter.Controllers
         /// Create a new token acess.
         /// </summary>
         /// <param name="requestData"></param>
+        ///<response code="200"></response>
+        ///<response code="401"></response>
+        ///<response code="500"></response>
         [AllowAnonymous]
         [HttpPost]
         [Route("token")]
