@@ -40,6 +40,6 @@ Todas as mensagens associadas a esta hashtag devem ser apagadas.
 
 4. Pesquisar tweets por hashtags
 
-> Como usuário, desejo poder fornecer uma hashtag para listar as menssagens que têm essa hashtag associada.
+> Como usuário, desejo poder fornecer uma hashtag para listar as mensagens que têm essa hashtag associada.
 
-A pesquisa deve funcionar para consultas com seqüências de caracteres ao meio (por exemplo, digitando doc, as mensagens com hashtag "docker" e "documentação" devem ser retornados).
+A pesquisa deve funcionar para consultas com sequências de caracteres ao meio (por exemplo, digitando doc, as mensagens com hashtag "docker" e "documentação" devem ser retornados).
