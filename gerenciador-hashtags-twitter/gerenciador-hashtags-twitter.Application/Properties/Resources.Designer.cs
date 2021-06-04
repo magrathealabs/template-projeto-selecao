@@ -77,5 +77,14 @@ namespace gerenciador_hashtags_twitter.Application.Properties {
                 return ResourceManager.GetString("ExistsHashtagWithThisName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no hashtag for the given id..
+        /// </summary>
+        internal static string HashtagDoesntExists {
+            get {
+                return ResourceManager.GetString("HashtagDoesntExists", resourceCulture);
+            }
+        }
     }
 }

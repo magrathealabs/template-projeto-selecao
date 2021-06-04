@@ -120,6 +120,9 @@
   <data name="HashtagCannotBeNull" xml:space="preserve">
     <value>The hashtag name cannot be null.</value>
   </data>
+  <data name="InvalidHashtagContent" xml:space="preserve">
+    <value>The hashtag content seems to be invalid.</value>
+  </data>
   <data name="InvalidHashtagId" xml:space="preserve">
     <value>The hashtag id seems to be invalid.</value>
   </data>

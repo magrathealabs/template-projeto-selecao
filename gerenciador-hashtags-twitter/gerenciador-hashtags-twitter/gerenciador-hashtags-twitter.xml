@@ -18,19 +18,39 @@
             Create a new hashtag.
             </summary>
             <param name="requestData"></param>
+            <response code="201"></response>
+            <response code="401"></response>
+            <response code="400"></response>
+            <response code="409"></response>
+            <response code="500"></response>
         </member>
         <member name="M:gerenciador_hashtags_twitter.Controllers.HashtagController.Delete(System.Guid)">
             <summary>
             Delete a hashtag.
             </summary>
             <param name="id"></param>
-            <returns></returns>
+            <response code="204"></response>
+            <response code="404"></response>
+            <response code="401"></response>
+            <response code="403"></response>
+            <response code="500"></response>
         </member>
         <member name="M:gerenciador_hashtags_twitter.Controllers.HashtagController.Get">
             <summary>
             Gets the hashtags of the logged user.
             </summary>
-            <returns></returns>
+            <response code="200"></response>
+            <response code="401"></response>
+            <response code="500"></response>
+        </member>
+        <member name="M:gerenciador_hashtags_twitter.Controllers.TweetController.Get(System.Guid)">
+            <summary>
+            Obter os tweets com base em uma hashtag.
+            </summary>
+            <response code="200"></response>
+            <response code="401"></response>
+            <response code="403"></response>
+            <response code="500"></response>
         </member>
         <member name="M:gerenciador_hashtags_twitter.Controllers.UserController.Create(gerenciador_hashtags_twitter.Application.DTOs.Request.CreateUserRequestData)">
             <summary>

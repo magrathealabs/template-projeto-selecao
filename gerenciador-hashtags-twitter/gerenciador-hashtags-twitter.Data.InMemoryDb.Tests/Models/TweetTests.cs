@@ -18,9 +18,9 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Models
         public async void InvalidMessage(string message)
         {
             var author = "larissa";
-            var hastagId = Guid.NewGuid();
+            var hashtagContent = "#Cats";
 
-            Assert.Throws<DomainEntityException>(() => new Tweet(message, author, _dateNow, hastagId));
+            Assert.Throws<DomainEntityException>(() => new Tweet(message, author, _dateNow, hashtagContent));
         }
 
         [Theory]
@@ -30,9 +30,9 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Models
         public async void InvalidAuthor(string author)
         {
             var message = "I love my #Cats";
-            var hastagId = Guid.NewGuid();
+            var hashtagContent = "#Cats";
 
-            Assert.Throws<DomainEntityException>(() => new Tweet(message, author, _dateNow, hastagId));
+            Assert.Throws<DomainEntityException>(() => new Tweet(message, author, _dateNow, hashtagContent));
         }
 
 
@@ -41,9 +41,9 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Models
         {
             var author = "larissa";
             var message = "I love my #Cats";
-            var hastagId = Guid.NewGuid();
+            var hashtagContent = "#Cats";
 
-            Assert.Throws<DomainEntityException>(() => new Tweet(message, author, _minDate, hastagId));
+            Assert.Throws<DomainEntityException>(() => new Tweet(message, author, _minDate, hashtagContent));
         }
 
         [Fact]
@@ -51,10 +51,10 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Models
         {
             var author = "larissa";
             var message = "I love my #Cats";
-            var hastagId = Guid.NewGuid();
+            var hashtagContent = "#Cats";
             var date = _dateNow.AddMinutes(1);
 
-            Assert.Throws<DomainEntityException>(() => new Tweet(message, author, date, hastagId));
+            Assert.Throws<DomainEntityException>(() => new Tweet(message, author, date, hashtagContent));
         }
 
         [Fact]
@@ -62,9 +62,9 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Models
         {
             var author = "larissa";
             var message = "I love my #Cats";
-            var hastagId = Guid.Empty;
+            var hashtagContent = string.Empty;
 
-            Assert.Throws<DomainEntityException>(() => new Tweet(message, author, _dateNow, hastagId));
+            Assert.Throws<DomainEntityException>(() => new Tweet(message, author, _dateNow, hashtagContent));
         }
 
         [Fact]
@@ -72,13 +72,13 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Models
         {
             var author = "larissa";
             var message = "I love my #Cats";
-            var hastagId = Guid.NewGuid();
+            var hashtagContent = "#Cats";
 
-            var tweet = new Tweet(message, author, _dateNow, hastagId);
+            var tweet = new Tweet(message, author, _dateNow, hashtagContent);
 
             Assert.Equal(author, tweet.Author);
             Assert.Equal(message, tweet.Message);
-            Assert.Equal(hastagId, tweet.HashtagId);
+            Assert.Equal(hashtagContent, tweet.HashtagContent);
         }
     }
 }

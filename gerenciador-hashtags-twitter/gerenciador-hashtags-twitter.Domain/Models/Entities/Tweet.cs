@@ -12,29 +12,29 @@ namespace gerenciador_hashtags_twitter.Domain.Models.Entities
         public string Message { get; }
         public string Author { get; }
         public DateTime PublishDate { get; }
-        public Guid HashtagId { get; }
+        public string HashtagContent { get; }
 
         public Tweet(
             string message, 
             string author, 
             DateTime publishDate,
-            Guid hashtagId)
+            string hashtagContent)
         {
-            ValidateProperties(message, author, publishDate, hashtagId);
+            ValidateProperties(message, author, publishDate, hashtagContent);
 
             Id = Guid.NewGuid();
             Message = message;
             Author = author;
             PublishDate = publishDate;
-            HashtagId = hashtagId;
+            HashtagContent = hashtagContent;
         }
 
-        private void ValidateProperties(string message, string author, DateTime publishDate, Guid hashtagId)
+        private void ValidateProperties(string message, string author, DateTime publishDate, string hashtagContent)
         {
             ValidateMessage(message);
             ValidateAuthor(author);
             ValidatePublishDate(publishDate);
-            ValidateHashtagId(hashtagId);
+            ValidateHashtagId(hashtagContent);
         }
 
         private void ValidateMessage(string message)
@@ -63,10 +63,10 @@ namespace gerenciador_hashtags_twitter.Domain.Models.Entities
                 throw new DomainEntityException(Resources.InvalidPublishDate);
         }
 
-        private void ValidateHashtagId(Guid hashtagId)
+        private void ValidateHashtagId(string hashtagContent)
         {
-            if(Guid.Empty.Equals(hashtagId))
-                throw new DomainEntityException(Resources.InvalidHashtagId);
+            if (string.IsNullOrWhiteSpace(hashtagContent))
+                throw new DomainEntityException(Resources.InvalidHashtagContent);
         }
     }
 }

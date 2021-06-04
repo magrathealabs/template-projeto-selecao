@@ -23,7 +23,7 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Fixtures.Repositories
         public Task<IReadOnlyCollection<ITweet>> Get(IHashtag hashtag)
         {
             var tweets = _dbContext.Tweets.Where(t =>
-                                           t.HashtagId.Equals(hashtag.Id))
+                                           t.HashtagContent.Equals(hashtag.Content))
                                            .ToList();
 
             return Task.FromResult((IReadOnlyCollection<ITweet>)tweets);

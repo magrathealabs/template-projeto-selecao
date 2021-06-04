@@ -3,10 +3,7 @@ using gerenciador_hashtags_twitter.Application.Exceptions;
 using gerenciador_hashtags_twitter.Application.Services;
 using gerenciador_hashtags_twitter.Application.Tests.Fixtures;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace gerenciador_hashtags_twitter.Application.Tests.Services
@@ -14,9 +11,9 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Services
     public sealed class TweetServiceTests
     {
         private readonly Fixture _fixture;
-        public TweetServiceTests(Fixture fixture)
+        public TweetServiceTests()
         {
-            _fixture = fixture;
+            _fixture = new Fixture();
         }
 
         [Fact]
@@ -27,7 +24,10 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Services
             {
                 HashtagId = _fixture.HashtagDevelopment.Id
             };
-            var service = new TweetService();
+            var service = new TweetService(
+                _fixture.SecurityServiceWithJohnAuthenticated,
+                _fixture.HashtagRepository,
+                _fixture.TweetRepository);
 
             var responseData = await service.Get(requestData);
 
@@ -44,7 +44,10 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Services
             {
                 HashtagId = Guid.NewGuid()
             };
-            var service = new TweetService();
+            var service = new TweetService(
+                _fixture.SecurityServiceWithJohnAuthenticated,
+                _fixture.HashtagRepository,
+                _fixture.TweetRepository);
 
            await Assert.ThrowsAsync<ApplicationInvalidEntityException>(() => service.Get(requestData));
         }
@@ -56,18 +59,26 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Services
             {
                 HashtagId = Guid.NewGuid()
             };
-            var service = new TweetService();
+            var service = new TweetService(
+                _fixture.SecurityServiceAnonimous,
+                _fixture.HashtagRepository,
+                _fixture.TweetRepository);
 
             await Assert.ThrowsAsync<ApplicationUnauthorizedException>(() => service.Get(requestData));
         }
 
-        public async void GerPermissionDenied()
+        [Fact]
+        public async void GetPermissionDenied()
         {
             var requestData = new GetTweetsRequestData()
             {
                 HashtagId = _fixture.HashtagDevelopment.Id
             };
-            var service = new TweetService();
+
+            var service = new TweetService(
+                _fixture.SecurityServiceWithLarissaAuthenticated, 
+                _fixture.HashtagRepository,
+                _fixture.TweetRepository);
 
             await Assert.ThrowsAsync<ApplicationPermissionDeniedException>(() => service.Get(requestData));
         }

@@ -70,6 +70,15 @@ namespace gerenciador_hashtags_twitter.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The hashtag content seems to be invalid..
+        /// </summary>
+        internal static string InvalidHashtagContent {
+            get {
+                return ResourceManager.GetString("InvalidHashtagContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The hashtag id seems to be invalid..
         /// </summary>
         internal static string InvalidHashtagId {

@@ -23,7 +23,7 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Repositories
         {
             var hashtag = _fixture.DbContext.Hashtags.FirstOrDefault();
             string message = $"I Love this {hashtag.Content}";
-            var newTweet = new Tweet(message, "martinslm_", DateTime.Now, hashtag.Id);
+            var newTweet = new Tweet(message, "martinslm_", DateTime.Now, hashtag.Content);
             var tweetList = new List<ITweet>() { newTweet };
             var repository = new TweetRepository(_fixture.DbContext);
 
@@ -45,7 +45,7 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Repositories
 
             var tweets = await repository.Get(hashtag);
 
-            var containsOthersHashtags = tweets.Any(h => h.HashtagId != hashtag.Id);
+            var containsOthersHashtags = tweets.Any(h => h.HashtagContent != hashtag.Content);
             Assert.NotNull(tweets);
             Assert.NotEmpty(tweets);
             Assert.False(containsOthersHashtags);

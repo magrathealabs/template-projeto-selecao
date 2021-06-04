@@ -123,4 +123,7 @@
   <data name="ExistsHashtagWithThisName" xml:space="preserve">
     <value>Already exists a hashtag with this name.</value>
   </data>
+  <data name="HashtagDoesntExists" xml:space="preserve">
+    <value>There is no hashtag for the given id.</value>
+  </data>
 </root>
