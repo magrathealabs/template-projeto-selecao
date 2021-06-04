@@ -39,6 +39,17 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Repositories
             return Task.FromResult((IReadOnlyCollection<IHashtag>)hashtags);
         }
 
+        public Task<IReadOnlyCollection<string>> GetAllContents()
+        {
+            var allHashtagsContent = _hashtagsContext.Select(h => h.Content);
+
+            var hashtagsContentGrouped = allHashtagsContent.GroupBy(h => h)
+                                                     .Select(h => h.Key)
+                                                     .ToList();
+
+            return Task.FromResult((IReadOnlyCollection<string>)hashtagsContentGrouped);
+        }
+
         public Task Remove(IHashtag hashtag)
         {
             _hashtagsContext.Remove((Hashtag)hashtag);

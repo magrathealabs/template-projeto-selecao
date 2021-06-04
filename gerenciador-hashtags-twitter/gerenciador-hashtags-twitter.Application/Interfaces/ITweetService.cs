@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace gerenciador_hashtags_twitter.Application.Interfaces
 {
-    public interface ITweetService
+    public interface ITweetService 
     {
         public Task<GetTweetsResponseData> Get(GetTweetsRequestData request);
     }

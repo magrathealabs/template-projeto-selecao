@@ -14,9 +14,13 @@ namespace gerenciador_hashtags_twitter.Controllers
         BaseController
     {
         private readonly IHashtagService _hashtagService;
-        public HashtagController(IHashtagService hashtagService)
+        private readonly INotifyHashtagService _notifyHashtagService;
+        public HashtagController(
+            IHashtagService hashtagService,
+            INotifyHashtagService notifyHashtagService)
         {
             _hashtagService = hashtagService;
+            _notifyHashtagService = notifyHashtagService;
         }
 
         /// <summary>
@@ -35,6 +39,8 @@ namespace gerenciador_hashtags_twitter.Controllers
             try
             {
                 var createdHashtag = await _hashtagService.Add(requestData);
+
+                await _notifyHashtagService.NofityHashtagChanged();
 
                 ReturnCreatedResult(createdHashtag);
             }
@@ -79,6 +85,8 @@ namespace gerenciador_hashtags_twitter.Controllers
                 };
 
                 await _hashtagService.Remove(requestData);
+
+                await _notifyHashtagService.NofityHashtagChanged();
 
                 ReturnNoContentResult();
             }

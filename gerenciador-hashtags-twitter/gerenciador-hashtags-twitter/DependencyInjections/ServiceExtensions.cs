@@ -1,4 +1,5 @@
-﻿using gerenciador_hashtags_twitter.Application.Interfaces;
+﻿using gerenciador_hashtags_twitter.Application.BackgroundServices;
+using gerenciador_hashtags_twitter.Application.Interfaces;
 using gerenciador_hashtags_twitter.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +14,8 @@ namespace gerenciador_hashtags_twitter.DependencyInjections
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IJWTService, JWTService>();
             services.AddScoped<ISecurityService, SecurityService>();
+            services.AddScoped<INotifyHashtagService, TweetBackgroundService>();
+            services.AddScoped<ITweetBackgroundService, TweetBackgroundService>();
         }
     }
 }

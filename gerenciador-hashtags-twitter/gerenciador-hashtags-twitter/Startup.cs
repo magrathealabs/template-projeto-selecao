@@ -1,3 +1,4 @@
+using gerenciador_hashtags_twitter.BackgroundServices;
 using gerenciador_hashtags_twitter.DependencyInjections;
 using gerenciador_hashtags_twitter.Securities.Application;
 using Microsoft.AspNetCore.Builder;
@@ -33,6 +34,7 @@ namespace gerenciador_hashtags_twitter
             });
             services.AddSwagger();
             services.AddJWTAuthentication(Configuration);
+            services.AddHostedService<TweetSearcherJob>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

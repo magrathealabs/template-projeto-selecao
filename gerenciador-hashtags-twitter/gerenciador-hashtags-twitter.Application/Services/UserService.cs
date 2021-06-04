@@ -19,7 +19,10 @@ namespace gerenciador_hashtags_twitter.Application.Services
         private readonly IUserFactory _userFactory;
         private readonly IUserRepository _userRepository;
         private readonly IHasher _hasher;
-        public UserService(IHasher hasher,IUserFactory userFactory, IUserRepository userRepository)
+        public UserService(
+            IHasher hasher,
+            IUserFactory userFactory, 
+            IUserRepository userRepository)
         {
             _hasher = hasher;
             _userFactory = userFactory;

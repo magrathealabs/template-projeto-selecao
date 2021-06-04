@@ -38,12 +38,20 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Extensions.InMemoryDbCont
         private static void SeedDesign(ref InMemoryDbContext context)
         {
             var userJohn = context.Users
-                      .Where(c =>
-                      c.Username == "John08")
-                      .FirstOrDefault();
+                                  .Where(c =>
+                                  c.Username == "John08")
+                                  .FirstOrDefault();
 
-            var design = new Hashtag("Design", userJohn.Id);
-            context.Hashtags.Add(design);
+            var userLarissa = context.Users
+                                     .Where(c =>
+                                     c.Username == "larissamartins")
+                                     .FirstOrDefault();
+
+            var designJohn = new Hashtag("Design", userJohn.Id);
+            context.Hashtags.Add(designJohn);
+
+            var designLarissa = new Hashtag("Design", userLarissa.Id);
+            context.Hashtags.Add(designLarissa);
         }
 
     }

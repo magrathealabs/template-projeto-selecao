@@ -43,5 +43,16 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Fixtures.Repositories
 
             return Task.FromResult((IHashtag)hashtag);
         }
+
+        public Task<IReadOnlyCollection<string>> GetAllContents()
+        {
+            var allHashtagsContent = _dbContext.Hashtags.Select(h => h.Content);
+
+            var hashtagsContentGrouped = allHashtagsContent.GroupBy(h => h)
+                                                     .Select(h => h.Key)
+                                                     .ToList();
+
+            return Task.FromResult((IReadOnlyCollection<string>)hashtagsContentGrouped);
+        }
     }
 }
