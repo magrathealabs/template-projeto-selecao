@@ -50,6 +50,7 @@
             <response code="200"></response>
             <response code="401"></response>
             <response code="403"></response>
+            <response code="422"></response>
             <response code="500"></response>
         </member>
         <member name="M:gerenciador_hashtags_twitter.Controllers.UserController.Create(gerenciador_hashtags_twitter.Application.DTOs.Request.CreateUserRequestData)">
