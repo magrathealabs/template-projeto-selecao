@@ -35,6 +35,29 @@ namespace gerenciador_hashtags_twitter.Data.InMemoryDb.Tests.Repositories
         }
 
         [Fact]
+        public async void NotExistsSucess()
+        {
+            string message = $"Hello Friends #design";
+            var repository = new TweetRepository(_fixture.DbContext);
+
+            var exists = await repository.Exists("martinslm_", message);
+
+            Assert.False(exists);
+        }
+
+        [Fact]
+        public async void ExistsSucess()
+        {
+            var tweet = _fixture.DbContext.Tweets.FirstOrDefault();
+            var repository = new TweetRepository(_fixture.DbContext);
+
+            var exists = await repository.Exists(tweet.Author, tweet.Message);
+
+            Assert.True(exists);
+
+        }
+
+        [Fact]
         public async void GetSuccess()
         {
             var hashtag = _fixture.DbContext.Hashtags

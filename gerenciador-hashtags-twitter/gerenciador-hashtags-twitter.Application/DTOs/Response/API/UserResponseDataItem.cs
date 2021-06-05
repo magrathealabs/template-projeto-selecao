@@ -1,10 +1,20 @@
-﻿namespace gerenciador_hashtags_twitter.Application.DTOs.Response.API
+﻿using Newtonsoft.Json;
+
+namespace gerenciador_hashtags_twitter.Application.DTOs.Response.API
 {
+    [JsonObject]
     public sealed class UserResponseDataItem
     {
-        public string id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string username { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("username")]
+        public string Username { get; set; }
     }
 }

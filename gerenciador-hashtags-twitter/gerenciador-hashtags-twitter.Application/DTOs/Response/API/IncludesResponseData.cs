@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace gerenciador_hashtags_twitter.Application.DTOs.Response.API
 {
+    [JsonObject]
     public sealed class IncludesResponseData
     {
-        public List<UserResponseDataItem> users { get; set; }
+        [JsonProperty("users")]
+        public List<UserResponseDataItem> Users { get; set; }
     }
 }

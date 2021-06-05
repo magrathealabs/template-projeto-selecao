@@ -27,6 +27,7 @@ namespace gerenciador_hashtags_twitter
             services.AddHasher();
             services.AddInMemoryDb();
             services.AddServices();
+            services.AddTweetWebApiClient();
             services.AddVersionedApiExplorer(p =>
             {
                 p.GroupNameFormat = "'v'V";

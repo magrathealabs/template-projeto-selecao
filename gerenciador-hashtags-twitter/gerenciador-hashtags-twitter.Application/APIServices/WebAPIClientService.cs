@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -17,13 +18,14 @@ namespace gerenciador_hashtags_twitter.Application.APIServices
     public sealed class WebAPIClientService :
         IWebAPIClientService
     {
-        private readonly JsonSerializerOptions JsonOptions;
-        private readonly HttpClient HttpClient;
+        private readonly JsonSerializerOptions _jsonOptions;
+        private readonly HttpClient _httpClient;
 
-        public WebAPIClientService(HttpClient httpClient)
+        public WebAPIClientService(HttpClient httpClient, string authToken)
         {
-            HttpClient = httpClient;
-            JsonOptions = new JsonSerializerOptions 
+            _httpClient = httpClient;
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", authToken);
+            _jsonOptions = new JsonSerializerOptions 
             { 
                 PropertyNameCaseInsensitive = true, 
                 IgnoreNullValues = true 
@@ -39,7 +41,7 @@ namespace gerenciador_hashtags_twitter.Application.APIServices
                 var queryString = SerializeRequestDataIntoQueryString(requestData);
                 uriPath = AddQueryString(uriPath, queryString);
 
-                var httpResponse = await HttpClient
+                var httpResponse = await _httpClient
                     .GetAsync(uriPath)
                     .ConfigureAwait(false);
 
@@ -133,7 +135,7 @@ namespace gerenciador_hashtags_twitter.Application.APIServices
 
         private T DeserializeResponseData<T>(string stringfiedDataObject)
         {
-            var objectData = JsonSerializer.Deserialize<T>(stringfiedDataObject, this.JsonOptions);
+            var objectData = JsonSerializer.Deserialize<T>(stringfiedDataObject, _jsonOptions);
             return objectData;
         }
     }

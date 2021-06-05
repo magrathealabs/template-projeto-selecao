@@ -20,6 +20,15 @@ namespace gerenciador_hashtags_twitter.Application.Tests.Fixtures.Repositories
             return Task.CompletedTask;
         }
 
+        public Task<bool> Exists(string author, string message)
+        {
+            var exists = _dbContext.Tweets.Any(t =>
+                              t.Author.Equals(author)
+                              && t.Message.Equals(message));
+
+            return Task.FromResult(exists);
+        }
+
         public Task<IReadOnlyCollection<ITweet>> Get(IHashtag hashtag)
         {
             var tweets = _dbContext.Tweets.Where(t =>

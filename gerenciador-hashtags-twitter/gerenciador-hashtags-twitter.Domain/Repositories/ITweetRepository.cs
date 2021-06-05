@@ -8,5 +8,6 @@ namespace gerenciador_hashtags_twitter.Domain.Repositories
     {
         Task Add(IEnumerable<ITweet> tweets);
         Task<IReadOnlyCollection<ITweet>> Get(IHashtag hashtag);
+        Task<bool> Exists(string author, string message);
     }
 }

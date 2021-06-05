@@ -2,13 +2,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace gerenciador_hashtags_twitter.BackgroundServices
 {
-    public class TweetSearcherJob 
+    public class TweetSearcherJob
         : BackgroundService
     {
         private readonly IServiceScopeFactory _serviceScopeFactory;
@@ -23,11 +22,9 @@ namespace gerenciador_hashtags_twitter.BackgroundServices
                 var service = scope.ServiceProvider.GetRequiredService<ITweetBackgroundService>();
                 while (!stoppingToken.IsCancellationRequested)
                 {
-                   // await service.SearchTweets();
-                    Debug.WriteLine($"Oi {DateTime.Now}");
-                    await Task.Delay(TimeSpan.FromSeconds(15));
+                    await service.SearchTweets();
+                    await Task.Delay(TimeSpan.FromMinutes(2));
                 }
-                //Do something here
             }
         }
     }

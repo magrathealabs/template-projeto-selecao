@@ -1,4 +1,5 @@
-﻿using gerenciador_hashtags_twitter.Application.BackgroundServices;
+﻿using gerenciador_hashtags_twitter.Application.APIServices;
+using gerenciador_hashtags_twitter.Application.BackgroundServices;
 using gerenciador_hashtags_twitter.Application.Interfaces;
 using gerenciador_hashtags_twitter.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
