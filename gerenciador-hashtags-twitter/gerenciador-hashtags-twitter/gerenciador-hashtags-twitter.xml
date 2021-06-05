@@ -4,7 +4,7 @@
         <name>gerenciador-hashtags-twitter.WebAPI</name>
     </assembly>
     <members>
-        <member name="M:gerenciador_hashtags_twitter.Controllers.AuthenticationController.GetAcessToken(gerenciador_hashtags_twitter.Application.DTOs.Request.GetAcessTokenRequestData)">
+        <member name="M:gerenciador_hashtags_twitter.Controllers.AuthenticationController.GetAcessToken(gerenciador_hashtags_twitter.Application.DTOs.Request.Service.GetAcessTokenRequestData)">
              <summary>
              Create a new token acess.
              </summary>
@@ -13,7 +13,7 @@
             <response code="401"></response>
             <response code="500"></response>
         </member>
-        <member name="M:gerenciador_hashtags_twitter.Controllers.HashtagController.Add(gerenciador_hashtags_twitter.Application.DTOs.Request.AddHashtagRequestData)">
+        <member name="M:gerenciador_hashtags_twitter.Controllers.HashtagController.Add(gerenciador_hashtags_twitter.Application.DTOs.Request.Service.AddHashtagRequestData)">
             <summary>
             Create a new hashtag.
             </summary>
@@ -53,7 +53,7 @@
             <response code="422"></response>
             <response code="500"></response>
         </member>
-        <member name="M:gerenciador_hashtags_twitter.Controllers.UserController.Create(gerenciador_hashtags_twitter.Application.DTOs.Request.CreateUserRequestData)">
+        <member name="M:gerenciador_hashtags_twitter.Controllers.UserController.Create(gerenciador_hashtags_twitter.Application.DTOs.Request.Service.CreateUserRequestData)">
             <summary>
             Create a new user.
             </summary>

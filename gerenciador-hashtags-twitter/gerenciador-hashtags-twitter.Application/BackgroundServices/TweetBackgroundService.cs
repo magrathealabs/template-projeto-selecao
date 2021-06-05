@@ -31,6 +31,8 @@ namespace gerenciador_hashtags_twitter.Application.BackgroundServices
 
         public Task SearchTweets()
         {
+            //tweets/search/recent url
+
             throw new System.NotImplementedException();
         }
     }

@@ -1,11 +1,10 @@
-﻿using gerenciador_hashtags_twitter.Application.DTOs.Request;
-using gerenciador_hashtags_twitter.Application.DTOs.Response;
+﻿using gerenciador_hashtags_twitter.Application.DTOs.Request.Service;
+using gerenciador_hashtags_twitter.Application.DTOs.Response.Service;
 using gerenciador_hashtags_twitter.Application.Exceptions;
 using gerenciador_hashtags_twitter.Application.Interfaces;
 using gerenciador_hashtags_twitter.Application.Properties;
 using gerenciador_hashtags_twitter.Domain.Models.Contracts;
 using gerenciador_hashtags_twitter.Domain.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

@@ -1,4 +1,4 @@
-﻿using gerenciador_hashtags_twitter.Application.DTOs.Request;
+﻿using gerenciador_hashtags_twitter.Application.DTOs.Request.Service;
 using gerenciador_hashtags_twitter.Application.Exceptions;
 using gerenciador_hashtags_twitter.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;

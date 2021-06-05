@@ -86,5 +86,14 @@ namespace gerenciador_hashtags_twitter.Application.Properties {
                 return ResourceManager.GetString("HashtagDoesntExists", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an unespected erros when searching tweets in Twitter..
+        /// </summary>
+        internal static string UnexpectedErrorWhenSearchingTweets {
+            get {
+                return ResourceManager.GetString("UnexpectedErrorWhenSearchingTweets", resourceCulture);
+            }
+        }
     }
 }

@@ -126,4 +126,7 @@
   <data name="HashtagDoesntExists" xml:space="preserve">
     <value>There is no hashtag for the given id.</value>
   </data>
+  <data name="UnexpectedErrorWhenSearchingTweets" xml:space="preserve">
+    <value>There was an unespected erros when searching tweets in Twitter.</value>
+  </data>
 </root>
