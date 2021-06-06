@@ -59,7 +59,7 @@ namespace gerenciador_hashtags_twitter.Domain.Models.Entities
             if (DateTime.MinValue.Equals(publishDate))
                 throw new DomainEntityException(Resources.InvalidPublishDate);
 
-            if(publishDate > DateTime.Now)
+            if(publishDate > DateTime.Now.AddDays(1))
                 throw new DomainEntityException(Resources.InvalidPublishDate);
         }
 

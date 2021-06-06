@@ -28,6 +28,7 @@ namespace gerenciador_hashtags_twitter.DependencyInjections
 
             services.AddScoped<IHashtagFactory, HashtagFactory>();
             services.AddScoped<IUserFactory, UserFactory>();
+            services.AddScoped<ITweetFactory, TweetFactory>();
 
             services.AddScoped<IHashtagRepository, HashtagRepository>();
             services.AddScoped<ITweetRepository, TweetRepository>();

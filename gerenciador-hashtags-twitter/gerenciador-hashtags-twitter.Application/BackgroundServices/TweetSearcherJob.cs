@@ -23,7 +23,7 @@ namespace gerenciador_hashtags_twitter.BackgroundServices
                 while (!stoppingToken.IsCancellationRequested)
                 {
                     await service.SearchTweets();
-                    await Task.Delay(TimeSpan.FromMinutes(2));
+                    await Task.Delay(TimeSpan.FromHours(8));
                 }
             }
         }

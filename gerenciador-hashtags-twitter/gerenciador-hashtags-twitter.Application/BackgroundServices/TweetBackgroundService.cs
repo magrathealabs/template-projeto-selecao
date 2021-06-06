@@ -12,8 +12,7 @@ using System.Threading.Tasks;
 namespace gerenciador_hashtags_twitter.Application.BackgroundServices
 {
     public sealed class TweetBackgroundService :
-        ITweetBackgroundService,
-        INotifyHashtagService
+        ITweetBackgroundService
     {
         private IReadOnlyCollection<string> _hashtagsToSearchTweets;
 
@@ -34,11 +33,6 @@ namespace gerenciador_hashtags_twitter.Application.BackgroundServices
             _webApiClientService = webApiClientService;
             _tweetFactory = tweetFactory;
             _tweetRepository = tweetRepository;
-            SearchHashtags();
-        }
-        public async Task NofityHashtagChanged()
-        {
-            SearchHashtags();
         }
 
         private async Task SearchHashtags()
@@ -49,9 +43,10 @@ namespace gerenciador_hashtags_twitter.Application.BackgroundServices
 
         public async Task SearchTweets()
         {
+            await SearchHashtags();
             foreach (var hashtag in _hashtagsToSearchTweets)
             {
-                UpdateTweets(hashtag);
+                await UpdateTweets(hashtag);
             }
         }
 
@@ -61,8 +56,8 @@ namespace gerenciador_hashtags_twitter.Application.BackgroundServices
 
             var tweetsFiltered = RemoveRetweets(responseData.Tweets);
 
-            var tweets = await ConvertForTweetObject(tweetsFiltered, 
-                                                responseData.Includes, 
+            var tweets = await ConvertForTweetObject(tweetsFiltered,
+                                                responseData.Includes,
                                                 hashtag);
 
             await _tweetRepository.Add(tweets);
@@ -82,9 +77,9 @@ namespace gerenciador_hashtags_twitter.Application.BackgroundServices
                     continue;
 
                 var tweetObject = _tweetFactory.Create(
-                                            tweet.Text, 
-                                            author.Username, 
-                                            tweet.CreatedAt, 
+                                            tweet.Text,
+                                            author.Username,
+                                            tweet.CreatedAt,
                                             hashtag);
 
                 tweets.Add(tweetObject);
