@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>gerenciador-hashtags-twitter.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:gerenciador_hashtags_twitter.Controllers.AuthenticationController.GetAcessToken(gerenciador_hashtags_twitter.Application.DTOs.Request.Service.GetAcessTokenRequestData)">
+             <summary>
+             Create a new token acess.
+             </summary>
+             <param name="requestData"></param>
+            <response code="200"></response>
+            <response code="401"></response>
+            <response code="500"></response>
+        </member>
+        <member name="M:gerenciador_hashtags_twitter.Controllers.HashtagController.Add(gerenciador_hashtags_twitter.Application.DTOs.Request.Service.AddHashtagRequestData)">
+            <summary>
+            Create a new hashtag.
+            </summary>
+            <param name="requestData"></param>
+            <response code="201"></response>
+            <response code="401"></response>
+            <response code="400"></response>
+            <response code="409"></response>
+            <response code="500"></response>
+        </member>
+        <member name="M:gerenciador_hashtags_twitter.Controllers.HashtagController.Delete(System.Guid)">
+            <summary>
+            Delete a hashtag.
+            </summary>
+            <param name="id"></param>
+            <response code="204"></response>
+            <response code="404"></response>
+            <response code="401"></response>
+            <response code="403"></response>
+            <response code="500"></response>
+        </member>
+        <member name="M:gerenciador_hashtags_twitter.Controllers.HashtagController.Get">
+            <summary>
+            Gets the hashtags of the logged user.
+            </summary>
+            <response code="200"></response>
+            <response code="401"></response>
+            <response code="500"></response>
+        </member>
+        <member name="M:gerenciador_hashtags_twitter.Controllers.TweetController.Get(System.Guid)">
+            <summary>
+            Obter os tweets com base em uma hashtag.
+            </summary>
+            <response code="200"></response>
+            <response code="401"></response>
+            <response code="403"></response>
+            <response code="422"></response>
+            <response code="500"></response>
+        </member>
+        <member name="M:gerenciador_hashtags_twitter.Controllers.UserController.Create(gerenciador_hashtags_twitter.Application.DTOs.Request.Service.CreateUserRequestData)">
+            <summary>
+            Create a new user.
+            </summary>
+            <param name="requestData"></param>
+            <response code="201"></response>
+            <response code="400"></response>
+            <response code="409"></response>
+            <response code="500"></response>
+        </member>
+        <member name="T:gerenciador_hashtags_twitter.DependencyInjections.SwaggerExtensions">
+            <summary>
+            Extensões do container <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> e do <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> para aprimorar
+            e segmentar as configurações para injeção de dependência do Swagger.
+            </summary>
+        </member>
+        <member name="M:gerenciador_hashtags_twitter.DependencyInjections.SwaggerExtensions.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Extensão do ServiceCollection para adicionar o Swagger aos containers de Injeção de Depência.
+            </summary>
+        </member>
+        <member name="M:gerenciador_hashtags_twitter.DependencyInjections.SwaggerExtensions.UseVersionedSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider)">
+            <summary>
+            Prepara o Swagger e o SwaggerUI (interface do Swagger).
+            </summary>
+        </member>
+    </members>
+</doc>

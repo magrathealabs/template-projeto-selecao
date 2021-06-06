@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>gerenciador_hashtags_twitter.Data.InMemoryDb</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\gerenciador-hashtags-twitter.Domain\gerenciador-hashtags-twitter.Domain.csproj" />
+    <ProjectReference Include="..\gerenciador-hashtags-twitter.Securities.Application\gerenciador-hashtags-twitter.Securities.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>

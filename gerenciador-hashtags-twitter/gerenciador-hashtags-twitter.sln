@@ -1,0 +1,90 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gerenciador-hashtags-twitter.WebAPI", "gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.WebAPI.csproj", "{6C7B0685-3D0C-4ACA-A7AD-A88170D197B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Docs", "0 - Docs", "{390D2B63-DA5C-4B84-BDA5-FEBB7A0622F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{7DD2DBE4-3A30-4893-A324-D80945BFA59B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{B8B8A9C2-EF1F-4375-9B24-907C595E32BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{6B2120D5-D720-4AAD-B331-1C471D17B9E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{F981C463-3B53-4A19-A6D5-C4C1C051D307}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gerenciador-hashtags-twitter.Domain", "gerenciador-hashtags-twitter.Domain\gerenciador-hashtags-twitter.Domain.csproj", "{922D918F-1217-4CF0-A6A2-B4BC1BECAD25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{0C372C72-D6ED-4A19-9B68-86EF8C3BDA6E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gerenciador-hashtags-twitter.Data.InMemoryDb", "gerenciador-hashtags-twitter.Data.InMemoryDb\gerenciador-hashtags-twitter.Data.InMemoryDb.csproj", "{A027E855-DCD0-4D92-B729-3206AD7FDF90}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gerenciador-hashtags-twitter.Data.InMemoryDb.Tests", "gerenciador-hashtags-twitter.Data.InMemoryDb.Tests\gerenciador-hashtags-twitter.Data.InMemoryDb.Tests.csproj", "{C0F0E97A-BA27-41CF-BBBB-D788B662AC60}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gerenciador-hashtags-twitter.Application", "gerenciador-hashtags-twitter.Application\gerenciador-hashtags-twitter.Application.csproj", "{EBC83A8E-B01D-4DB4-B3B7-518A8E28A8A1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gerenciador-hashtags-twitter.Application.Tests", "gerenciador-hashtags-twitter.Application.Tests\gerenciador-hashtags-twitter.Application.Tests.csproj", "{E21075B1-EAA1-4532-A850-FC2384ABD403}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gerenciador-hashtags-twitter.Securities.Application", "gerenciador-hashtags-twitter.Securities.Application\gerenciador-hashtags-twitter.Securities.Application.csproj", "{5C707FDF-8A6C-47ED-9369-F9370931B872}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gerenciador-hashtags-twitter.Securities.Application.Tests", "gerenciador-hashtags-twitter.Securities.Application.Tests\gerenciador-hashtags-twitter.Securities.Application.Tests.csproj", "{9A2F435A-E77B-47FB-8607-B5470D5032A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C7B0685-3D0C-4ACA-A7AD-A88170D197B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C7B0685-3D0C-4ACA-A7AD-A88170D197B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C7B0685-3D0C-4ACA-A7AD-A88170D197B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C7B0685-3D0C-4ACA-A7AD-A88170D197B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{922D918F-1217-4CF0-A6A2-B4BC1BECAD25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{922D918F-1217-4CF0-A6A2-B4BC1BECAD25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{922D918F-1217-4CF0-A6A2-B4BC1BECAD25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{922D918F-1217-4CF0-A6A2-B4BC1BECAD25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A027E855-DCD0-4D92-B729-3206AD7FDF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A027E855-DCD0-4D92-B729-3206AD7FDF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A027E855-DCD0-4D92-B729-3206AD7FDF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A027E855-DCD0-4D92-B729-3206AD7FDF90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0F0E97A-BA27-41CF-BBBB-D788B662AC60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F0E97A-BA27-41CF-BBBB-D788B662AC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F0E97A-BA27-41CF-BBBB-D788B662AC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F0E97A-BA27-41CF-BBBB-D788B662AC60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC83A8E-B01D-4DB4-B3B7-518A8E28A8A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC83A8E-B01D-4DB4-B3B7-518A8E28A8A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC83A8E-B01D-4DB4-B3B7-518A8E28A8A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC83A8E-B01D-4DB4-B3B7-518A8E28A8A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E21075B1-EAA1-4532-A850-FC2384ABD403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E21075B1-EAA1-4532-A850-FC2384ABD403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E21075B1-EAA1-4532-A850-FC2384ABD403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E21075B1-EAA1-4532-A850-FC2384ABD403}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C707FDF-8A6C-47ED-9369-F9370931B872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C707FDF-8A6C-47ED-9369-F9370931B872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C707FDF-8A6C-47ED-9369-F9370931B872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C707FDF-8A6C-47ED-9369-F9370931B872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A2F435A-E77B-47FB-8607-B5470D5032A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A2F435A-E77B-47FB-8607-B5470D5032A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A2F435A-E77B-47FB-8607-B5470D5032A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A2F435A-E77B-47FB-8607-B5470D5032A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6C7B0685-3D0C-4ACA-A7AD-A88170D197B0} = {7DD2DBE4-3A30-4893-A324-D80945BFA59B}
+		{922D918F-1217-4CF0-A6A2-B4BC1BECAD25} = {6B2120D5-D720-4AAD-B331-1C471D17B9E0}
+		{0C372C72-D6ED-4A19-9B68-86EF8C3BDA6E} = {F981C463-3B53-4A19-A6D5-C4C1C051D307}
+		{A027E855-DCD0-4D92-B729-3206AD7FDF90} = {0C372C72-D6ED-4A19-9B68-86EF8C3BDA6E}
+		{C0F0E97A-BA27-41CF-BBBB-D788B662AC60} = {0C372C72-D6ED-4A19-9B68-86EF8C3BDA6E}
+		{EBC83A8E-B01D-4DB4-B3B7-518A8E28A8A1} = {B8B8A9C2-EF1F-4375-9B24-907C595E32BF}
+		{E21075B1-EAA1-4532-A850-FC2384ABD403} = {B8B8A9C2-EF1F-4375-9B24-907C595E32BF}
+		{5C707FDF-8A6C-47ED-9369-F9370931B872} = {B8B8A9C2-EF1F-4375-9B24-907C595E32BF}
+		{9A2F435A-E77B-47FB-8607-B5470D5032A7} = {B8B8A9C2-EF1F-4375-9B24-907C595E32BF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {49786BB1-7047-40B0-B1A4-316546889F25}
+	EndGlobalSection
+EndGlobal

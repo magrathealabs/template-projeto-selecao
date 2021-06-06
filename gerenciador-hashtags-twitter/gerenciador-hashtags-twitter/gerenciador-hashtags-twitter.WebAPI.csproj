@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>gerenciador_hashtags_twitter</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\larissa.martins\source\repos\template-projeto-selecao\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter\gerenciador-hashtags-twitter.xml</DocumentationFile>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\gerenciador-hashtags-twitter.Application\gerenciador-hashtags-twitter.Application.csproj" />
+    <ProjectReference Include="..\gerenciador-hashtags-twitter.Data.InMemoryDb\gerenciador-hashtags-twitter.Data.InMemoryDb.csproj" />
+    <ProjectReference Include="..\gerenciador-hashtags-twitter.Securities.Application\gerenciador-hashtags-twitter.Securities.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="gerenciador-hashtags-twitter.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SwaggerApplication.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

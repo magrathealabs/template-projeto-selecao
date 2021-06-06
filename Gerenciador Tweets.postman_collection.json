@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "46fa10eb-2245-425f-a3e9-97dccba38ecb",
+		"name": "Gerenciador Tweets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"teste\",\r\n  \"password\": \"@123456\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44356/api/v1/User/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44356",
+					"path": [
+						"api",
+						"v1",
+						"User",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authentication",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "AddHashtag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44356/api/v1/Authentication/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44356",
+					"path": [
+						"api",
+						"v1",
+						"Authentication",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveHashtag",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44356/api/v1/Hashtag/remove/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44356",
+					"path": [
+						"api",
+						"v1",
+						"Hashtag",
+						"remove",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserHashtags",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "GetTweets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44356/api/v1/api/v1/Tweet/get?hashtagId",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44356",
+					"path": [
+						"api",
+						"v1",
+						"api",
+						"v1",
+						"Tweet",
+						"get"
+					],
+					"query": [
+						{
+							"key": "hashtagId",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
