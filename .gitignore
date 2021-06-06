@@ -66,3 +66,10 @@ gerenciador-hashtags-twitter/gerenciador-hashtags-twitter/obj
 /gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Securities.Application/obj
 /gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Securities.Application.Tests/bin/Debug/net5.0
 /gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Securities.Application.Tests/obj
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Application/bin/Release/net5.0
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Application.Tests/bin/Release/net5.0
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Data.InMemoryDb/bin/Release/net5.0
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Data.InMemoryDb.Tests/bin/Release/net5.0
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Domain/bin/Release/net5.0
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Securities.Application/bin/Release/netcoreapp3.1
+/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.Securities.Application.Tests/bin/Release/net5.0

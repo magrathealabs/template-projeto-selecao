@@ -25,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="gerenciador-hashtags-twitter.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="SwaggerApplication.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

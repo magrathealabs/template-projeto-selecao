@@ -60,7 +60,7 @@ namespace gerenciador_hashtags_twitter.Application.BackgroundServices
                                                 responseData.Includes,
                                                 hashtag);
 
-            await _tweetRepository.Add(tweets);
+             await _tweetRepository.Add(tweets);
         }
 
         private async Task<List<ITweet>> ConvertForTweetObject(
