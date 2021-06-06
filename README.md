@@ -1,45 +1,72 @@
-# PROJETO DE SELEÇÃO
+## INSTRUÇÕES PARA RODAR O PROJETO:
 
-Ao conhecer uma pessoa que está aplicando para a Magrathea gostamos de ter uma conversa sobre código. Afinal, escrever, ler e discutir sobre código faz parte da nossa rotina diária de trabalho.
+ATENÇÃO: Esses passos deverão ser executados caso o intuito seja rodar o projeto localmente.
 
-Você pode implementar o projeto usando qualquer linguagem de sua preferência. Lembre-se: use a linguagem com a qual você tem mais familiaridade.
+* Abrir o arquivo gerenciador-hashtags-twitter.sln (template-projeto-selecao/gerenciador-hashtags-twitter/gerenciador-hashtags-twitter.sln) no visual studio 2019.
+* Definir o projeto gerenciador-hashtags-twitter.WebAPI como projeto de inicialização.
+![image](https://user-images.githubusercontent.com/38192027/120930631-8445f900-c6c4-11eb-91af-b2f90a1df865.png)
+* Clique em IIS Express para rodar o projeto. </br>
+![image](https://user-images.githubusercontent.com/38192027/120930721-d71fb080-c6c4-11eb-9486-67b94467f749.png)
 
-## O QUE VAMOS AVALIAR
+### Passos genéricos
 
-Queremos avaliar sua capacidade de fornecer um produto simples com documentação suficiente para outros desenvolvedores contribuírem ativamente para o projeto posteriormente. Na entrevista vamos prestar atenção nos seguintes itens:
+* A página inicial do projeto será o Swagger da WEBAPI. </br>
+![image](https://user-images.githubusercontent.com/38192027/120931282-40a0be80-c6c7-11eb-86cd-96bbb9083049.png) </br>
+No Swagger, será possível visualizar todos os métodos contidos na WebAPI e uma breve descrição explicando o que cada um dos métodos faz. 
+* Na pasta raiz do projeto, existe uma coleção do postman que poderá ser usada também para testá-lo com todos os métodos contidos na WebAPI.  
 
-* Comunicação na revisão do código presencial;
-* Argumentos sobre desafios enfrentados e escolhas realizadas na implementação;
+## INSTRUÇÕES PARA RODAR OS TESTES:
 
-Ao revisar seu código vamos prestar atenção nos seguintes itens:
+Os projetos de teste são os que contém o prefixo .Tests no final do nome do projeto. 
+Para executá-los, basta clicar com o botão direito em cima do arquivo, no visual studio e clicar em Run Tests.
 
-* Organização do código;
-* Código bem escrito, limpo e coeso;
-* Arquitetura e princípios de desenvolvimento;
-* Documentação (README.md) com instruções claras para reproduzir o projeto;
-* Uso adequado de versionamento do código em git;
-* Uso de testes automatizados;
-* Deploy da aplicação: recomendamos Heroku por ter plano free;
-* O design da API RESTful é implementado, usando corretamente os verbos HTTP e o código de status apropriado;
-* Uso adequado de HTML5, CSS3 e JavaScript em um front-end minimamente estruturado.
+## Como o projeto funciona?
 
-Caso você não se sinta confortável com algum desses itens, tudo bem, apenas nos fale sobre isso, ok? O objetivo aqui não é você programar de graça para nós, nem te fazer perder tempo com algo irrelevante. Nosso objetivo aqui é ter um código sobre o qual podemos conversar. Como você deve ter notado, a gente preza muito por colaboração, trabalho em time e comunicação. O objetivo aqui é ter, minimamente, essa experiência com você.
+Inicialmente, o projeto foi desenvolvido apenas com uma base de dados em memória, com o intuito de permitir execução de testes de unidade e validar de uma forma rápida o desenvolvimento dos métodos da WebAPI. Alguns dados já estão pré definidos, sendo carregados em memória ao iniciar o projeto. Ao abrir o projeto, automaticamente conterá 2 usuários, com 2 hashtags vinculadas a cada um deles. </br></br>
 
-Respeite o seu nível de conhecimento e experiência, o importante é você saber dizer o motivo das suas escolhas. Se você tiver qualquer dúvida, por favor, entre em contato com a gente. Se quiser uma revisão no seu código em um Pull Request no Github, pode nos chamar. Estamos disponíveis para te ajudar a finalizar esse processo.
-Ah, por último. Você acha que consegue nos responder em quanto tempo? Duas semanas é ok para você?
+Usuário 1: </br>
+login: larissamartins </br>
+senha: @123456 </br></br>
 
-## IDEIAS DE PROJETOS
+Hashtags: #pets e #design. <br><br>
 
-A seguir seguem algumas ideias de projetos que você pode implementar:
+Usuário 2: </br>
+login: John08 </br>
+senha: @123456 </br></br>
 
-* [Cliente para o GitHub](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/GITHUB.md);
-* [Cliente para o Twitter](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/TWITTER.md);
-* [Cliente para o Meetup](https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/MEETUP.md).
+Hashtags: #development e #design. <br><br>
 
-Tem alguma outra ideia? Tem algum projeto que já está pronto e gostaria de apresentar? Fale com a gente :)
+## Como funciona a comunicação com a API do twitter para buscar os tweets por hashtag?
 
-## COMO COMPARTILHAR O PROJETO CONOSCO
+A comunicação ocorre através de um job, que é pela primeira vez assim que o projeto é iniciado, e em seguida, a cada 5 minutos. Sendo assim, ao cadastrar uma nova hashtag, pode levar até 5 minutos para a pesquisa de tweets por hashtag conseguir obter tweets relacionados a ela... </br> </br>
 
-1. Apague este README.md e adicione informações que achar relevante como configurar o projeto, contendo os comandos que devem ser executados para executar ele e os testes;
-2. Abra um PR apontando para a branch master deste repositório;
-3. Escreva qualquer consideração na descrição do PR e faça qualquer comentário que achar pertinente no código.
+OBSERVAÇÕES ADICIONAIS: </br>
+
+Caso multiplos usuários tenham a mesma hashtag cadastrada, como o exemplo dos usuários larissa e john, onde ambos possuem a hashtag #design cadastrada, ao realizar a busca de tweets por essa hashtag, o retorno deverá ser o mesmo para ambos os usuários. 
+</br>
+## Sugestão de Testes: </br>
+Passo 1: Criar um novo usuário. </br>
+Passo 2: Obter o token de autenticação com o novo usuário cadastrado. </br>
+Passo 3: Criar uma nova hashtag para o usuário que já exista para outros usuários, como #development, #design ou #pets. </br>
+Passo 4: Realizar a busca de tweets pela hashtag cadastrada. Como essa hashtag já estava cadastrada no sistema quando ele iniciou (mesmo sendo para outro usuário), espera-se que a pesquisa retorne resultados instantaneamente. </br>
+Passo 5: Criar uma nova hashtag que ainda não exixte para nenhum outro usuário na base de dados, como por exemplo, #love. </br>
+Passo 6: Aguardar 5 a 6 minutos e realizar a busca de tweets por essa hashtag. A pesquisa já deverá retornar resultados. </br>
+Passo 7: Realizar um novo login com outro usuário, como a Larissa ou John. </br>
+Passo 8: Pesquisar tweets pela hashtag cadastrada ao usuário com o mesmo nome da hashtag do passo 4, deverão ser retornados os mesmos resultados. </br>
+Passo 9: Ao tentar excluir uma hashtag de outro usuário, ou obter twitter com o Id de uma hashtag de não autorizado, o erro 403 deverá ser retornado. </br>
+
+## Dificuldades: </br>
+
+* Implementação de uma aplicação front-end.
+* Login com o Twitter.
+* Deploy utilizando Docker. 
+
+## Futuras melhorias identificadas/passos para realizar no projeto:
+
+* Deploy da aplicação.
+* Implementar login com o Twitter.
+* Implementar um banco de dados. 
+* Realizar testes de de integração.
+* Ajustar validação das entidades no domínio para que ao lançar exceções ao criar objetos no domínio, seja retornado todos os erros de uma única vez. Como por exemplo: Nome e data inválido.
+* Criar base classes para as entidades, repositorys e services.
+* Incluir token de cancelamento na busca de tweets por hashtag.
