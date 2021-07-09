@@ -1,6 +1,6 @@
 # PROJETO DE SELEÇÃO
 
-Este projeto visa contemplar a opção de um cliente para o Github proposto pela Magrathea.
+Este projeto visa contemplar a criação de um cliente para o Github proposto pela Magrathea.
 (https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/GITHUB.md)
 
 Os fontes estão escritos utilizando o Visual Studio e ASP.net Core 5.
