@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Description>Teste de seleção para Gerente de Desenvolvimento - Magrathea
+Candidato: Luicil Fernandes
+(c) 2021 Luicil Fernandes</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Views\" />
+    <None Remove="Models\" />
+    <None Remove="Controllers\" />
+    <None Remove="Octokit" />
+    <None Remove="Classes\" />
+    <None Remove="Views\Login\" />
+    <None Remove="Views\Repositorios\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="Models\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Classes\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="Views\Repositorios\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Octokit" Version="0.50.0" />
+  </ItemGroup>
+</Project>
