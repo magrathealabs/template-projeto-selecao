@@ -44,7 +44,7 @@ namespace Cliente_Github.Controllers
 
                     HttpContext.Session.SetString("username", username);
                     HttpContext.Session.SetString("password", password);
-                    return RedirectToAction("Repositorios", "Repositorios");
+                    return RedirectToAction("Stars", "Repositorios");
                     //return View("../Repositorios/Repositorios");
                 }
                 else

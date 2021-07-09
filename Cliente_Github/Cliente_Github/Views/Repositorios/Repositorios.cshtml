@@ -37,9 +37,9 @@
                         <a asp-controller="Repositorios" asp-action="Stars" class="btn btn-primary"><span class="material-icons">star_rate</span></a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+                <form method="post" asp-controller="Repositorios" asp-action="Pesquisar" class="d-flex">
+                    <input class="form-control me-2" type="text" placeholder="Pesquisar" name="pesquisar">
+                    <button class="btn btn-outline-success" type="submit" value="pesquisar">Pesquisar</button>
                 </form>
             </div>
         </div>

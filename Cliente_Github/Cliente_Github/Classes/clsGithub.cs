@@ -53,6 +53,28 @@ namespace Cliente_Github.Classes
 
         }
 
+        public List<Repository> getReposFiltro(string usuario, string senha, string filtro)
+        {
+            List<Repository> Repositorios = new List<Repository>();
+            GitHubClient client = this.GetGitHubClient(usuario, senha);
+            User user = Task.Run(async () => await getGitHubUserAsync(usuario, senha)).Result;
+            if(user != null)
+            {
+                SearchRepositoriesRequest sRepository = new SearchRepositoriesRequest(filtro);
+                sRepository.User = user.Login;
+                                
+                SearchRepositoryResult sRepositoryResults = Task.Run(async () => await client.Search.SearchRepo(sRepository)).Result;
+                foreach(Repository repo in sRepositoryResults.Items)
+                {
+                    if(repo.Owner.Login == usuario)
+                    {
+                        Repositorios.Add(repo);       
+                    }
+                }
+            }
+            return Repositorios;
+        }
+
         private async Task<User> getGitHubUserAsync(string usuario, string senha)
         {
 

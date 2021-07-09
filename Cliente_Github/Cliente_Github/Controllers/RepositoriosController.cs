@@ -22,9 +22,7 @@ namespace Cliente_Github.Controllers
                 return RedirectToAction("Index", "Login");
             } else {
                 Classes.clsGithub cgh = new Classes.clsGithub();
-
                 IReadOnlyList<Octokit.Repository> repos = cgh.getGitHubRepository(username, password);
-
                 return View(MontaModel(repos));
             }
         }
@@ -49,18 +47,37 @@ namespace Cliente_Github.Controllers
 
         }
 
+        public IActionResult Pesquisar(string pesquisar)
+        {
+            string username = HttpContext.Session.GetString("username");
+            string password = HttpContext.Session.GetString("password");
+            Classes.clsGithub cgh = new Classes.clsGithub();
+
+            List<Octokit.Repository> repos = null;
+            if (pesquisar != "")
+            {
+                repos = cgh.getReposFiltro(username, password, pesquisar);
+                return View("Repositorios", MontaModel(repos));
+            }
+            return View("Repositorios", cgh.getGitHubRepository(username, password, true));
+        }
+
         private List<Models.Repositorio> MontaModel(IReadOnlyList<Octokit.Repository> repos)
         {
             List<Models.Repositorio> repositorio = new List<Models.Repositorio>();
-            foreach (var repo in repos)
+            if(repos != null)
             {
-                repositorio.Add(new Models.Repositorio()
+                foreach (var repo in repos)
                 {
-                    Id = repo.Id,
-                    Descricao = repo.Description,
-                    Nome = repo.Name,
-                    Url = repo.Url
-                });
+                    repositorio.Add(new Models.Repositorio()
+                    {
+                        Id = repo.Id,
+                        Descricao = repo.Description,
+                        Nome = repo.Name,
+                        Url = repo.Url
+                    });
+                }
+
             }
             return repositorio;
         }
