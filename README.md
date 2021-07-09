@@ -12,6 +12,8 @@ Mais informações sobre o porquê utilizar o Octokit aqui: https://docs.github.
 
 Basta executar a aplicação e informar um usuário e senha válidos no Github.
 
+Utilizei MSTest para os testes unitários.
+
 Inicialmente a aplicação traz os repositórios marcados com estrela, para trazer todos os repositórios basta clicar no botão refresh e para trazer novamente só os repositórios com estrela basta clicar no botão estrela.
 
 Ainda há features a serem concluídas:
