@@ -1,9 +1,10 @@
 # PROJETO DE SELEÇÃO
 
 Este projeto visa contemplar a criação de um cliente para o Github proposto pela Magrathea.
+
 (https://github.com/magrathealabs/template-projeto-selecao/blob/master/projects/GITHUB.md)
 
-Os fontes estão escritos utilizando o Visual Studio e ASP.net Core 5.
+Os fontes estão escritos utilizando o Visual Studio e ASP.net Core 5 com C#.
 
 Ao abrir a solução no Visual Studio execute o comando Restore Nuget Packages porque a solução utiliza o Octokit para acesso ao Github.
 
