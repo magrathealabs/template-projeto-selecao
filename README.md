@@ -6,7 +6,7 @@ Este projeto visa contemplar a criação de um cliente para o Github proposto pe
 
 Os fontes estão escritos utilizando o Visual Studio e ASP.net Core 5 com C#.
 
-Ao abrir a solução no Visual Studio execute o comando Restore Nuget Packages porque a solução utiliza o Octokit para acesso ao Github.
+Ao abrir a solução no Visual Studio execute o comando Restore Nuget Packages porque a solução utiliza o pacote Octokit para acesso ao Github.
 
 Mais informações sobre o porquê utilizar o Octokit aqui: https://docs.github.com/en/rest/overview/libraries .
 
