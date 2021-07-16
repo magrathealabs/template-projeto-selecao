@@ -8,13 +8,7 @@ namespace RepoTag.Domain.Users
     {
         public static User Get(string email, string password)
         {
-            return new User()
-            {
-                Name = "User test",
-                Email = "email.test@test.net",
-                Password = "Random123",
-                HostingPlatformUsername = "eusougztest"
-            };
+            return new User("User test", "email.test@test.net", "Random123", "eusougztest");
         }
     }
 }

@@ -10,5 +10,12 @@ namespace RepoTag.Domain.Tags
         public User User { get; set; }
         public string Name { get; set; }
         public Colors Color { get; set; }
+
+        public Tag(string name, Colors color, User user)
+        {
+            Name = name;
+            Color = color;
+            User = user;
+        }
     }
 }

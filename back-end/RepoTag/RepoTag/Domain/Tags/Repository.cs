@@ -9,5 +9,11 @@ namespace RepoTag.Domain.Tags
     {
         public int HostingPlatformRepositoryId { get; set; }
         public User User { get; set; }
+
+        public Repository(int hostingPlatformRepositoryId, User user)
+        {
+            HostingPlatformRepositoryId = hostingPlatformRepositoryId;
+            User = user;
+        }
     }
 }

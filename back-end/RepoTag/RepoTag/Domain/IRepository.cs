@@ -9,6 +9,10 @@ namespace RepoTag.Domain
         T GetById(Guid id);
         IEnumerable<T> GetAll();
         T Add(T entity);
-        void AddRange(List<T> entities);
+        void AddRange(IEnumerable<T> entities);
+        void Remove(T obj);
+        void RemoveRange(IEnumerable<T> entities);
+        void Update(T obj);
+        void UpdateRange(IEnumerable<T> entities);
     }
 }

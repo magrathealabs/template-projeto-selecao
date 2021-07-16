@@ -6,5 +6,6 @@ namespace RepoTag.Domain.Users
 {
     public interface IUserService
     {
+        User Create(string name, string email, string password, string hostingPlatformUsername);
     }
 }
