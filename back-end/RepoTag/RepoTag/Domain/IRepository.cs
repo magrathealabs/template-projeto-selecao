@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RepoTag.Domain
 {
-    public interface IRepository<T> where T : IAggregateRoot
+    public interface IRepository<T> where T : class, IAggregateRoot
     {
         T GetById(Guid id);
         IEnumerable<T> GetAll();
