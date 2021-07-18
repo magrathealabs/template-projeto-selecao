@@ -34,9 +34,9 @@ namespace RepoTag.API.Controllers
                 var userCreated = _userAppService.Create(userCreateViewModel);
                 return userCreated;
             }
-            catch
+            catch (RepoTagException ex)
             {
-                return BadRequest();
+                return BadRequest(new { ErrorMessage = ex.Message });
             }
         }
 

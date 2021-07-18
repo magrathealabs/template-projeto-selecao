@@ -28,7 +28,7 @@ namespace RepoTag.Application.Services
         public async Task<List<RepoTagsViewModel>> GetRepoTags(string email, string hostingPlatformUsername)
         {
             var user = _unitOfWork.Users.GetByEmail(email);
-            if (user is null) throw new ArgumentException("Usuário inválido.");
+            if (user is null) throw new RepoTagException("Usuário inválido.");
 
             var hostingPlatformRepos = await _hostingPlatformService.GetStarredRepositories(hostingPlatformUsername);
             _tagService.TryInsertRepos(hostingPlatformRepos.Select(hpr => hpr.Id).ToList(), user);

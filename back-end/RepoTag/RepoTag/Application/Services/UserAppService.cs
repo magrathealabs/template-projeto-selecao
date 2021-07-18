@@ -27,7 +27,7 @@ namespace RepoTag.Application.Services
             if (string.IsNullOrEmpty(userCreateViewModel.HostingPlatformUsername)) throw new ArgumentException("Usuário da plataforma de hospedagem é obrigatório para criar usuário.", "hostingPlatformUsername");
 
             var user = _unitOfWork.Users.GetByEmail(userCreateViewModel.Email);
-            if (user != null) throw new ArgumentException("Email indisponível (usuário já existente).");
+            if (user != null) throw new RepoTagException("Email indisponível (usuário já existente).");
             
             var userCreated = _userService.Create(userCreateViewModel.Name, userCreateViewModel.Email, userCreateViewModel.Password, userCreateViewModel.HostingPlatformUsername);
             _unitOfWork.SaveChanges();
@@ -40,7 +40,7 @@ namespace RepoTag.Application.Services
             if (string.IsNullOrEmpty(password)) throw new ArgumentException("Senha é obrigatória para pegar o usuário.", "password");
 
             var user = _unitOfWork.Users.GetByEmailAndPassword(email, password);
-            return MapUserToViewModels(user);
+            return user is null ? null : MapUserToViewModels(user);
         }
 
         private UserReadViewModel MapUserToViewModels(User user)
