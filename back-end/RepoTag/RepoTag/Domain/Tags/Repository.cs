@@ -10,6 +10,8 @@ namespace RepoTag.Domain.Tags
         public int HostingPlatformRepositoryId { get; set; }
         public User User { get; set; }
 
+        protected Repository() { }
+
         public Repository(int hostingPlatformRepositoryId, User user)
         {
             HostingPlatformRepositoryId = hostingPlatformRepositoryId;
