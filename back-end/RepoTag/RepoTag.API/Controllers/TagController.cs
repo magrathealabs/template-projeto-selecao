@@ -26,6 +26,7 @@ namespace RepoTag.API.Controllers
         public async Task<ActionResult<dynamic>> GetRepoTags(string email, string hostingPlatformUserName)
         {
             var repoTags = await _tagAppService.GetRepoTags(email, hostingPlatformUserName);
+
             return repoTags;
         }
     }
