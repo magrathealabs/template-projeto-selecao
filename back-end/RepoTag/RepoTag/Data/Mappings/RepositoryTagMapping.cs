@@ -13,16 +13,17 @@ namespace RepoTag.Data.Mappings
         {
             builder.ToTable("RepositoryTags", schema: "RepoTag");
 
-            builder.HasKey(b => new { RepositoryId = b.Repository.Id, TagId = b.Tag.Id });
+            builder.HasKey(b => new { b.RepositoryId, b.TagId });
 
-            builder.Property(b => b.Repository).HasColumnName("RepositoryId").IsRequired();
-            builder.Property(b => b.Tag).HasColumnName("TagId").IsRequired();
+            builder.Property(b => b.RepositoryId).HasColumnName("RepositoryId").IsRequired();
+            builder.Property(b => b.TagId).HasColumnName("TagId").IsRequired();
 
             builder.HasOne(b => b.Tag)
                 .WithMany()
-                .HasForeignKey("TagId");
+                .HasForeignKey("TagId")
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(b => b.Repository)
+            builder.HasOne<Repository>()
                 .WithMany()
                 .HasForeignKey("RepositoryId");
         }

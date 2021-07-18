@@ -14,6 +14,13 @@ namespace RepoTag.Data.Mappings
             builder.ToTable("Repositories", schema: "RepoTag");
 
             builder.HasKey(b => b.Id);
+
+            builder.Property(b => b.HostingPlatformRepositoryId).HasColumnName("HostingPlatformRepositoryId").IsRequired();
+
+            builder.HasOne(b => b.User)
+                .WithMany()
+                .HasForeignKey("UserId")
+                .IsRequired();
         }
     }
 }

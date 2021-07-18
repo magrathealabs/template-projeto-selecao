@@ -15,7 +15,13 @@ namespace RepoTag.Data.Mappings
 
             builder.HasKey(b => b.Id);
 
+            builder.Property(b => b.Name).HasColumnName("Name").IsRequired();
+            builder.Property(b => b.Color).HasColumnName("Color").IsRequired();
 
+            builder.HasOne(b => b.User)
+                .WithMany()
+                .HasForeignKey("UserId")
+                .IsRequired();
         }
     }
 }
