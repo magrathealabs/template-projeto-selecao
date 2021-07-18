@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,6 +16,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using RepoTag.API.Services;
 using RepoTag.Application.Interfaces;
+using RepoTag.Data;
+using RepoTag.Web;
 using RestEase;
 
 namespace RepoTag.API
@@ -35,6 +38,11 @@ namespace RepoTag.API
             services.AddCors();
 
             services.AddControllers();
+
+            services.AddDbContext<RepoTagDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("Local")));
+
+            services.AddRepoTagService();
 
             var settings = Configuration.GetSection(SETTINGS_SECTION).Get<Settings>();
             var gitHubApi = RestClient.For<IHostingPlatformService>(settings.GitHubApiBaseUrl);
@@ -69,6 +77,8 @@ namespace RepoTag.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            RepoTagDbContext.SetConnectionString(Configuration.GetConnectionString("Local"));
 
             app.UseHttpsRedirection();
 

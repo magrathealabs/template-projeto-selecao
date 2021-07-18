@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using RepoTag.Application.ViewModels;
 using RepoTag.Domain;
 using RepoTag.Domain.Users;
 using System;
@@ -20,7 +21,7 @@ namespace RepoTag.API.Services
             _settings = settings;
         }
         
-        public string GenerateToken(User user)
+        public string GenerateToken(UserReadViewModel userReadViewModel)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -30,8 +31,8 @@ namespace RepoTag.API.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Name),
-                    new Claim(ClaimTypes.Email, user.Email)
+                    new Claim(ClaimTypes.Name, userReadViewModel.Name),
+                    new Claim(ClaimTypes.Email, userReadViewModel.Email)
                 }),
                 Expires = DateTime.UtcNow.AddHours(3),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

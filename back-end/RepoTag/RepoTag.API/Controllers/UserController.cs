@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RepoTag.API.Services;
-using RepoTag.Domain;
-using RepoTag.Domain.Users;
+using RepoTag.API.ViewModels;
+using RepoTag.Application.Interfaces;
+using RepoTag.Application.ViewModels;
 
 namespace RepoTag.API.Controllers
 {
@@ -16,23 +17,40 @@ namespace RepoTag.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly TokenService _tokenService;
+        private readonly IUserAppService _userAppService;
 
-        public UserController(TokenService tokenService)
+        public UserController(TokenService tokenService, IUserAppService userAppService)
         {
             _tokenService = tokenService;
+            _userAppService = userAppService;
         }
-        
-        [HttpPost]
-        [Route("login/{email}/{pass}")]
-        [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> Authenticate(string email, string pass)
-        {
-            var user = UserRepository.Get(email, pass);
 
-            if (user == null) return NotFound(new { message = "Usuário ou senha inválidas" });
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult<UserReadViewModel>> Create([FromBody] UserCreateViewModel userCreateViewModel)
+        {
+            try
+            {
+                var userCreated = _userAppService.Create(userCreateViewModel);
+                return userCreated;
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        [Route("login")]
+        [AllowAnonymous]
+        public async Task<ActionResult<dynamic>> Authenticate([FromBody] UserLoginViewModel userLoginViewModel)
+        {
+            var user = _userAppService.Get(userLoginViewModel.Email, userLoginViewModel.Password);
+
+            if (user is null) return NotFound(new { message = "Usuário ou senha inválidas" });
 
             var token = _tokenService.GenerateToken(user);
-            user.Password = "";
+
             return new
             {
                 user,
@@ -44,6 +62,5 @@ namespace RepoTag.API.Controllers
         [Route("auth")]
         [Authorize]
         public string Auth() => $"User autenticado: {User.Identity.Name}\nAuth Type: {User.Identity.AuthenticationType}";
-
     }
 }

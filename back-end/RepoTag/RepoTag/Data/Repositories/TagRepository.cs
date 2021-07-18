@@ -1,7 +1,9 @@
-﻿using RepoTag.Domain.Tags;
+﻿using Microsoft.EntityFrameworkCore;
+using RepoTag.Domain.Tags;
 using RepoTag.Domain.Users;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace RepoTag.Data.Repositories
@@ -15,7 +17,7 @@ namespace RepoTag.Data.Repositories
 
         public void AddRepos(List<Repository> repos)
         {
-            throw new NotImplementedException();
+            Db.Repositories.AddRange(repos);
         }
 
         public void AddRepoTag(Guid tagId, Guid repoId, User user)
@@ -25,7 +27,11 @@ namespace RepoTag.Data.Repositories
 
         public IEnumerable<Tag> GetAllByRepoAndUser(Guid repoId, User user)
         {
-            throw new NotImplementedException();
+            return Db.RepositoryTags
+                .Include(rt => rt.Tag)
+                .Include(rt => rt.Tag.User)
+                .Where(rt => rt.RepositoryId.Equals(repoId) && rt.Tag.User.Id.Equals(user.Id))
+                .Select(rt => rt.Tag);
         }
 
         public IEnumerable<Tag> GetAllByUser(User user)
@@ -35,7 +41,9 @@ namespace RepoTag.Data.Repositories
 
         public IEnumerable<Repository> GetAllReposByUser(User user)
         {
-            throw new NotImplementedException();
+            return Db.Repositories
+                .Include(r => r.User)
+                .Where(r => r.User.Id.Equals(user.Id));
         }
 
         public IEnumerable<Tag> GetByRepoIdsAndUser(List<Guid> repoIds, User user)

@@ -1,4 +1,5 @@
 ﻿using RepoTag.Application.Interfaces;
+using RepoTag.Application.ViewModels;
 using RepoTag.Domain;
 using RepoTag.Domain.Users;
 using System;
@@ -18,25 +19,38 @@ namespace RepoTag.Application.Services
             _userService = userService;
         }
 
-        public User Create(string name, string email, string password, string hostingPlatformUsername)
+        public UserReadViewModel Create(UserCreateViewModel userCreateViewModel)
         {
-            if (string.IsNullOrEmpty(name)) throw new ArgumentException("Nome é obrigatório para criar usuário.", "name");
-            if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email é obrigatório para criar usuário.", "email");
-            if (string.IsNullOrEmpty(password)) throw new ArgumentException("Senha é obrigatória para criar usuário.", "password");
-            if (string.IsNullOrEmpty(hostingPlatformUsername)) throw new ArgumentException("Usuário da plataforma de hospedagem é obrigatório para criar usuário.", "hostingPlatformUsername");
+            if (string.IsNullOrEmpty(userCreateViewModel.Name)) throw new ArgumentException("Nome é obrigatório para criar usuário.", "name");
+            if (string.IsNullOrEmpty(userCreateViewModel.Email)) throw new ArgumentException("Email é obrigatório para criar usuário.", "email");
+            if (string.IsNullOrEmpty(userCreateViewModel.Password)) throw new ArgumentException("Senha é obrigatória para criar usuário.", "password");
+            if (string.IsNullOrEmpty(userCreateViewModel.HostingPlatformUsername)) throw new ArgumentException("Usuário da plataforma de hospedagem é obrigatório para criar usuário.", "hostingPlatformUsername");
 
-            var userCreated = _userService.Create(name, email, password, hostingPlatformUsername);
+            var user = _unitOfWork.Users.GetByEmail(userCreateViewModel.Email);
+            if (user != null) throw new ArgumentException("Email indisponível (usuário já existente).");
+            
+            var userCreated = _userService.Create(userCreateViewModel.Name, userCreateViewModel.Email, userCreateViewModel.Password, userCreateViewModel.HostingPlatformUsername);
             _unitOfWork.SaveChanges();
-            return userCreated;
+            return MapUserToViewModels(userCreated);
         }
 
-        public User Get(string email, string password)
+        public UserReadViewModel Get(string email, string password)
         {
             if (string.IsNullOrEmpty(email)) throw new ArgumentException("Email é obrigatório para pegar o usuário.", "email");
             if (string.IsNullOrEmpty(password)) throw new ArgumentException("Senha é obrigatória para pegar o usuário.", "password");
 
             var user = _unitOfWork.Users.GetByEmailAndPassword(email, password);
-            return user;
+            return MapUserToViewModels(user);
+        }
+
+        private UserReadViewModel MapUserToViewModels(User user)
+        {
+            return new UserReadViewModel()
+            {
+                Name = user.Name,
+                Email = user.Email,
+                HostingPlatformUsername = user.HostingPlatformUsername
+            };
         }
     }
 }

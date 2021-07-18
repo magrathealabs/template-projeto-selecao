@@ -25,10 +25,14 @@ namespace RepoTag.Application.Services
             _tagService = tagService;
         }
 
-        public async Task<List<RepoTagsViewModel>> GetRepoTags(User user)
+        public async Task<List<RepoTagsViewModel>> GetRepoTags(string email, string hostingPlatformUsername)
         {
-            var hostingPlatformRepos = await _hostingPlatformService.GetStarredRepositories(user.HostingPlatformUsername);
+            var user = _unitOfWork.Users.GetByEmail(email);
+            if (user is null) throw new ArgumentException("Usuário inválido.");
+
+            var hostingPlatformRepos = await _hostingPlatformService.GetStarredRepositories(hostingPlatformUsername);
             _tagService.TryInsertRepos(hostingPlatformRepos.Select(hpr => hpr.Id).ToList(), user);
+            _unitOfWork.SaveChanges();
 
             var repos = _unitOfWork.Tags.GetAllReposByUser(user);
             var repoTagsViewModels = new List<RepoTagsViewModel>();
