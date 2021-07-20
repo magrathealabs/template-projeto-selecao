@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -47,7 +48,7 @@ namespace RepoTag.API.Controllers
         {
             var user = _userAppService.Get(userLoginViewModel.Email, userLoginViewModel.Password);
 
-            if (user is null) return NotFound(new { message = "Usuário ou senha inválidas" });
+            if (user is null) return NotFound(new { ErrorMessage = "Usuário ou senha inválidas" });
 
             var token = _tokenService.GenerateToken(user);
 
@@ -61,6 +62,15 @@ namespace RepoTag.API.Controllers
         [HttpGet]
         [Route("auth")]
         [Authorize]
-        public string Auth() => $"User autenticado: {User.Identity.Name}\nAuth Type: {User.Identity.AuthenticationType}";
+        public async Task<ActionResult<UserReadViewModel>> Auth()
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (userEmail != null)
+            {
+                var user = _userAppService.Get(userEmail);
+                return user;
+            }
+            return BadRequest(new { ErrorMessage = "Usuário não encontrado" });
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace RepoTag.Application.Interfaces
     {
         UserReadViewModel Create(UserCreateViewModel userCreateViewModel);
         UserReadViewModel Get(string email, string password);
+        UserReadViewModel Get(string userEmail);
     }
 }

@@ -43,6 +43,13 @@ namespace RepoTag.Application.Services
             return user is null ? null : MapUserToViewModels(user);
         }
 
+        public UserReadViewModel Get(string userEmail)
+        {
+            if (string.IsNullOrEmpty(userEmail)) throw new ArgumentException("Email é obrigatório para pegar o usuário.", "email");
+            var user = _unitOfWork.Users.GetByEmail(userEmail);
+            return user is null ? null : MapUserToViewModels(user);
+        }
+
         private UserReadViewModel MapUserToViewModels(User user)
         {
             return new UserReadViewModel()
