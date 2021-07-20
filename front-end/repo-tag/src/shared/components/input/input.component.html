@@ -1,0 +1,10 @@
+<label *ngIf="label" for="input">{{ label }}</label>
+<input
+  id="input"
+  [type]="type"
+  [placeholder]="placeholder"
+  [formControl]="control"
+  [ngStyle]="inputStyles"
+  (input)="doInput()"
+  (blur)="doBlur()"
+>

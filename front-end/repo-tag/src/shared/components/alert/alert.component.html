@@ -1,0 +1,6 @@
+<div [ngClass]="alertClasses">
+  {{ message }}
+  <span class="circle" (click)="onClose.emit()">
+    <img src="assets/icons/close_icon.svg" alt="Close icon">
+  </span>
+</div>

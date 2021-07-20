@@ -1,0 +1,8 @@
+<button
+  [ngClass]="buttonClasses"
+  [ngStyle]="buttonStyles"
+  [disabled]="disabled"
+  (click)="onClick.emit()"
+>
+  <span class="button-text"><ng-content></ng-content></span>
+</button>

@@ -1,0 +1,39 @@
+input, label {
+  color: var(--color-black);
+}
+
+input {
+  padding: var(--space-small) var(--space);
+  border: 1.5px solid #a5a5a570;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: all 100ms ease-in;
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--color-main);
+    transition: all 200ms ease-out;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: var(--space-x-small);
+}
+
+::placeholder {
+  color: var(--color-gray);
+}
+::-webkit-input-placeholder { /* Edge */
+  color: var(--color-gray);
+}
+
+input.success {
+  border-color: var(--color-success);
+  transition: all 200ms ease-out;
+}
+
+input.error {
+  border-color: var(--color-err);
+  transition: all 200ms ease-out;
+}
