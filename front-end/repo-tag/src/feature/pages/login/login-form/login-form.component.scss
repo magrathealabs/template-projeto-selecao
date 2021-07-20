@@ -1,0 +1,8 @@
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-x-large);
+  row-gap: var(--space);
+  border-radius: 6px;
+  background-color: var(--bg-form-white);
+}

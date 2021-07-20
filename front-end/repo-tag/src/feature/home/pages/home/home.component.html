@@ -1,0 +1,2 @@
+<h1 *ngIf="user$ | async as user">Usuário logado: {{ user.name }}</h1>
+<button (click)="logout()">Logout</button>

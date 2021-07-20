@@ -1,0 +1,51 @@
+<section class="register-form-container">
+  <img
+    src="assets/icons/close_icon.svg"
+    alt="Close icon"
+    class="close-icon"
+    (click)="close()"
+  >
+  <form [formGroup]="userCreateForm" class="register-form">
+    <app-input
+      formControlName="name"
+      label="Nome completo"
+      placeholder="Digite seu nome completo"
+      width="100%"
+    ></app-input>
+    <app-input
+      formControlName="email"
+      label="Email"
+      placeholder="Digite seu email"
+      type="email"
+      width="100%"
+    ></app-input>
+    <app-input
+      formControlName="gitHubUsername"
+      label="Usuário do GitHub"
+      placeholder="Digite seu usuário do GitHub"
+      width="100%"
+    ></app-input>
+    <app-input
+      formControlName="password"
+      placeholder="Digite sua senha"
+      label="Senha"
+      type="password"
+      width="100%"
+    ></app-input>
+    <app-input
+      formControlName="confirmPassword"
+      placeholder="Confirme sua senha"
+      label="Confirmar senha"
+      type="password"
+      width="100%"
+    ></app-input>
+    
+    <app-button
+      (onClick)="submitForm()"
+      [disabled]="!userCreateForm.valid"
+      width="100%"
+    >
+      Cadastrar
+    </app-button>
+  </form>
+</section>

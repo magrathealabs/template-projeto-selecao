@@ -1,0 +1,23 @@
+.register-form-container {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space);
+  row-gap: var(--space);
+  border-radius: 6px;
+  background-color: var(--bg-form-white);
+}
+
+.register-form {
+  padding: var(--space);
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--space);
+}
+
+.close-icon {
+  width: 15px;
+  height: 15px;
+  &:hover {
+    cursor: pointer;
+  }
+}

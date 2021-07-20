@@ -1,0 +1,21 @@
+<form [formGroup]="loginForm" class="login-form-container">
+  <app-input
+    label="Email"
+    placeholder="Digite seu email"
+    width="100%"
+    formControlName="email"
+  ></app-input>
+  <app-input
+    label="Senha"
+    placeholder="Digite sua senha"
+    width="100%"
+    type="password"
+    formControlName="password"
+  ></app-input>
+  <app-button
+    width="100%"
+    (onClick)="login()"
+  >
+    Entrar
+  </app-button>
+</form>

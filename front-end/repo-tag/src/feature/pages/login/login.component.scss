@@ -1,0 +1,40 @@
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  align-content: center;
+  column-gap: var(--space-large);
+  min-height: 100vh;
+}
+
+.col-1 {
+  justify-self: flex-end;
+}
+.col-2 {
+  justify-self: flex-start;
+  width: 100%;
+  max-width: 31.5em;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--space);
+
+  .register-redirect-container {
+    margin-top: var(--space);
+    padding: var(--space-x-large);
+    border-radius: 6px;
+    background-color: var(--bg-form-white);
+  }
+}
+
+.col-1, .col-2 {
+  align-self: center;
+}
+
+app-login-form::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #00000014;
+  margin-top: var(--space);
+}
