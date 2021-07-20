@@ -1,27 +1,66 @@
-# RepoTag
+# RepoTag/Front-end
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+### Como executar
 
-## Development server
+#### Instalar
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Node.js
 
-## Code scaffolding
+#### Execução
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Pelo terminal:
 
-## Build
+$ npm install -g @angular/cli
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+$ ng serve -o
 
-## Running unit tests
+#### Troubleshooting
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ng : File C:\Users\Glaucia\AppData\Roaming\npm\ng.ps1 cannot be loaded because running scripts is
+disabled on this system
 
-## Running end-to-end tests
+$ set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Bibliotecas utilizadas
 
-## Further help
+- Storybook
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Estrutura dos módulos
+
+modulo-x
+
+|__ **state**
+
+|__ **view-models**
+
+|__ **services**
+
+|__ **common**
+
+|____ component-x
+
+|____ component-y
+
+|__ **pages**
+
+|____ page-x
+
+|______ component-a
+
+|____ page-y
+
+|______ component-b
+
+|__ modulo-filho-x
+
+|__ modulo-filho-y
+
+**state:** contém os serviços de gerenciamento de estado;
+
+**view-models:** contém as view models;
+
+**services:** contém os serviços de api e das páginas;
+
+**common:** contém componentes que são usadas em mais de um lugar no módulo;
+
+**pages:** contém as páginas;
