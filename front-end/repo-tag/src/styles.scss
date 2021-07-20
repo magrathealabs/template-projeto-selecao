@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+
+:root {
+  --color-main: #3581db;
+  --color-main-dark: #2264B1;
+  --color-main-light: #DEE4EC;
+  --color-err: #db353f;
+  --color-success: #2eba55;
+  --color-white: #f8f8f8;
+  --color-black: #363636;
+  --color-gray: #747474;
+  --color-gray-light: #a5a5a5;
+  --space-x-small: 0.3125rem;
+  --space-small: 0.625rem;
+  --space: 1.25rem;
+  --space-large: 1.875rem;
+  --space-x-large: 2.5rem;
+  --bg-form-white: #F4F4F4;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-white);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font: 400 16px "Arimo", sans-serif;
+}
